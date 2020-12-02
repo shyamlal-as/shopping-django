@@ -62,8 +62,10 @@
     <div class="container">
 
       <div class="row">
-
-      	{% for item in items %}
+        {% for category in categories %}
+        <h1><a href="/?category={{category.id}}"> {{category.name}} </a></h1>
+         {% endfor %}
+      	 {% for item in products %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
            <a href="/checkout"> <img class="class-img-top" src="{{ item.image.url }}"></a>
@@ -74,6 +76,7 @@
           </div>
         </div>
         {% endfor %}
+       
       </div>
     </div>
   </div>
