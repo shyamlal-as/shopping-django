@@ -1,0 +1,28 @@
+{% extends 'store/base.html' %} {% block content %}
+
+<h2>LogIn</h2>
+<form method="POST">{% csrf_token %} {% for field in login_form %}
+
+    <p>
+        {{field.label_tag}} {{field}}
+        <br> {% if field.help_text %}
+        <small style="color: grey;">
+            {{field.help_text}}
+        </small> {% endif %}
+    </p>
+    {% endfor %} {% for field in login_form %} {% for field in login_form %}
+    <p style="color: red;">{{error}}</p>
+    {% endfor %} {% endfor %} {% for error in login_form.errors %}
+    <p style="color: red;">
+        {{error}}
+    </p>{% endfor %} {% if login_form.non_field_errors %}
+
+    <div style="color: red;">
+        <p>{{login_form.non_field_errors}}</p>
+    </div>
+
+    {% endif %}
+    <button type="submit">LOG IN</button>
+</form>
+
+{% endblock content %}
