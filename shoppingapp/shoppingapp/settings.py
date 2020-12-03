@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'shipping.apps.ShippingConfig',
+    'purchase.apps.PurchaseConfig',
     'store.apps.StoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -50,7 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-#AUTH_USER_MODEL='users.User'
+AUTH_USER_MODEL='users.User'
 ROOT_URLCONF = 'shoppingapp.urls'
 
 TEMPLATES = [
