@@ -16,21 +16,9 @@ def checkout(request):
 	context={}
 	return render(request,'store/checkout.html',context)
 
-def product(request):
-	items=Product.objects.all()
-	categories=Categories.objects.all()
-	categoryID=request.GET.get('category')
-
-	if categoryID:
-		products=Product.get_all_products_by_categoryid(categoryID)
-
-	else:
-		products=Product.objects.all()
-	data={}
-	data['products']=products
-	data['categories']=categories
-
-	return render(request,'store/prod.html',data)
+def product(request,categories_id):
+	items=Product.objects.filter(categories_id=categories_id)
+	return render(request,'store/prod.html',{'items':items})
 
 def category(request):
 	lists=Categories.objects.all()
