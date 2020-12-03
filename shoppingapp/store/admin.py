@@ -2,7 +2,18 @@ from django.contrib import admin
 from .models import Product, Categories
 
 
+
 # Register your models here.
 
-admin.site.register(Product)
-admin.site.register(Categories)
+class ProductAdmin(admin.ModelAdmin):
+    list_display=('name','desc')
+    #search_fields = ['name','categories_id']
+
+class CategoriesAdmin(admin.ModelAdmin):
+    list_display=('name','desc','id')
+    #search_fields = ('name')
+
+
+
+admin.site.register(Product,ProductAdmin)
+admin.site.register(Categories,CategoriesAdmin)

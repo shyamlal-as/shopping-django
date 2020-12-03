@@ -17,8 +17,8 @@ def checkout(request):
 	context={}
 	return render(request,'store/checkout.html',context)
 
-def product(request):
-	items=Product.objects.all()
+def product(request, slug):
+	items=Product.objects.filter(categories_id=slug)
 	return render(request,'store/index.html',{'items':items})
 
 def category(request):
