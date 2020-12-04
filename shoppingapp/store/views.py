@@ -3,6 +3,12 @@ from .models import Categories,Product
 from django.http import HttpResponse
 from django.db.models import Q
 from django.core.paginator import Paginator
+
+from django.shortcuts import get_object_or_404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .serializers import productSerializer
 # Create your views here.
 
 def store(request):
@@ -25,9 +31,14 @@ def checkout(request):
 	return render(request,'store/checkout.html',context)
 
 def product(request,categories_id):
-	print('getting in')
-	products=Product.objects.filter(categories_id=categories_id)
-	return render(request,'store/prod.html',{'products':products})
+	products=Product.objects.all().filter(categories_id=categories_id)
+	product_paginator=Paginator(products,6)
+	page_num=request.GET.get('page')
+	page=product_paginator.get_page(page_num)
+	context={
+		'page':page,
+	}
+	return render(request,'store/prod.html',context)
 
 def category(request):
 	lists=Categories.objects.all()
@@ -35,10 +46,24 @@ def category(request):
 
 def search(request):
 	if request.method=='POST':
-		search=request.POST['search']
-		print('search')
-		product=Product.objects.all().filter(Q(name__icontains=search))
+		search=request.POST['search']	
+		products=Product.objects.all().filter(Q(name__icontains=search))
+		product_paginator=Paginator(products,6)
+		page_num=request.GET.get('page')
+		page=product_paginator.get_page(page_num)
+		context={
+		'page':page,
+		}
 		
-		return render(request,'store/store.html',{'products':product})
+		return render(request,'store/store.html',context)
 	else:
 		return render(request,'store/store.html')
+
+
+class productList(APIView):
+
+	def get(self,request):
+		product1=Product.objects.all()
+		serializer=productSerializer(product1,many=True)
+		return Response(serializer.data)
+		

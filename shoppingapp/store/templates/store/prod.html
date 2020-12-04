@@ -50,18 +50,17 @@
 </head>
 
 
-<body>
+<body background="#4e4b5d">
  <section class="product_section layout_padding">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
-          Clothing
         </h2>
       </div>
       <div class="row">
         
 
-        {% for product in products %}
+       {% for product in page.object_list %}
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
@@ -94,12 +93,22 @@
         {% endfor %}
 
 
+
         
       </div>
-      <div class="btn_box">
-        <a href="" class="view_more-link">
-          View More
+     <div class="btn_box" style="display: inline-block;margin-left: 20px">
+        {% if page.has_previous %}
+        <a href="?page={{page.previous_page_number}}" class="view_more-link">
+          Previous
         </a>
+        {% endif %}
+      </div>
+      <div class="btn_box" style="display: inline-block;margin-left:750px;">
+        {% if page.has_next %}
+        <a href="?page={{page.next_page_number}}" class="view_more-link">
+          Next
+        </a>
+        {% endif %}
       </div>
     </div>
   </section>
