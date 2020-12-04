@@ -14,7 +14,7 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-  <title>Minics</title>
+  <title>Eze Buy</title>
 
 
   <!-- bootstrap core css -->
@@ -55,11 +55,20 @@
               </span>
                         </a>
                     </div>
-                    <from class="search_form">
-                        <input type="text" class="form-control" placeholder="Search here...">
-                        <button class="" type="submit">
+                    <!--<from class="search_form" action="/search/" method="POST">
+                    	{% csrf_token %}
+                        <input type="text" name ="search" class="form-control" placeholder="Search here...">
+                        <input type="submit" name="submit" placeholder="submit" value="submit">-->
+                        <form class="search_form" method="POST" action="/search/">
+  						{% csrf_token %}
+  
+  						<input type="text" class ="form-control" name="search" placeholder="Search here">
+  						<input type="submit" name="submit" value="submit">
+
+						</form>
+                        <!--<button class="" type="submit">
               <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
+            </button>-->
                     </from>
                     <div class="user_option_box">
                         <a href="" class="account-link">
@@ -84,7 +93,7 @@
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
                     <a class="navbar-brand" href="index.html">
                         <span>
-              Minics
+              Eze Buy
             </span>
                     </a>
 
@@ -100,9 +109,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="/product/1">Clothing</a>
-                                    <a class="dropdown-item" href="/product/2">Electrical</a>
-                                    <a class="dropdown-item" href="/product/3">Decor</a>
+                                    <a class="dropdown-item" href="/category/1">Clothing</a>
+                                    <a class="dropdown-item" href="/category/2">Electrical</a>
+                                    <a class="dropdown-item" href="/category/3">Decor</a>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -120,6 +129,7 @@
             </div>
         </div>
     </header>
+    
     <!-- end header section -->
     <!-- slider section -->
     <section class="slider_section ">
@@ -143,7 +153,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="img-box">
-                    <img src="images/slider-img.png" alt="">
+                    <img src="{% static 'images/banner4.jpg' %}" style="object-fit: cover;min-width: 100%;min-height: 100%;" alt="">
                   </div>
                 </div>
               </div>
@@ -214,6 +224,7 @@
   </div>
 
 
+
   <!-- product section -->
 
   <section class="product_section layout_padding">
@@ -222,11 +233,13 @@
         <h2>
           Our Products
         </h2>
+        <h3>Page Number : {{page.number}}</h3>
+
       </div>
       <div class="row">
         
 
-        {% for product in products %}
+        {% for product in page.object_list %}
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
@@ -261,10 +274,19 @@
 
         
       </div>
-      <div class="btn_box">
-        <a href="" class="view_more-link">
-          View More
+      <div class="btn_box" style="display: inline-block;margin-left: 20px">
+      	{% if page.has_previous %}
+        <a href="{% url 'store' %}?page={{page.previous_page_number}}" class="view_more-link">
+          Previous
         </a>
+        {% endif %}
+      </div>
+      <div class="btn_box" style="display: inline-block;margin-left:750px;">
+      	{% if page.has_next %}
+        <a href="{% url 'store' %}?page={{page.next_page_number}}" class="view_more-link">
+          Next
+        </a>
+        {% endif %}
       </div>
     </div>
   </section>
@@ -503,7 +525,7 @@
             <h5>
               <a href="" class="navbar-brand">
                 <span>
-                  Minics
+                  Eze Buy
                 </span>
               </a>
             </h5>
@@ -538,7 +560,7 @@
             </h5>
             <ul>
               <li>
-                <a href="index.html">
+                <a href="/store/">
                   Home
                 </a>
               </li>
