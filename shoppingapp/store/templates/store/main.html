@@ -10,10 +10,13 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
 
 
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
 
     <!-- fonts style -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -24,19 +27,10 @@
 
     <!-- Custom styles for this template -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+
     <!-- responsive style -->
     <link href="{% static 'css/responsive.css' %}" rel="stylesheet" />
 
-
-    <!-- Favicons 
-    <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
-    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#563d7c">-->
 
 
 
@@ -45,49 +39,8 @@
 
 <body>
 
-    <!--
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'store' %}">Ecom</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-	    <span class="navbar-toggler-icon"></span>
-	  </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'store' %}">Store <span class="sr-only">(current)</span></a>
-                </li>
-
-            </ul>
-            <div class="form-inline my-2 my-lg-0">
-
-                <ul class="navbar-nav ml-auto">
-                    {% if request.user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link " href="{% url 'logout' %}">LogOut</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">LogIn</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'register' %}">Register</a>
-                    </li>
-                    {% endif %}
-                </ul>
-
-
-                <a href="{% url 'cart' %}">
-                    <img id="cart-icon" src="{% static 'images/cart.jpg' %}">
-                </a>
-                <p id="cart-total">0</p>
-
-            </div>
-        </div>
-    </nav>
--->
-
-
+    <!--Start Header-->
 
     <header class="header_section">
         <div class="header_top">
@@ -107,19 +60,41 @@
               </span>
                         </a>
                     </div>
-                    <from class="search_form">
-                        <input type="text" class="form-control" placeholder="Search here...">
-                        <button class="" type="submit">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </button>
-                    </from>
+                    <form class="search_form" method="POST" action="/search/">
+                        {% csrf_token %}
+
+                        <input type="text" class="form-control" name="search" placeholder="Search here">
+
+                        <button class="" type="submit" name="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </button>
+
+                    </form>
                     <div class="user_option_box">
-                        <a href="" class="account-link">
+
+                        {% if user.is_authenticated %}
+                        <a class="account-link" href="">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
-                My Account
+                Profile
               </span>
                         </a>
+
+                        <a class="account-link" href="{% url 'logout' %}">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            <span>
+                LogOut
+              </span>
+                        </a> {% else %}
+
+                        <a class="account-link" href="{% url 'login' %}">
+                            <i class="fa fa-sign-in " aria-hidden="true"></i>
+                            <span>
+                LogIn
+              </span>
+                        </a> {% endif %}
+
+
                         <a href="" class="cart-link">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>
@@ -134,9 +109,9 @@
         <div class="header_bottom">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-lg custom_nav-container ">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{% url 'store' %}">
                         <span>
-              Minics
+              Eze Buy
             </span>
                     </a>
 
@@ -146,17 +121,17 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                            </li>
+
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="/product/1">Clothing</a>
-                                    <a class="dropdown-item" href="/product/2">Electrical</a>
-                                    <a class="dropdown-item" href="/product/3">Decor</a>
+                                    <a class="dropdown-item" href="/category/1">Clothing</a>
+                                    <a class="dropdown-item" href="/category/2">Electrical</a>
+                                    <a class="dropdown-item" href="/category/3">Decor</a>
                                 </div>
                             </li>
+
                             <li class="nav-item">
                                 <a class="nav-link" href="about.html"> About</a>
                             </li>
@@ -173,8 +148,12 @@
         </div>
     </header>
 
+    <!--End Header-->
+
+    <!--Slider Start-->
 
 
+    <!--Slider End-->
 
 
 
@@ -183,8 +162,10 @@
     </div>
 
 
+    <!--
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    -->
 
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -196,6 +177,8 @@
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <!-- jQery -->
     <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <!-- custom js -->
+    <script src="{% static 'js/custom.js' %}"></script>
 
 </body>
 

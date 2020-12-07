@@ -538,6 +538,17 @@ a:focus {
     transition: all .3s;
 }
 
+.product_section .btn_box_inactive .view_more-link {
+    display: inline-block;
+    padding: 10px 45px;
+    background-color: white;
+    color: #f3c93e;
+    border-radius: 5px;
+    border: 1px solid #f3c93e;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+
 .product_section .btn_box .view_more-link:hover {
     background-color: transparent;
     color: #f3c93e;

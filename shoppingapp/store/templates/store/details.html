@@ -1,0 +1,134 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fashion Hub Ecommerce Category Bootstrap Responsive Website Template| Womens :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="keywords" content="Fashion Hub Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script>
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+
+    <!-- shop css -->
+    <link href="{% static 'css/shop.css' %}" type="text/css" rel="stylesheet" media="all">
+    <!-- Owl-Carousel-CSS -->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css" media="all">
+    <!-- flexslider-css -->
+    <link rel="stylesheet" href="{% static 'css/flexslider.css' %}" type="text/css" media="screen" />
+
+    <link href="{% static 'css/detailstyle.css' %}" type="text/css" rel="stylesheet" media="all">
+
+</head>
+
+
+<body>
+
+    {% for prod in product %}
+
+    <div class="innerf-pages section py-5">
+        <div class="container">
+            <div class="row my-sm-5">
+                <div class="col-lg-4 single-right-left">
+                    <div class="grid images_3_of_2">
+                        <div class="flexslider1">
+
+                            <div class="thumb-image ">
+                                <img src="{{prod.image.url}} " data-imagezoom="true " alt=" " class="img-fluid "> </div>
+
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 mt-lg-0 mt-5 single-right-left simpleCart_shelfItem">
+                    <h3>{{prod.name}}</h3>
+                    <div class="caption">
+
+                        <ul class="rating-single">
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="fa fa-star yellow-star" aria-hidden="true"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"> </div>
+                        <h6>
+                            ₹{{prod.price}}</h6>
+                    </div>
+                    <div class="desc_single">
+                        <h5>Description</h5>
+                        <p>{{prod.desc}}</p>
+                    </div>
+                    <div class="d-sm-flex justify-content-between">
+                        <div>
+                            <div class="qty-block">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="qty-left">
+                                <img src="{% static 'images/minus.png' %}" width="20px" height="20px">
+                                </button>
+                                <input class="qty-input" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="qty-right">
+                                    <img src="{% static 'images/plus.png' %}" width="20px" height="20px">
+                                </button>
+                            </div>
+                            <div>
+                                <button type="button">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="color-quality mt-sm-0 mt-4">
+                            <h5 class="sp_title mb-3">services</h5>
+                            <ul class="single_serv">
+                                <li>
+                                    <a href="#">30 Day Return Policy</a>
+                                </li>
+                                <li class="mt-2">
+                                    <a href="#">Cash on Delivery available</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    {% endfor %}
+
+</body>
+
+</html>
+{% endblock content %}
