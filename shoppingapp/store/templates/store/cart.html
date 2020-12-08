@@ -439,20 +439,29 @@ aside {
       <div class="basket-product">
         <div class="item">
           <div class="product-image">
-            <img src="{{product.image.url}}" alt="Placholder Image 2" class="product-frame">
+            <img src="{{product.product_ID.image.url}}" alt="Placholder Image 2" class="product-frame">
           </div>
           <div class="product-details">
-            <h1><strong><span class="item-quantity">4</span> x Eliza J</strong> Lace Sleeve Cuff Dress</h1>
-            <p><strong>Navy, Size 18</strong></p>
-            <p>Product Code - {{product.id}}</p>
+            <p><strong>{{product.product_ID.name}}</strong></p>
+            <p>Product Code - {{product.product_ID.id}}</p>
           </div>
         </div>
-        <div class="price">{{product.price}}</div>
+        <div class="price">{{product.product_ID.price}}</div>
         <div class="quantity">
-          <input type="number" value="4" min="1" class="quantity-field">
+          <form method="POST" >
+            {% csrf_token %}
+          <button type="submit" formaction="/plus/" name="plus" value={{product.product_ID.id}}>+</button>
+          <input  type="button" name="quantity" value="{{product.quantity}}">
+          <button type="submit" formaction="/minus/" name="minus" value="{{product.product_ID.id}}">-</button>
+          </form>
         </div>
         <div class="remove">
-          <a href="/">Remove</a>
+          <form method="POST" action="/remove/">
+            {% csrf_token %}
+          <input type="submit" value="Delete" placeholder="Delete">
+          <input hidden type="text" name="idd" value="{{product.product_ID.id}}" placeholder="Delete">
+        
+          </form>
         </div>
       </div>
       {% endfor %}

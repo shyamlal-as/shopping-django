@@ -85,19 +85,88 @@ def displayCart(request):
 	productIDs=[]
 	prodIns=[]
 	amount=0
+	product=[]
 	for each in ProductPurchases.objects.all():
-		#if Product.objects.filter(id=each.product_ID).exists():
+		productIDs.append(each.product_ID)
+		print(each.product_ID.price)
+
+	for each in productIDs:
+		prodIns.append(Product.objects.get(id=each.id))
+		amount+=each.price
+		product.append(ProductPurchases.objects.get(product_ID=each.id))
+		
+
+	return render(request,'store/cart.html',{'products':product,'price':amount})
+		
+
+def remove(request):
+	idd=request.POST.get('idd')
+	ProductPurchases.objects.filter(product_ID=int(idd)).delete()
+
+	productIDs=[]
+	prodIns=[]
+	amount=0
+	for each in ProductPurchases.objects.all():
 		productIDs.append(each.product_ID)
 
 	for each in productIDs:
 		prodIns.append(Product.objects.get(id=each.id))
-
-	for each in prodIns:
 		amount+=each.price
+		
 
 
 
 	return render(request,'store/cart.html',{'products':prodIns,'price':amount})
+
+
+def plus(request):
+	plus=request.POST.get('plus')	
+	pid=ProductPurchases.objects.get(product_ID=int(plus))
+	newquantity=pid.quantity+1
+	pid.quantity=newquantity
+	product=[]
+	print('quantity',pid.quantity)
+
+	pid.save()
+
+	productIDs=[]
+	prodIns=[]
+	amount=0
+	for each in ProductPurchases.objects.all():
+		productIDs.append(each.product_ID)
+		print(each.product_ID.quantity)
+
+	for each in productIDs:
+		prodIns.append(Product.objects.get(id=each.id))
+		amount+=each.price
+		product.append(ProductPurchases.objects.get(product_ID=each.id))
+		
+
+	return render(request,'store/cart.html',{'products':product,'price':amount})
+
+def minus(request):
+	minus=request.POST.get('minus')	
+	pid=ProductPurchases.objects.get(product_ID=int(minus))
+	newquantity=pid.quantity-1
+	pid.quantity=newquantity
+	product=[]
+
+	pid.save()
+
+	productIDs=[]
+	prodIns=[]
+	amount=0
+	for each in ProductPurchases.objects.all():
+		productIDs.append(each.product_ID)
+
+	for each in productIDs:
+		prodIns.append(Product.objects.get(id=each.id))
+		amount+=each.price
+		product.append(ProductPurchases.objects.get(product_ID=each.id))
+		
+
+	return render(request,'store/cart.html',{'products':product,'price':amount})
+
 
 class productList(APIView):
 
