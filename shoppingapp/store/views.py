@@ -32,12 +32,43 @@ def checkout(request):
 
 def product(request,categories_id):
 	products=Product.objects.all().filter(categories_id=categories_id)
-	product_paginator=Paginator(products,6)
-	page_num=request.GET.get('page')
-	page=product_paginator.get_page(page_num)
+	#product_paginator=Paginator(products,6)
+	#page_num=request.GET.get('page')
+	#page=product_paginator.get_page(page_num)
+
+	#request.session.get('cart').clear()
 	context={
-		'page':page,
+		#'page':page,
+		'products':products
 	}
+	pid=request.POST.get('pid')
+
+	cart = request.session.get('cart')
+
+	if cart:
+		quantity=cart.get(pid)
+		if quantity:
+			#print('quantity')
+			cart[pid]=quantity+1	
+		else:
+			cart[pid]=1
+	else:
+		cart={}
+		cart[pid]=1
+	request.session['cart']=cart
+	#for k, v in dict(cart).items():
+	#	if v is None:
+	 #   	del cart[k]
+	"""for k, v in cart.items():
+		if isinstance(v, dict):
+			nested = cleanNullTerms(v)
+		if len(nested.keys()) > 0:
+			clean[k] = nested
+	  elif v is not None:
+	  	clean[k] = v
+	cart=clean"""
+
+	print('cart',request.session['cart'])
 	return render(request,'store/prod.html',context)
 
 def category(request):

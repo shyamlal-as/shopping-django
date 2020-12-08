@@ -1,4 +1,4 @@
-{% extends 'store/main.html' %} {% load static %} {% block content %}
+{% extends 'store/main.html' %} {% load static %} {% load cart %} {% block content %}
 <!DOCTYPE html>
 <html>
 <!DOCTYPE html>
@@ -60,16 +60,22 @@
       <div class="row">
         
 
-       {% for product in page.object_list %}
+       {% for product in products %}<!--page.object_list %}-->
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
               <img src="{{product.image.url}}" alt="">
-              <a href="" class="add_cart_btn">
+            
+              <form action="#" method="POST">
+                {% csrf_token %}
+              <input hidden type="text" value="{{product.id}}" name="pid" class="add_cart_btn" placeholder="Add To Cart">
                 <span>
-                  Add To Cart
+                  
                 </span>
-              </a>
+              <input type="submit" class ="add_cart_btn" value="{{product}}" placeholder="Add To Cart">
+        
+            </form> 
+
             </div>
             <div class="detail-box">
               <h5>
