@@ -32,3 +32,5 @@ class Product(models.Model):
 			return Product.objects.filter(category=categories_id)
 		else:
 			return Products.get_all_products()
+
+

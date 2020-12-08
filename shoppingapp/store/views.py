@@ -9,6 +9,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import productSerializer
+from purchase.models import Purchases, ProductPurchases
+from datetime import date
 # Create your views here.
 
 def store(request):
@@ -41,34 +43,8 @@ def product(request,categories_id):
 		#'page':page,
 		'products':products
 	}
-	pid=request.POST.get('pid')
+	prod=request.POST.get('pid')
 
-	cart = request.session.get('cart')
-
-	if cart:
-		quantity=cart.get(pid)
-		if quantity:
-			#print('quantity')
-			cart[pid]=quantity+1	
-		else:
-			cart[pid]=1
-	else:
-		cart={}
-		cart[pid]=1
-	request.session['cart']=cart
-	#for k, v in dict(cart).items():
-	#	if v is None:
-	 #   	del cart[k]
-	"""for k, v in cart.items():
-		if isinstance(v, dict):
-			nested = cleanNullTerms(v)
-		if len(nested.keys()) > 0:
-			clean[k] = nested
-	  elif v is not None:
-	  	clean[k] = v
-	cart=clean"""
-
-	print('cart',request.session['cart'])
 	return render(request,'store/prod.html',context)
 
 def category(request):
@@ -90,6 +66,38 @@ def search(request):
 	else:
 		return render(request,'store/store.html')
 
+def cart(request):
+	prod=request.POST.get('pid')
+	currentUser=request.user
+	if currentUser.is_authenticated:
+		if not ProductPurchases.objects.filter(product_ID=prod).exists():
+			purchaseDetail=Purchases(Users_ID=request.user,date=date.today())
+			purchaseDetail.save()
+			pid=Product.objects.get(id=prod)
+			pr=pid.price
+			purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
+			purchaseProduct.save()
+	products=Product.objects.all().filter(categories_id=pid.categories_id)
+	return render(request,'store/prod.html',{'products':products})
+
+
+def displayCart(request):
+	productIDs=[]
+	prodIns=[]
+	amount=0
+	for each in ProductPurchases.objects.all():
+		#if Product.objects.filter(id=each.product_ID).exists():
+		productIDs.append(each.product_ID)
+
+	for each in productIDs:
+		prodIns.append(Product.objects.get(id=each.id))
+
+	for each in prodIns:
+		amount+=each.price
+
+
+
+	return render(request,'store/cart.html',{'products':prodIns,'price':amount})
 
 class productList(APIView):
 

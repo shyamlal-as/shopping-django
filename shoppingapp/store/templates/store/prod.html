@@ -1,4 +1,4 @@
-{% extends 'store/main.html' %} {% load static %} {% load cart %} {% block content %}
+{% extends 'store/main.html' %} {% load static %} {% block content %}
 <!DOCTYPE html>
 <html>
 <!DOCTYPE html>
@@ -66,13 +66,13 @@
             <div class="img-box">
               <img src="{{product.image.url}}" alt="">
             
-              <form action="#" method="POST">
+              <form action="/cart/" method="POST">
                 {% csrf_token %}
               <input hidden type="text" value="{{product.id}}" name="pid" class="add_cart_btn" placeholder="Add To Cart">
                 <span>
                   
                 </span>
-              <input type="submit" class ="add_cart_btn" value="{{product}}" placeholder="Add To Cart">
+              <input type="submit" class ="add_cart_btn" value="Add To Cart" placeholder="Add To Cart">
         
             </form> 
 
@@ -99,6 +99,7 @@
         {% endfor %}
 
 
+        <a href="/displayCart">Cart</a>
 
         
       </div>

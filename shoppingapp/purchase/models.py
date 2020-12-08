@@ -9,6 +9,6 @@ class Purchases(models.Model):
 
 class ProductPurchases(models.Model):
 	purchases_ID=models.ForeignKey(Purchases,related_name='Purchase_ID' ,default=None,on_delete=models.CASCADE)
-	product_ID=models.ForeignKey(Product,related_name='product_ID' ,default=None,on_delete=models.CASCADE)
-	quantity=models.DecimalField(max_digits=3,decimal_places=1)
+	product_ID=models.ForeignKey(Product,related_name='Product_ID' ,default=None,on_delete=models.CASCADE)
+	quantity=models.IntegerField()
 	price=models.DecimalField(max_digits=9,decimal_places=3)
