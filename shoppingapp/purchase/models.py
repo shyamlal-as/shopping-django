@@ -6,6 +6,7 @@ from store.models import Product
 class Purchases(models.Model):
 	Users_ID=models.ForeignKey(User,related_name='Users_ID' ,default=None,on_delete=models.CASCADE)
 	date=models.DateTimeField(auto_now=True)
+	isActive=models.BooleanField(default=True)
 
 class ProductPurchases(models.Model):
 	purchases_ID=models.ForeignKey(Purchases,related_name='Purchase_ID' ,default=None,on_delete=models.CASCADE)

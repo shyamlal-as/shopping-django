@@ -66,8 +66,7 @@
             <div class="img-box">
               <img src="{{product.image.url}}" alt="">
             
-              <form action="/cart/" method="POST">
-                {% csrf_token %}
+              <form method="GET" action="/cart/">
               <input hidden type="text" value="{{product.id}}" name="pid" class="add_cart_btn" placeholder="Add To Cart">
                 <span>
                   
