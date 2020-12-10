@@ -57,10 +57,24 @@
         <h2>
         </h2>
       </div>
+      <div class="btn_box" style="display: inline-block;margin-left: 20px">
+        {% if page.has_previous %}
+        <a href="?page={{page.previous_page_number}}" class="view_more-link">
+          Previous
+        </a>
+        {% endif %}
+      </div>
+      <div class="btn_box" style="display: inline-block;margin-left:750px;">
+        {% if page.has_next %}
+        <a href="?page={{page.next_page_number}}" class="view_more-link">
+          Next
+        </a>
+        {% endif %}
+      </div>
       <div class="row">
         
 
-       {% for product in products %}<!--page.object_list %}-->
+       {% for product in page.object_list %}<!--page.object_list %}-->
         <div class="col-sm-6 col-lg-4">
           <div class="box">
             <div class="img-box">
@@ -98,7 +112,8 @@
         {% endfor %}
 
 
-        <a href="/displayCart">Cart</a>
+        <a href="/history">history</a>
+
 
         
       </div>

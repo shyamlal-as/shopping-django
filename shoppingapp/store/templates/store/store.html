@@ -63,9 +63,13 @@
   						{% csrf_token %}
   
   						<input type="text" class ="form-control" name="search" placeholder="Search here">
-  						<input type="submit" name="submit" value="submit">
+  						<button class="" type="submit">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </button>
 
 						</form>
+
+
                         <!--<button class="" type="submit">
               <i class="fa fa-search" aria-hidden="true"></i>
             </button>-->
@@ -246,7 +250,14 @@
               <img src="{{product.image.url}}" alt="">
               <a href="" class="add_cart_btn">
                 <span>
-                  Add To Cart
+                  <form method="GET" action="/cart/">
+              <input hidden type="text" value="{{product.id}}" name="pid" class="add_cart_btn" placeholder="Add To Cart">
+                <span>
+                  
+                </span>
+              <input type="submit" class ="add_cart_btn" value="Add To Cart" placeholder="Add To Cart">
+        
+            </form> 
                 </span>
               </a>
             </div>
@@ -270,6 +281,12 @@
           </div>
         </div>
         {% endfor %}
+
+
+
+
+
+
 
 
         
