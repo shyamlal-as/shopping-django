@@ -1,28 +1,136 @@
-{% extends 'store/base.html' %} {% block content %}
+{% load static %}
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+-->
+<!DOCTYPE html>
+<html lang="zxx">
 
-<h2>LogIn</h2>
-<form method="POST">{% csrf_token %} {% for field in login_form %}
+<!-- Head -->
 
-    <p>
-        {{field.label_tag}} {{field}}
-        <br> {% if field.help_text %}
-        <small style="color: grey;">
-            {{field.help_text}}
-        </small> {% endif %}
-    </p>
-    {% endfor %} {% for field in login_form %} {% for field in login_form %}
-    <p style="color: red;">{{error}}</p>
-    {% endfor %} {% endfor %} {% for error in login_form.errors %}
-    <p style="color: red;">
-        {{error}}
-    </p>{% endfor %} {% if login_form.non_field_errors %}
+<head>
 
-    <div style="color: red;">
-        <p>{{login_form.non_field_errors}}</p>
+    <title>LogIn</title>
+
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{% static 'css/test_login.css' %}" type="text/css" media="all">
+
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css" media="all">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Mukta:300,400,500" rel="stylesheet">
+
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+
+<body>
+
+
+
+
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form method='POST'>{% csrf_token %}
+                <h1>Create Account</h1>
+                {% for field in registration_form %}
+                <h1>Create Account</h1>
+                <div class="field-group">
+                    <span class="fa fa-user" aria-hidden="true"></span>
+                    <div class="wthree-field">
+                        {{field}}
+                    </div><br>
+                </div>
+
+
+                {% endfor %}
+                <button>Sign Up</button>
+            </form>
+        </div>
+
+        <!--Log In Form Start-->
+
+        <div class="form-container sign-in-container">
+            <form method="POST">{% csrf_token %}
+
+                <h1>Sign in</h1>
+
+
+
+                <br><br> {% for field in login_form %}
+
+                <!--
+                <input type="email" placeholder="Email" />
+                <input type="password" placeholder="Password" />
+                <a href="#">Forgot your password?</a>
+                -->
+                <div style="text-align: center;" class="login_input">
+                    <div>
+                        {{field}}
+                    </div><br>
+                </div>
+                {% endfor %}
+
+                <!--Errors Start-->
+                {% for field in login_form %} {% for error in field.errors %}
+                <p style="color: red;">{{error}}</p>
+                {% endfor %} {% endfor %} {% if login_form.non_field_errors %}
+
+                <div style="color: red;">
+                    <p>{{login_form.non_field_errors}}</p>
+                </div>
+
+                {% endif %}
+
+                <!--Errors End-->
+
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>New Here?</h1>
+                    <p>Register yourself to start your shopping experience.</p>
+                    <button class="ghost" id="signUp" onclick="location.href='{% url 'register' %}'">Sign Up</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    {% endif %}
-    <button type="submit">LOG IN</button>
-</form>
+    <!--Start JS-->
 
-{% endblock content %}
+    <script>
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+    </script>
+
+    <!--End JS-->
+
+
+</body>
+<!-- //Body -->
+
+</html>
