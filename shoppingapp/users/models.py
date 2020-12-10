@@ -78,12 +78,12 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 #Profile Model for users
 
-"""
+
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    bio = models.TextField()
+    image = models.ImageField(default='user.jpg',upload_to="pics")
+    age = models.IntegerField()
+    
 
     def __str__(self):
-        return str(self.user)
-
-"""
+        return str(self.user.username)

@@ -1,14 +1,23 @@
-from django.urls import path
+from django.contrib import admin
+from django.urls import path,include
 from . import views
 
 
 urlpatterns = [
-    #path('', views.Home, name='store-home'),
-
     path('',views.store,name="store"),
     path('cart/',views.cart,name="cart"),
     path('checkout/',views.checkout,name="checkout"),
     path('category/<int:categories_id>/',views.product,name="product"),
     path('search/',views.search,name="search"),
-    path('product/<slug>/', views.details,name='product-detail'),
+    path('cart/',views.cart,name="cart"),
+    path('displayCart/',views.displayCart,name="displayCart"),
+    path('remove/',views.remove,name="remove"),
+    path('plus/',views.plus,name="plus"),
+    path('minus/',views.minus,name="minus"),
+    path('complete/',views.complete,name="complete"),
+
+    path('details/<slug>',views.details,name="product-detail"),
+    path('profile',views.profile,name="profile"),
+    path('clear/',views.clearCart,name="clear")
+
 ]
