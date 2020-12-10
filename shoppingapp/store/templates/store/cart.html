@@ -494,21 +494,30 @@ aside {
           </div>
         </div>
         <div class="summary-delivery">
-          <select name="delivery-collection" class="summary-delivery-selection">
+          <!--<select name="delivery-collection" class="summary-delivery-selection">
               <option value="0" selected="selected">Select Collection or Delivery</option>
              <option value="collection">Collection</option>
              <option value="first-class">Royal Mail 1st Class</option>
              <option value="second-class">Royal Mail 2nd Class</option>
              <option value="signed-for">Royal Mail Special Delivery</option>
-          </select>
-        </div>
-        <div class="summary-total">
+          </select>-->
+          <form method="GET" action="/complete">
+            <label for="address" >Address</label>
+            <input type="text" name="address" id="address">
+            <label for="city" >City</label>
+            <input type="text" name="city" id="city">
+            <label for="pincode" >pincode</label>
+            <input type="number" name="pincode" id="pincode">
+            <div class="summary-total">
           <div class="total-title">Total</div>
           <div class="total-value final-value" id="basket-total">{{price}}</div>
         </div>
         <div class="summary-checkout">
-          <a href="/complete/"><button class="checkout-cta">Go to Secure Checkout</button></a>
+          <a href="/complete/"><button class="checkout-cta" type="submit">Go to Secure Checkout</button></a>
         </div>
+          </form>
+        </div>
+        
       </div>
     </aside>
   </main>

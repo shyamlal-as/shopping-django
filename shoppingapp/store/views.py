@@ -11,6 +11,7 @@ from rest_framework import status
 from .serializers import productSerializer
 from purchase.models import Purchases, ProductPurchases
 from datetime import date
+from shipping.models import shipping
 # Create your views here.
 
 def store(request):
@@ -73,32 +74,6 @@ def searchProduct(request):
 		return render(request,'store/prod.html')
 
 
-
-
-
-
-def minus(request):
-	minus=request.POST.get('minus')	
-	pid=ProductPurchases.objects.get(product_ID=int(minus))
-	newquantity=pid.quantity-1
-	pid.quantity=newquantity
-	product=[]
-
-	pid.save()
-
-	productIDs=[]
-	prodIns=[]
-	amount=0
-	for each in ProductPurchases.objects.all():
-		productIDs.append(each.product_ID)
-
-	for each in productIDs:
-		prodIns.append(Product.objects.get(id=each.id))
-		amount+=each.price
-		product.append(ProductPurchases.objects.get(product_ID=each.id))
-		
-
-	return render(request,'store/cart.html',{'products':product,'price':amount})
 
 
 
@@ -227,7 +202,14 @@ def complete(request):
 	n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()
 	n.isActive=False
 	n.save()
-
+	address=request.GET.get('address')
+	print(address)
+	city=request.GET.get('city')
+	print(city)
+	pincode=request.GET.get('pincode')
+	print(pincode)
+	shippingdets=shipping(Users_ID=request.user,address=address,city=city,pincode=pincode)
+	shippingdets.save()
 	return render(request,'store/complete.html')
 
 

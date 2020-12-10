@@ -1,9 +1,10 @@
 from django.db import models
 from purchase.models import Purchases 
+from users.models import User
 # Create your models here.
 
 class shipping(models.Model):
-	purchases_ID=models.ForeignKey(Purchases,related_name='purchases_ID',default=None,on_delete=models.CASCADE)
+	Users_ID=models.ForeignKey(User,related_name='UserID' ,default=None,on_delete=models.PROTECT)
 	address=models.TextField(max_length=200)
 	city=models.TextField(max_length=200)
 	pincode=models.IntegerField()
