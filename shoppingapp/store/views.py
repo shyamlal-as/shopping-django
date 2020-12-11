@@ -129,13 +129,14 @@ def cart(request):
 						pass			
 				products=Product.objects.all().filter(categories_id=Product.objects.get(id=prod).categories_id)
 			#return product(request,Product.objects.get(id=prod).categories_id)
-			messages.success(request, {{pid.name}}, 'added To Cart.')
+			messages.success(request,  'added To Cart.')
 			return redirect(request.META['HTTP_REFERER'])
 			
 		except:
 			return render(request,'store/cart.html')
 	
 	else:
+		messages.success(request,  'added To Cart.')
 		return redirect('login')
 
 

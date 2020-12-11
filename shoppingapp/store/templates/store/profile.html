@@ -467,9 +467,17 @@
                         Hello {{user.username}}
                     </h3>
 
-                    <a href="{% url 'logout' %}">
-                        <h6>Log Out</h6>
-                    </a>
+
+
+                    <form class="search_form" method="POST" action="/logout/">
+                        {% csrf_token %}
+
+
+                        <button class="" type="submit">
+                            Log Out
+                        </button>
+
+                    </form>
 
                     <!--<button type="button" id="sidebarCollapse" class="btn btn-primary">
               <i class="fa fa-bars"></i>

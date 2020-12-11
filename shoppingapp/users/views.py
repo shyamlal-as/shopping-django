@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login,authenticate,logout
 from users.forms import RegistrationForm,UserAuthenticationForm
 
+from django.contrib import messages
 
 
 # Create your views here.
@@ -28,8 +29,15 @@ def registration_view(request):
 
 
 def logout_view(request):
-    logout(request)
-    return redirect('store')
+    #logout(request)
+    #return redirect('store')
+    if request.method=='POST':
+        logout(request)
+        messages.success(request,  'Logged Out.')
+        return render(request,'store/store.html')
+    else:
+        return render(request,'users/profile.html')
+
 
 
 def login_view(request):
