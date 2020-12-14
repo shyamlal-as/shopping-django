@@ -33,7 +33,7 @@ def logout_view(request):
     #return redirect('store')
     if request.method=='POST':
         logout(request)
-        messages.success(request,  'Logged Out.')
+        #messages.success(request,  'Logged Out.')
         return render(request,'store/store.html')
     else:
         return render(request,'users/profile.html')

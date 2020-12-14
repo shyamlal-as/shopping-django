@@ -13,6 +13,15 @@ class PurchasesAdmin(admin.ModelAdmin):
     fieldsets = ()
 
 
-admin.site.register(ProductPurchases)
+class ProductPurchasesAdmin(admin.ModelAdmin):
+    model=ProductPurchases
+    list_display=('id','purchases_ID','product_ID','quantity','price')
+
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
+
+
+admin.site.register(ProductPurchases,ProductPurchasesAdmin)
 admin.site.register(Purchases,PurchasesAdmin)
 
