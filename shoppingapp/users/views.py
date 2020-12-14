@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login,authenticate,logout
-from users.forms import RegistrationForm,UserAuthenticationForm
+from users.forms import RegistrationForm,UserAuthenticationForm,UserUpdateForm
 
 from django.contrib import messages
 
@@ -61,3 +61,27 @@ def login_view(request):
         form = UserAuthenticationForm()    
     context['login_form'] = form
     return render(request, 'users/login.html',context)
+
+
+def user_view(request):
+
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
+    context={}
+
+    if request.POST:
+        form = UserUpdateForm(request.POST, instance=request.user)
+        form.save()
+
+    else:
+        form = UserUpdateForm(
+            initial={
+                'email': request.user.email,
+                'username': request.user.username,
+                'firstname':request.user.first_name
+            }
+        )
+
+    context['account_form']=form
+    return render(request, 'store/edit_profile.html',context)
