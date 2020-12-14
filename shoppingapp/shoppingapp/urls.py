@@ -16,6 +16,7 @@ urlpatterns = [
     path('purchase/',include('purchase.urls')),
     path('shipping/',include('shipping.urls')),
     path('productss/',views.productList.as_view()),
+    
 ]
 
 urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

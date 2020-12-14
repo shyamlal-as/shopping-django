@@ -91,7 +91,7 @@ button,
 .subtotal-value:before,
 .total-value:before,
 .promo-value:before {
-  content: '£';
+  content: '₹';
 }
 
 .hide {
@@ -448,14 +448,16 @@ aside {
         </div>
         <div class="price">{{product.product_ID.price}}</div>
         <div class="quantity">
-          <form method="GET" >
+          <form method="POST" >
+            {% csrf_token %}
           <button type="submit" formaction="/plus/" name="plus" value={{product.product_ID.id}}>+</button>
           <input  type="button" name="quantity" value="{{product.quantity}}">
           <button type="submit" formaction="/minus/" name="minus" value="{{product.product_ID.id}}">-</button>
           </form>
         </div>
         <div class="remove">
-          <form method="GET" action="/remove/">
+          <form method="POST" action="/remove/">
+            {% csrf_token %}
           <input type="submit" value="Delete" placeholder="Delete">
           <input hidden type="text" name="idd" value="{{product.product_ID.id}}" placeholder="Delete">
         
@@ -470,7 +472,8 @@ aside {
       {% for product in products %}
 
     {% if forloop.first %}
-        <form method="GET" action="/clear/">
+        <form method="POST" action="/clear/">
+          {% csrf_token %}
           <a href="/clear/" ><button type="submit" style="margin-right:500px;">Clear Cart </button></a>
           <input hidden type="text" name="purchaseID" value="{{product.purchases_ID.id}}" placeholder="Delete">
         
@@ -501,7 +504,8 @@ aside {
              <option value="second-class">Royal Mail 2nd Class</option>
              <option value="signed-for">Royal Mail Special Delivery</option>
           </select>-->
-          <form method="GET" action="/complete">
+          <form method="POST" action="/complete">
+            {% csrf_token %}
             <label for="address" >Address</label>
             <input type="text" name="address" id="address">
             <label for="city" >City</label>

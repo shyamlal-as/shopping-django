@@ -59,14 +59,14 @@
       </div>
       <div class="btn_box" style="display: inline-block;margin-left: 20px">
         {% if page.has_previous %}
-        <a href="?page={{page.previous_page_number}}" class="view_more-link">
+        <a href=" http://localhost:8000/category/{{cid.id}}/?page={{page.previous_page_number}}" class="view_more-link">
           Previous
         </a>
         {% endif %}
       </div>
       <div class="btn_box" style="display: inline-block;margin-left:750px;">
         {% if page.has_next %}
-        <a href="?page={{page.next_page_number}}" class="view_more-link">
+        <a href="http://localhost:8000/category/{{cid.id}}/?page={{page.next_page_number}}" class="view_more-link">
           Next
         </a>
         {% endif %}
@@ -80,8 +80,10 @@
             <div class="img-box">
               <img src="{{product.image.url}}" alt="">
             
-              <form method="GET" action="/cart/">
+              <form method="POST" action="/cart/">
+                {% csrf_token %}
               <input hidden type="text" value="{{product.id}}" name="pid" class="add_cart_btn" placeholder="Add To Cart">
+              <input  hidden type="text" name="pag" value="product">
                 <span>
                   
                 </span>
@@ -109,6 +111,7 @@
             </div>
           </div>
         </div>
+        
         {% endfor %}
 
 
@@ -117,20 +120,27 @@
 
         
       </div>
+      {% for product in page.object_list %}
+      {% if forloop.first %}
+      {% with cid=product.categories_id.id %}
+    
      <div class="btn_box" style="display: inline-block;margin-left: 20px">
         {% if page.has_previous %}
-        <a href="?page={{page.previous_page_number}}" class="view_more-link">
+        <a href=" http://localhost:8000/category/{{cid}}/?page={{page.previous_page_number}}" class="view_more-link">
           Previous
         </a>
         {% endif %}
       </div>
       <div class="btn_box" style="display: inline-block;margin-left:750px;">
         {% if page.has_next %}
-        <a href="?page={{page.next_page_number}}" class="view_more-link">
+        <a href="http://localhost:8000/category/{{cid}}/?page={{page.next_page_number}}" class="view_more-link">
           Next
         </a>
         {% endif %}
       </div>
+      {% endwith %}
+      {% endif %}
+      {% endfor %}
     </div>
   </section>
 
