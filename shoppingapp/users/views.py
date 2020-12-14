@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login,authenticate,logout
-from users.forms import RegistrationForm,UserAuthenticationForm
+from users.forms import RegistrationForm,UserAuthenticationForm,UserUpdateForm
 
+from django.contrib import messages
 
 
 # Create your views here.
@@ -28,8 +29,15 @@ def registration_view(request):
 
 
 def logout_view(request):
-    logout(request)
-    return redirect('store')
+    #logout(request)
+    #return redirect('store')
+    if request.method=='POST':
+        logout(request)
+        #messages.success(request,  'Logged Out.')
+        return render(request,'store/store.html')
+    else:
+        return render(request,'users/profile.html')
+
 
 
 def login_view(request):
@@ -53,3 +61,27 @@ def login_view(request):
         form = UserAuthenticationForm()    
     context['login_form'] = form
     return render(request, 'users/login.html',context)
+
+
+def user_view(request):
+
+    if not request.user.is_authenticated:
+        return redirect('login')
+    
+    context={}
+
+    if request.POST:
+        form = UserUpdateForm(request.POST, instance=request.user)
+        form.save()
+
+    else:
+        form = UserUpdateForm(
+            initial={
+                'email': request.user.email,
+                'username': request.user.username,
+                'firstname':request.user.first_name
+            }
+        )
+
+    context['account_form']=form
+    return render(request, 'store/edit_profile.html',context)

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
 from . import views
+from users.views import user_view
 
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
 
     path('details/<slug>',views.details,name="product-detail"),
     path('profile',views.profile,name="profile"),
+    path('edit-profile',user_view,name="edit-profile"),
     path('clear/',views.clearCart,name="clear")
 
 ]
