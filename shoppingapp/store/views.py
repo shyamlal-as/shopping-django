@@ -69,9 +69,6 @@ def search(request):
 
 
 
-
-
-
 def minus(request):
 	minus=request.POST.get('minus')	
 	pid=ProductPurchases.objects.get(product_ID=int(minus))
