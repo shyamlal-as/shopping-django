@@ -1,0 +1,178 @@
+{% load static %}{% load mathfilters %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Sidebar 01</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/profile_style.css' %}">
+
+
+</head>
+
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="p-4 pt-5">
+                <!--<a href="fdbdfbd" class="img logo rounded-circle mb-5">
+                    <img src="{{profile.image.url}}">
+                </a>-->
+                <a href="{% url 'store' %}">
+                    <h3 style="color: white;">
+                        Eze Buy
+                    </h3>
+                </a>
+                <br><br>
+                <ul class="list-unstyled components mb-5">
+
+                    <li>
+                        <a href="#">My Orders</a>
+                    </li><br>
+
+                    <li>
+                        <a href="{% url 'edit-profile' %}">Edit Profile</a>
+                    </li><br>
+                    <li>
+                        <a href="#">Shipment Details</a>
+                    </li>
+                </ul>
+
+                <div class="footer">
+
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <h3>
+                        Hello {{user.username}}
+                    </h3>
+
+
+
+                    <form class="search_form" method="POST" action="/logout/">
+                        {% csrf_token %}
+
+
+                        <button class="" type="submit">
+                            Log Out
+                        </button>
+
+                    </form>
+
+                    <!--<button type="button" id="sidebarCollapse" class="btn btn-primary">
+              <i class="fa fa-bars"></i>
+              <span class="sr-only">Toggle Menu</span>
+            </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Portfolio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                    -->
+                </div>
+
+            </nav>
+
+
+            <div class="container">
+                <h6>Order History</h6>
+                <!--
+                {% for product in products %}
+
+
+
+
+                <div class="basket-product">
+                    <div class="item">
+                        <div class="product-image">
+                            <img src="{{product.product_ID.image.url}}" alt="Placholder Image 2" class="product-frame">
+                        </div>
+                        <div class="product-details">
+                            <p><strong>{{product.product_ID.name}}</strong></p>
+                            <p>Product Code - {{product.product_ID.id}}</p>
+                        </div>
+                    </div>
+                    <div class="price">{{product.product_ID.price}}</div>
+                    <div class="quantity">
+                        <form method="GET">
+                            <input type="button" name="quantity" value="{{product.quantity}}">
+                        </form>
+                    </div>
+                    <div class="subtotal">
+                        {{product.product_ID.price|mul:product.quantity}} {{product.product_ID.date}}
+                    </div>
+                    <div></div>
+                </div>
+
+                {% endfor %}-->
+
+                <!--Table Start-->
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Description</th>
+
+                            <th>Unit price</th>
+                            <th>Qty </th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td><img width="100" src="{{product.product_ID.image.url}}" alt=""></td>
+                            <td>{{product.product_ID.name}}</td>
+                            <td>{{product.product_ID.price}}</td>
+
+                            <td>{{product.quantity}}</td>
+                            <td>
+                                {{product.product_ID.price|mul:product.quantity}}
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!--Table end-->
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/profile_main.js' %}"></script>
+</body>
+
+</html>

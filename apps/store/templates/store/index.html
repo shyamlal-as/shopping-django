@@ -1,0 +1,30 @@
+{% extends 'store/main.html' %} {% load static %} {% block content %}
+
+<!--<form method="POST" action="/search/">
+  {% csrf_token %}
+  
+  <input type="text" name="search" placeholder="Search here">
+  <input type="submit" name="submit" value="submit">
+</form>-->
+
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        <div class="row">
+
+            {% for item in products %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <a href="/checkout"><img class="class-img-top" src="{{item.image.url}}"></a>
+                    <div class="card-body">
+                        <p class="card-text">{{item.name}}</p>
+                        <a href="/checkout" style="text-decoration:none;color: black"><button  class="btn btn-outline-secondary add-btn" style="display: inline-block;">Add to Cart</button></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
