@@ -1,4 +1,4 @@
-{% load static %}{% load mathfilters %}
+{% load static %}{% load mathfilters %} {% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -33,14 +33,14 @@
                 <ul class="list-unstyled components mb-5">
 
                     <li>
-                        <a href="#">My Orders</a>
+                        <a href="#">{% trans "My Orders" %}</a>
                     </li><br>
 
                     <li>
-                        <a href="{% url 'edit-profile' %}">Edit Profile</a>
+                        <a href="{% url 'edit-profile' %}">{% trans "Edit Profile" %}</a>
                     </li><br>
                     <li>
-                        <a href="#">Shipment Details</a>
+                        <a href="#">{% trans "Shipment Details" %}</a>
                     </li>
                 </ul>
 
@@ -58,7 +58,7 @@
                 <div class="container-fluid">
 
                     <h3>
-                        Hello {{user.username}}
+                        {% trans "Hello" %} {{user.username}}
                     </h3>
 
 
@@ -68,7 +68,7 @@
 
 
                         <button class="" type="submit">
-                            Log Out
+                            {% trans "Log Out" %}
                         </button>
 
                     </form>
@@ -104,7 +104,7 @@
 
 
             <div class="container">
-                <h6>Order History</h6>
+                <h6>{% trans "Order History" %}</h6>
                 <!--
                 {% for product in products %}
 
@@ -139,12 +139,12 @@
                 <table class="table table-bordered table-condensed">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Description</th>
+                            <th>{% trans "Product" %}</th>
+                            <th>{% trans "Description" %}</th>
 
-                            <th>Unit price</th>
-                            <th>Qty </th>
-                            <th>Total</th>
+                            <th>{% trans "Unit Price" %}</th>
+                            <th>{% trans "Quantity" %} </th>
+                            <th>{% trans "Total" %}</th>
                         </tr>
                     </thead>
                     <tbody>

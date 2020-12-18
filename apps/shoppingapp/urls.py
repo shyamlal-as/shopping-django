@@ -19,10 +19,13 @@ from users.views import registration_view, logout_view, login_view
 from store.views import profile
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+]
+
+urlpatterns += [
     path('', include('store.urls')),
     #path('cart/',include('purchases.urls')),
     path('profile/',profile,name='profile'),
@@ -34,7 +37,7 @@ urlpatterns = [
     #Rest Framework URLs
     path('api/store/',include('store.api.urls', 'product_api')),
     path('api/users/',include('users.api.urls', 'users_api')),
-    path('api/cart/',include('purchases.api.urls','cart_api'))
+    path('api/cart/',include('purchases.api.urls','cart_api')),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

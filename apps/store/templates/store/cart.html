@@ -1,4 +1,4 @@
-{% load static %} {% load mathfilters %}
+{% load static %} {% load mathfilters %} {% load i18n %}
 <html lang="en">
 
 <head>
@@ -423,10 +423,10 @@
             </div>
             <div class="basket-labels">
                 <ul>
-                    <li class="item item-heading">Item</li>
-                    <li class="price">Price</li>
-                    <li class="quantity">Quantity</li>
-                    <li class="subtotal">Subtotal</li>
+                    <li class="item item-heading">{% trans "Item" %}</li>
+                    <li class="price">{% trans "Price" %}</li>
+                    <li class="quantity">{% trans "Quantity" %}</li>
+                    <li class="subtotal">{% trans "Subtotal" %}</li>
                 </ul>
             </div>
             <br><br><br>
@@ -439,7 +439,7 @@
                     </div>
                     <div class="product-details">
                         <p><strong>{{product.product_ID.name}}</strong></p>
-                        <p>Product Code - {{product.product_ID.id}}</p>
+                        <p>{% trans "Product Code" %} - {{product.product_ID.id}}</p>
                     </div>
                 </div>
                 <div class="price">{{product.product_ID.price}}</div>
@@ -468,14 +468,14 @@
 
             </form>
             {%endif%} {%endfor%}
-            <a href="/"><button type="button">Home</button></a>
+            <a href="/"><button type="button">{% trans "Home" %}</button></a>
 
         </div>
         <aside>
             <div class="summary">
-                <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+                <div class="summary-total-items"><span class="total-items"></span>{% trans "Items in your Bag" %}</div>
                 <div class="summary-subtotal">
-                    <div class="subtotal-title">Subtotal</div>
+                    <div class="subtotal-title">{% trans "Subtotal" %}</div>
                     <div class="subtotal-value final-value" id="basket-subtotal">{{price}}</div>
                     <div class="summary-promo hide">
                         <div class="promo-title">Promotion</div>
@@ -491,18 +491,18 @@
              <option value="signed-for">Royal Mail Special Delivery</option>
           </select>-->
                     <form method="GET" action="/complete">
-                        <label for="address">Address</label>
+                        <label for="address">{% trans "Address" %}</label>
                         <input type="text" name="address" id="address">
-                        <label for="city">City</label>
+                        <label for="city">{% trans "City" %}</label>
                         <input type="text" name="city" id="city">
-                        <label for="pincode">pincode</label>
+                        <label for="pincode">{% trans "pincode" %}</label>
                         <input type="number" name="pincode" id="pincode">
                         <div class="summary-total">
-                            <div class="total-title">Total</div>
+                            <div class="total-title">{% trans "Total" %}</div>
                             <div class="total-value final-value" id="basket-total">{{price}}</div>
                         </div>
                         <div class="summary-checkout">
-                            <a href="/complete/"><button class="checkout-cta" type="submit">Go to Secure Checkout</button></a>
+                            <a href="/complete/"><button class="checkout-cta" type="submit">{% trans "Go To Secure Checkout" %}</button></a>
                         </div>
                     </form>
                 </div>

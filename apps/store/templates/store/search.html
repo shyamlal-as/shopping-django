@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html>
 
@@ -62,13 +63,13 @@
                         <a href="">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                             <span>
-            Call : +01 123455678990
+            {% trans "Call" %} : +01 123455678990
           </span>
                         </a>
                         <a href="">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                             <span>
-            Email : demo@gmail.com
+            {% trans "Email" %} : demo@gmail.com
           </span>
                         </a>
                     </div>
@@ -93,13 +94,13 @@
                         <a href="" class="account-link">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
-            My Account
+            {% trans "My Account" %}
           </span>
                         </a>
                         <a href="/displayCart" class="cart-link">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>
-            Cart
+            {% trans "Cart" %}
           </span>
                         </a>
                     </div>
@@ -120,19 +121,19 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="/category/1">Clothing</a>
-                                    <a class="dropdown-item" href="/category/2">Electrical</a>
-                                    <a class="dropdown-item" href="/category/3">Decor</a>
+                                    <a class="dropdown-item" href="/category/1">{% trans "Clothing" %}</a>
+                                    <a class="dropdown-item" href="/category/2">{% trans "Electronics" %}</a>
+                                    <a class="dropdown-item" href="/category/3">{% trans "Home Decor" %}</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html"> About</a>
+                                <a class="nav-link" href="about.html">{% trans "About" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="why.html">Why Us</a>
+                                <a class="nav-link" href="why.html">{% trans "Why Us" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="testimonial.html">Testimonial</a>
+                                <a class="nav-link" href="testimonial.html">{% trans "Testimonial" %}</a>
                             </li>
                         </ul>
                     </div>
@@ -166,7 +167,7 @@
 
                 <br><br>
 
-                <h3>Page Number : {{page.number}}</h3>
+                <h3>{% trans "Page Number" %} : {{page.number}}</h3>
 
             </div>
             <div class="row">

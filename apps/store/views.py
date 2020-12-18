@@ -14,6 +14,7 @@ from datetime import date
 from django.contrib import messages
 
 from purchases.models import shipping
+from django.utils.translation import ugettext_lazy as _
 # Create your views here.
 
 def store(request):
@@ -27,6 +28,7 @@ def store(request):
 	page=product_paginator.get_page(page_num)
 	context={
 		'page':page,
+		'hello':_("hello")
 	}
 	return render(request,'store/store.html',context)
 
