@@ -1,6 +1,5 @@
 from django.urls import path, re_path, include
 from django.conf.urls import url
-from api.v1.views import api_detail_product_view,api_category_view
 
 app_name = 'api'
 
