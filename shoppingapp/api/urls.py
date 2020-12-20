@@ -16,6 +16,6 @@ urlpatterns = [
 
     path('store/v2/',include('api.v2.store.urls', 'product_api_v2')),
     #path('users/v2/',include('api.v2.urls', 'users_api_v2')),
-    #path('cart/v2/',include('api.v2.urls','cart_api_v2')),
+    path('cart/v2/',include('api.v2.purchases.urls','cart_api_v2')),
 
 ]
