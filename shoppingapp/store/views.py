@@ -13,18 +13,42 @@ from users.models import Profile
 from datetime import date
 from django.contrib import messages
 
+from django.utils.translation import gettext as _
+from services import modelservices
 from purchases.models import shipping
-# Create your views here.
+
+#Home Screen
 
 def store(request):
-	products=Product.objects.all()
-	product_paginator=Paginator(products,6)
-	page_num=request.GET.get('page')
-	page=product_paginator.get_page(page_num)
+
+	"""
+	@desc Displaying products in Home page.
+	@params WSGI request - 
+	@return HTML render - Renders home page
+	"""
+
 	context={
-		'page':page,
+		'page':modelservices.allProducts(request),
 	}
 	return render(request,'store/store.html',context)
+
+"""
+def category(request):
+	return render(request,'store/first.html',{'lists':modelservices.allCategories(request)})
+"""
+
+#Category View
+
+
+def product(request,category_id):
+	#products=Product.objects.all().filter(categories_id=categories_id)
+
+	context={
+		'page':modelservices.allCategories(request,category_id)
+	}
+	#prod=request.POST.get('pid')
+
+	return render(request,'store/prod.html',context)
 
 
 
@@ -32,24 +56,9 @@ def checkout(request):
 	context={}
 	return render(request,'store/checkout.html',context)
 
-def product(request,categories_id):
-	products=Product.objects.all().filter(categories_id=categories_id)
-	#product_paginator=Paginator(products,6)
-	#page_num=request.GET.get('page')
-	#page=product_paginator.get_page(page_num)
 
-	#request.session.get('cart').clear()
-	context={
-		#'page':page,
-		'products':products
-	}
-	prod=request.POST.get('pid')
 
-	return render(request,'store/prod.html',context)
 
-def category(request):
-	lists=Categories.objects.all()
-	return render(request,'store/first.html',{'lists':lists})
 
 def search(request):
 	if request.method=='POST':
@@ -69,62 +78,20 @@ def search(request):
 
 
 
-def minus(request):
-	minus=request.POST.get('minus')	
-	pid=ProductPurchases.objects.get(product_ID=int(minus))
-	newquantity=pid.quantity-1
-	pid.quantity=newquantity
-	product=[]
 
-	pid.save()
 
-	productIDs=[]
-	prodIns=[]
-	amount=0
-	for each in ProductPurchases.objects.all():
-		productIDs.append(each.product_ID)
+#Cart Views
 
-	for each in productIDs:
-		prodIns.append(Product.objects.get(id=each.id))
-		amount+=each.price
-		product.append(ProductPurchases.objects.get(product_ID=each.id))
-		
-
-	return render(request,'store/cart.html',{'products':product,'price':amount})
-
+#Create Cart View
 
 
 
 def cart(request):
 	if request.user.is_authenticated:
 		try:
-			prod=request.GET.get('pid')
-			print("What it should be -------",prod)
-			currentUser=request.user
-			print('user',currentUser)
-			if currentUser.is_authenticated:
 
-				if not Purchases.objects.filter(Users_ID=currentUser.id,isActive=True).exists():
-					purchaseDetail=Purchases(Users_ID=request.user,date=date.today())
-					purchaseDetail.save()
-					pid=Product.objects.get(id=prod)
-					pr=pid.price
-					purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
-					purchaseProduct.save()
-				elif Purchases.objects.filter(Users_ID=currentUser.id,isActive=True).exists():
-					print("---------------------Got in--------------")
-					n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()
-					print("the needed one: ",n.id)
-					if not ProductPurchases.objects.filter(product_ID=prod,purchases_ID=n.id).exists():
-						prod=request.GET.get('pid')
-						print('prodd----------',prod)
-						pid=Product.objects.get(id=prod)
-						pr=pid.price
-						purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
-						purchaseProduct.save()
-					else:
-						pass			
-				products=Product.objects.all().filter(categories_id=Product.objects.get(id=prod).categories_id)
+			modelservices.CreateCart(request)
+				
 			#return product(request,Product.objects.get(id=prod).categories_id)
 			messages.success(request,  'added To Cart.')
 			return redirect(request.META['HTTP_REFERER'])

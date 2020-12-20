@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load i18n %}
 <!DOCTYPE html>
 <html style="scroll-behavior: smooth;">
 
@@ -92,13 +92,13 @@
                             <a href="{% url 'profile' %}" class="account-link">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                                 <span>
-                My Account
+                                    {% trans "My Account" %}
               </span>
                             </a>
                             <a href="/displayCart" class="cart-link">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <span>
-                Cart
+                                    {% trans "Cart" %}
               </span>
                             </a>
                         </div>
@@ -163,13 +163,13 @@
                                 <div class="col-md-6">
                                     <div class="detail-box">
                                         <h1>
-                                            Welcome to our shop
+                                            {% trans "Welcome to our shop" %}
                                         </h1>
                                         <p>
                                             Something good about the services of the shopping app.
                                         </p>
                                         <a href="#why">
-                  Read More
+                  {% trans "Read More" %}
                 </a>
                                     </div>
                                 </div>
@@ -253,9 +253,9 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Our Products
+                    {% trans "Our Products" %}
                 </h2>
-                <h3>Page Number : {{page.number}}</h3>
+                <h3>{% trans "Page Number" %} : {{page.number}}</h3>
 
             </div>
             <div class="row">
@@ -325,7 +325,7 @@
                     <div class="detail-box pr-md-3">
                         <div class="heading_container">
                             <h2 id="why">
-                                We Provide Best For You
+                                {% trans "We Provide Best For You" %}
                             </h2>
                         </div>
                         <p>
@@ -354,7 +354,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2>
-                    Why Choose Us
+                    {% trans "Why Choose Us" %}
                 </h2>
             </div>
             <div class="row">
@@ -365,7 +365,7 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Fast Delivery
+                                {% trans "Fast Delivery" %}
                             </h5>
                             <p>
                                 variations of passages of Lorem Ipsum available
@@ -380,7 +380,7 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Free Shiping
+                                {% trans "Free Shiping" %}
                             </h5>
                             <p>
                                 variations of passages of Lorem Ipsum available
@@ -395,7 +395,7 @@
                         </div>
                         <div class="detail-box">
                             <h5>
-                                Best Quality
+                                {% trans "Best Quality" %}
                             </h5>
                             <p>
                                 variations of passages of Lorem Ipsum available
@@ -416,7 +416,7 @@
         <div class="container">
             <div class="heading_container heading_center">
                 <h2 id="review">
-                    What Says Our Customers
+                    {% trans "What Says Our Customers" %}
                 </h2>
             </div>
         </div>
