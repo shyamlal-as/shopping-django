@@ -1,5 +1,5 @@
 from django.urls import path
-from purchases.api import views
+from api.v1.purchases import views
 
 app_name = 'purchases'
 
