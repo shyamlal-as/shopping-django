@@ -7,7 +7,7 @@ from users.views import user_view
 urlpatterns = [
     path('',views.store,name="store"),
     path('cart/',views.cart,name="cart"),
-    path('checkout/',views.checkout,name="checkout"),
+    #path('checkout/',views.checkout,name="checkout"),
     path('category/<int:categories_id>/',views.product,name="product"),
     path('search/',views.search,name="search"),
     path('cart/',views.cart,name="cart"),

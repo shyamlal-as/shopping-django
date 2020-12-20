@@ -161,7 +161,7 @@
                 </div>-->
                 <div class="boxy">
                     <span class="w3-display-container" style="margin-top: 50px;">
-                        {{key}} <span onclick="location.href='{% url 'store' %}'" class="w3-button w3-transparent w3-display-right">&times;</span>
+                        {{key}} <button onclick="location.href='/category/4'" class="w3-button w3-transparent w3-display-right">&times;</button>
                 </div>
 
 
@@ -250,7 +250,7 @@
             <hr> {% if page.has_other_pages %}
             <div class="btn_box" style="display: inline-block;margin-left: 20px">
                 {% if page.has_previous %}
-                <a href="{% url 'store' %}?page={{page.previous_page_number}}" class="view_more-link">
+                <a href="{% url 'search' %}?page={{page.previous_page_number}}" class="view_more-link">
           Previous
         </a> {% endif %}
             </div>
@@ -277,7 +277,7 @@
 
             <div class="btn_box" style="display: inline-block;margin-left:120px;">
                 {% if page.has_next %}
-                <a href="{% url 'store' %}?page={{page.next_page_number}}" class="view_more-link">
+                <a href="{% url 'search' %}?page={{page.next_page_number}}" class="view_more-link">
           Next
         </a> {% endif %}
             </div>

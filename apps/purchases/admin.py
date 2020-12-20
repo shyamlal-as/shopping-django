@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Purchases, ProductPurchases
+from .models import Purchases, ProductPurchases,shipping
 
 
 # Register your models here.
@@ -24,4 +24,5 @@ class ProductPurchasesAdmin(admin.ModelAdmin):
 
 admin.site.register(ProductPurchases,ProductPurchasesAdmin)
 admin.site.register(Purchases,PurchasesAdmin)
+admin.site.register(shipping)
 
