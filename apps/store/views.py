@@ -23,6 +23,13 @@ from .services import display,searching,cartop
 # Create your views here.
 
 def store(request):
+	"""
+	Display of homepage
+
+	:param Request request: Request
+
+	:return HTML: store.html - homepage
+	"""
 
 	products=Product.objects.all()
 	page=display.storeDisplay(request,products)
@@ -35,6 +42,15 @@ def store(request):
 
 
 def product(request,categories_id):
+	"""
+	Categorical display of products
+
+	:param Request request: Request
+	:param int categories_id: ID of the corresponding category
+
+	:return HTML: prod.html - categorical view
+	"""
+
 	#getting products of a category
 	products=Product.objects.all().filter(categories_id=categories_id)
 	page=display.storeDisplay(request,products)
@@ -47,6 +63,14 @@ def product(request,categories_id):
 
 
 def search(request):
+	"""
+	Searching products by name 
+
+	:param Request request: Request
+
+	:return HTML: search.html - display products matching search
+	"""
+
 	if request.method=='POST':
 		#Getting search item
 
@@ -66,6 +90,15 @@ def search(request):
 
 #Add to card feature
 def cart(request):
+	"""
+	Adding product to cart 
+
+	:param Request request: Request
+
+	:return redirect : redirected to the same page
+	:return redirect login : redirected to login page for unauthenticated user
+	"""
+
 	if request.user.is_authenticated:
 		try:
 
@@ -78,7 +111,6 @@ def cart(request):
 			
 		except:
 			return render(request,'store/cart.html')
-			return redirect(request.META['HTTP_REFERER'])
 	
 	else:
 		messages.success(request,  'added To Cart.')
@@ -89,6 +121,14 @@ def cart(request):
 	
 #Displaying products added to cart
 def displayCart(request):
+	"""
+	Displaying products in cart 
+
+	:param Request request: Request
+
+	:return HTML: cart.html - displaying the cart
+	"""
+
 	if request.user.is_authenticated:
 
 		products,amount=cartop.displayCart(request)		
@@ -100,6 +140,13 @@ def displayCart(request):
 
 #removing product added to cart
 def remove(request):
+	"""
+	Removing product from cart 
+
+	:param Request request: Request
+
+	:return view: displayCart - displaying the cart
+	"""
 
 	idd=request.GET.get('idd')
 	cartop.remove(request,idd)
@@ -111,12 +158,29 @@ def remove(request):
 
 #Addition of product quantity
 def plus(request):
+	"""
+	Incrementing product quantity 
+
+	:param Request request: Request
+
+	:return view: displayCart - displaying the cart
+	"""
+
 	idd=request.GET.get('plus') #Getting product ID of product to be incremented in quantity
 	cartop.plus(request,idd)
 	return displayCart(request)
 
 
 def minus(request):
+	"""
+	Decrementing product quantity 
+
+	:param Request request: Request
+
+	:return view: displayCart - displaying the cart
+	"""
+
+
 	idd=request.GET.get('minus') #Getting product ID of product to be incremented in quantity
 	cartop.minus(request,idd)
 	return displayCart(request)
@@ -125,6 +189,14 @@ def minus(request):
 
 #Completing cart purchase
 def complete(request):
+	"""
+	Completing the purchase 
+
+	:param Request request: Request
+
+	:return HTML: complete.html - Page denoting purchase-completed
+	"""
+
 
 	cartop.checkout(request)
 	return render(request,'store/complete.html')
@@ -133,6 +205,15 @@ def complete(request):
 
 #Product details
 def details(request,slug):
+	"""
+	Displaying product detail 
+
+	:param Request request: Request
+
+	:return HTML: details.html - product detail page
+	"""
+
+
 	product=Product.objects.filter(id=slug)
 	context={
 		'product':product
@@ -142,6 +223,14 @@ def details(request,slug):
 
 
 def profile(request):
+	"""
+	Displaying user's profile 
+
+	:param Request request: Request
+
+	:return HTML: profile.html - user profile page
+	"""
+
 	currentUser=request.user
 	display=[]
 	message=""
@@ -160,6 +249,14 @@ def profile(request):
 
 
 def clearCart(request):
+	"""
+	Emptying the cart 
+
+	:param Request request: Request
+
+	:return view: displayCart - displaying the cart
+	"""
+
 	currentUser=request.user
 	purchase=request.GET.get('purchaseID')
 	print("-----------------------------------------------------",purchase)

@@ -35,9 +35,7 @@ urlpatterns += [
     path('login/',login_view,name='login'),
 
     #Rest Framework URLs
-    path('api/store/',include('store.api.urls', 'product_api')),
-    path('api/users/',include('users.api.urls', 'users_api')),
-    path('api/cart/',include('purchases.api.urls','cart_api')),
+    path('api/',include('api.urls', 'apis')),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 
