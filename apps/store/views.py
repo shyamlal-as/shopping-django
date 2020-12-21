@@ -52,7 +52,7 @@ def product(request,categories_id):
 	"""
 
 	#getting products of a category
-	products=Product.objects.all().filter(categories_id=categories_id)
+	products=Product.objects.filter(categories_id=categories_id)
 	page=display.storeDisplay(request,products)
 
 	context={

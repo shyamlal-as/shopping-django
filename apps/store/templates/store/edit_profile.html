@@ -1,4 +1,4 @@
-{% load static %}{% load mathfilters %}
+{% load static %}{% load mathfilters %} {% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -89,6 +89,26 @@
             </div>
 
         </div>
+        <br><br>
+
+    </form>
+    </div>
+    <div>
+        {% get_current_language as LANGUAGE_CODE %}
+        <form action="{% url 'set_language' %}" method="POST" style="display: block;position: absolute;left: 500px;bottom: 500px;">
+        {% csrf_token %}
+        <input type="hidden" name="text" value="{{redirect_to}}">
+        <select name="language" id="">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            <option value="{{language.code}}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
+                {{language.name_local}} ({{language.code}})
+            </option>
+            {% endfor %}
+
+        </select>
+            <input type="submit" value="Go">
     </div>
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
