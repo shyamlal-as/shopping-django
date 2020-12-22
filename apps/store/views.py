@@ -128,12 +128,14 @@ def displayCart(request):
 
 	:return HTML: cart.html - displaying the cart
 	"""
+	try:
+		if request.user.is_authenticated:
 
-	if request.user.is_authenticated:
+			products,amount=cartop.displayCart(request)		
 
-		products,amount=cartop.displayCart(request)		
-
-		return render(request,'store/cart.html',{'products':products,'price':amount})
+			return render(request,'store/cart.html',{'products':products,'price':amount})
+	except:
+		return render(request,'store/cart.html')
 	else:
 		return redirect('login')
 
@@ -256,8 +258,13 @@ def clearCart(request):
 
 	:return view: displayCart - displaying the cart
 	"""
-
 	currentUser=request.user
+	eq=Purchases.objects.all().filter(Users_ID=currentUser.id,isActive=True).first()
+	for each in ProductPurchases.objects.all().order_by('product_ID'):
+		if each.purchases_ID.id==eq.id and each.purchases_ID.isActive==True and each.purchases_ID.Users_ID==currentUser:
+			each.product_ID.stock+=each.quantity
+			each.productsave()
+						
 	purchase=request.GET.get('purchaseID')
 	print("-----------------------------------------------------",purchase)
 	Purchases.objects.all().filter(id=purchase).delete()

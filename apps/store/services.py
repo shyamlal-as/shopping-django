@@ -54,22 +54,29 @@ class cartop():
 				purchaseDetail=Purchases(Users_ID=request.user,date=date.today())			#Adding new purchase
 				purchaseDetail.save()
 				pid=Product.objects.get(id=prod)
-				pr=pid.price
+				print("---------------------------Stock--------------------------",pid.stock)
+				if pid.stock>0:
+					pr=pid.price
 				#Adding and saving products to new purchase
 
-				purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
-				purchaseProduct.save()
-
+					purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
+					purchaseProduct.save()
+					pid.stock-=1
+					pid.save()
 			#Checking for active carts corresponding to current user
 			elif Purchases.objects.filter(Users_ID=currentUser.id,isActive=True).exists():
 				n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first() #Finding active carts of current user
 				if not ProductPurchases.objects.filter(product_ID=prod,purchases_ID=n.id).exists(): #Adding product to active cart
 					prod=request.GET.get('pid')
 					pid=Product.objects.get(id=prod)
-					pr=pid.price
+					if pid.stock>0:
+						pr=pid.price
 					#Saving the product to cart
-					purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
-					purchaseProduct.save()
+						purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
+						purchaseProduct.save()
+						pid.stock-=1
+						pid.save()
+
 				else:
 					pass			
 			products=Product.objects.all().filter(categories_id=Product.objects.get(id=prod).categories_id)
@@ -98,27 +105,42 @@ class cartop():
 
 	def remove(request,idd):
 		currentUser=request.user
+		prod=Product.objects.get(id=idd)
 		n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()
+		quantity=ProductPurchases.objects.get(product_ID=int(idd),purchases_ID=n.id)
+		prod.stock+=quantity.quantity
+		prod.save()
 		ProductPurchases.objects.filter(product_ID=int(idd),purchases_ID=n.id).delete()
+
 
 
 	def plus(request,idd):
 
 		currentUser=request.user 	#Getting currently active user
+		prod=Product.objects.get(id=idd)
 		n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()  #Getting user's active carts
-		quantity=ProductPurchases.objects.get(product_ID=int(idd),purchases_ID=n.id) #Getting product from active cart and decrementing quantity and saving
-		newquantity=quantity.quantity+1
-		quantity.quantity=newquantity
-		quantity.save()		
+		quantity=ProductPurchases.objects.get(product_ID=int(idd),purchases_ID=n.id) #Getting product from active cart and incrementing quantity and saving
+		if prod.stock>0:
+			newquantity=quantity.quantity+1
+			quantity.quantity=newquantity
+			quantity.save()
+			prod.stock-=1;
+			prod.save()
 
 	def minus(request,idd):
 
 		currentUser=request.user 	#Getting currently active user
+		prod=Product.objects.get(id=idd)
 		n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()  #Getting user's active carts
 		quantity=ProductPurchases.objects.get(product_ID=int(idd),purchases_ID=n.id) #Getting product from active cart and decrementing quantity and saving
-		newquantity=quantity.quantity-1
-		quantity.quantity=newquantity
-		quantity.save()	
+		if quantity.quantity>1:
+			newquantity=quantity.quantity-1
+			quantity.quantity=newquantity
+			quantity.save()
+			prod.stock+=1;
+			prod.save()	
+		elif quantity.quantity==1:
+			cartop.remove(request,idd)	
 
 
 	def checkout(request):
