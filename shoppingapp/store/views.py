@@ -119,15 +119,17 @@ def cart(request):
 				Else:
 					Add an entry to Purchases table and ProductPurchases table.
 	"""
-
+	print('----------------fn-------------')
 	if request.user.is_authenticated:
 		try:
+			print('----------In----------------------')
 			prod=request.GET.get('pid')
 			_purchaseService.CreateCart(request,prod)
 			messages.success(request,  'added To Cart.')
 			return redirect(request.META['HTTP_REFERER'])
 			
 		except:
+			print('----------------ex-------------')
 			return render(request,'store/cart.html')
 	
 	else:
