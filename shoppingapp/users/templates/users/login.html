@@ -34,7 +34,13 @@
 
 <body>
 
-
+    <div id="messages">
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" style="text-align: center;">
+            {{ message }}
+        </div>
+        {% endfor %} {% endif %}
+    </div><br><br>
 
 
     <div class="container" id="container">

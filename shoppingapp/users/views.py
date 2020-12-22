@@ -18,6 +18,7 @@ def registration_view(request):
             raw_password = form.cleaned_data.get('password1')
             account = authenticate(email=email,password= raw_password)
             login(request, account)
+            messages.success(request,  'Signed Up.')
             return redirect('store')
         else:
             context['registration_form'] = form
@@ -52,6 +53,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
+                messages.success(request,  'Logged In.')
                 return redirect('store')
 
     else:

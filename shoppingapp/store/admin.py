@@ -6,7 +6,7 @@ from .models import Product, Categories
 # Register your models here.
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display=('name','desc')
+    list_display=('id','name','stock','price')
     #search_fields = ['name','categories_id']
 
 class CategoriesAdmin(admin.ModelAdmin):

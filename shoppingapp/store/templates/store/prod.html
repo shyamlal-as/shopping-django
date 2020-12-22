@@ -85,13 +85,13 @@
                         <a href="" class="account-link">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
-        My Account
+        {% trans "My Account" %}
       </span>
                         </a>
                         <a href="/displayCart" class="cart-link">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>
-        Cart
+                                {% trans "Cart" %}
       </span>
                         </a>
                     </div>
@@ -112,19 +112,19 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="/category/1">Clothing</a>
-                                    <a class="dropdown-item" href="/category/2">Electrical</a>
-                                    <a class="dropdown-item" href="/category/3">Decor</a>
+                                    <a class="dropdown-item" href="/category/1">{% trans "clothing" %}</a>
+                                    <a class="dropdown-item" href="/category/2">{% trans "Electrical" %}</a>
+                                    <a class="dropdown-item" href="/category/3">{% trans "Decor" %}</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html"> About</a>
+                                <a class="nav-link" href="about.html"> {% trans "About" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="why.html">Why Us</a>
+                                <a class="nav-link" href="#why">{% trans "Why Us" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="testimonial.html">Testimonial</a>
+                                <a class="nav-link" href="#review">{% trans "Testimonial" %}</a>
                             </li>
                         </ul>
                     </div>
@@ -187,6 +187,18 @@
                 {% endfor %}
             </div>
 
+            <div class="btn_box" style="display: inline-block;margin-left: 20px">
+                {% if page.has_previous %}
+                <a href="?page={{page.previous_page_number}}" class="view_more-link">
+          Previous
+        </a> {% endif %}
+            </div>
+            <div class="btn_box" style="display: inline-block;margin-left:750px;">
+                {% if page.has_next %}
+                <a href="?page={{page.next_page_number}}" class="view_more-link">
+          Next
+        </a> {% endif %}
+            </div>
 
 
     </section>

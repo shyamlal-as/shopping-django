@@ -444,16 +444,18 @@
                 </div>
                 <div class="price">{{product.product_ID.price}}</div>
                 <div class="quantity">
-                    <form method="GET">
-                        <button type="submit" formaction="/plus/" name="plus" value={{product.product_ID.id}}>+</button>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button type="submit" formaction="/plus/" name="id" value={{product.product_ID.id}}>+</button>
                         <input type="button" name="quantity" value="{{product.quantity}}">
-                        <button type="submit" formaction="/minus/" name="minus" value="{{product.product_ID.id}}">-</button>
+                        <button type="submit" formaction="/minus/" name="id" value="{{product.product_ID.id}}">-</button>
                     </form>
                 </div>
                 <div class="remove">
-                    <form method="GET" action="/remove/">
+                    <form method="POST" action="/remove/">
+                        {% csrf_token %}
                         <input type="submit" value="Delete" placeholder="Delete">
-                        <input hidden type="text" name="idd" value="{{product.product_ID.id}}" placeholder="Delete">
+                        <input hidden type="text" name="id" value="{{product.product_ID.id}}" placeholder="Delete">
 
                     </form>
                 </div>

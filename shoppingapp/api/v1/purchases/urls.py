@@ -5,5 +5,5 @@ app_name = 'purchases'
 
 urlpatterns = [
     path('<slug>',views.cart_api_view,name = "create-cart-api"),
-    path('update/<slug>',views.cart_purchase_api,name='update-cart-api'),
+    path('purchase/<slug>/',views.cart_purchase_api,name='cart-purchase-api'),
 ]

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-20 02:20+0530\n"
+"POT-Creation-Date: 2020-12-23 00:42+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: shoppingapp/settings.py:208
+msgid "English"
+msgstr ""
+
+#: shoppingapp/settings.py:209
+msgid "Spanish"
+msgstr ""
+
 #: store/templates/store/store.html:95
 msgid "My Account"
 msgstr "mi cuenta"
@@ -25,6 +33,36 @@ msgstr "mi cuenta"
 #: store/templates/store/store.html:101
 msgid "Cart"
 msgstr "carro"
+
+#: store/templates/store/store.html:120
+msgid "Categories"
+msgstr "Categorías"
+
+#: store/templates/store/store.html:122
+msgid "clothing"
+msgstr "Ropa"
+
+#: store/templates/store/store.html:123
+msgid "Electrical"
+msgstr "Eléctrico"
+
+#: store/templates/store/store.html:124
+msgid "Decor"
+msgstr "Decoración"
+
+#: store/templates/store/store.html:128
+msgid "About"
+msgstr "Acerca de"
+
+#: store/templates/store/store.html:131
+#, fuzzy
+#| msgid "Why Choose Us"
+msgid "Why Us"
+msgstr "Por qué elegirnos"
+
+#: store/templates/store/store.html:134
+msgid "Testimonial"
+msgstr "Testimonial"
 
 #: store/templates/store/store.html:166
 msgid "Welcome to our shop"
@@ -42,26 +80,34 @@ msgstr "nuestros productos"
 msgid "Page Number"
 msgstr "número de página"
 
-#: store/templates/store/store.html:328
+#: store/templates/store/store.html:341
+msgid "Next"
+msgstr "siguiente"
+
+#: store/templates/store/store.html:358
 msgid "We Provide Best For You"
 msgstr "proporcionamos lo mejor para ti"
 
-#: store/templates/store/store.html:357
+#: store/templates/store/store.html:387
 msgid "Why Choose Us"
 msgstr "Por qué elegirnos"
 
-#: store/templates/store/store.html:368
+#: store/templates/store/store.html:398
 msgid "Fast Delivery"
 msgstr "entrega rápida"
 
-#: store/templates/store/store.html:383
+#: store/templates/store/store.html:413
 msgid "Free Shiping"
 msgstr "envío gratis"
 
-#: store/templates/store/store.html:398
+#: store/templates/store/store.html:428
 msgid "Best Quality"
 msgstr "mejor calidad"
 
-#: store/templates/store/store.html:419
+#: store/templates/store/store.html:449
 msgid "What Says Our Customers"
 msgstr "que dicen nuestros clientes"
+
+#: store/templates/store/store.html:549
+msgid "Previous"
+msgstr "Anterior"

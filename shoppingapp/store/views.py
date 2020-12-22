@@ -122,8 +122,8 @@ def cart(request):
 
 	if request.user.is_authenticated:
 		try:
-
-			_purchaseService.CreateCart(request)
+			prod=request.GET.get('pid')
+			_purchaseService.CreateCart(request,prod)
 			messages.success(request,  'added To Cart.')
 			return redirect(request.META['HTTP_REFERER'])
 			
@@ -132,7 +132,7 @@ def cart(request):
 	
 	else:
 		messages.success(request,  'added To Cart.')
-		return redirect('login')
+		return redirect('store')
 
 
 
@@ -151,9 +151,9 @@ def displayCart(request):
 	if request.user.is_authenticated:
 		
 		context=_purchaseService.DisplayCart(request)
-
 		return render(request,'store/cart.html',context)
 	else:
+		messages.success(request,  'Login to continue.')
 		return redirect('login')
 
 
@@ -209,6 +209,8 @@ def minus(request):
 	context= _purchaseService.DecreaseQuantity(request)
 	return render(request,'store/cart.html',context)
 
+
+
 def complete(request):
 	_purchaseService.Checkout(request)
 	return render(request,'store/complete.html')
@@ -231,6 +233,7 @@ def profile(request):
 			message="You have not made any purchases"
 		return render(request,'store/profile.html',{'products':display,'message':message})
 	else:
+		messages.success(request,  'Login to continue.')
 		return redirect('login')
 
 
