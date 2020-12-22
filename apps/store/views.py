@@ -25,9 +25,7 @@ from .services import display,searching,cartop
 def store(request):
 	"""
 	Display of homepage
-
 	:param Request request: Request
-
 	:return HTML: store.html - homepage
 	"""
 
@@ -44,10 +42,8 @@ def store(request):
 def product(request,categories_id):
 	"""
 	Categorical display of products
-
 	:param Request request: Request
 	:param int categories_id: ID of the corresponding category
-
 	:return HTML: prod.html - categorical view
 	"""
 
@@ -65,9 +61,7 @@ def product(request,categories_id):
 def search(request):
 	"""
 	Searching products by name 
-
 	:param Request request: Request
-
 	:return HTML: search.html - display products matching search
 	"""
 
@@ -92,9 +86,7 @@ def search(request):
 def cart(request):
 	"""
 	Adding product to cart 
-
 	:param Request request: Request
-
 	:return redirect : redirected to the same page
 	:return redirect login : redirected to login page for unauthenticated user
 	"""
@@ -123,9 +115,7 @@ def cart(request):
 def displayCart(request):
 	"""
 	Displaying products in cart 
-
 	:param Request request: Request
-
 	:return HTML: cart.html - displaying the cart
 	"""
 	try:
@@ -144,9 +134,7 @@ def displayCart(request):
 def remove(request):
 	"""
 	Removing product from cart 
-
 	:param Request request: Request
-
 	:return view: displayCart - displaying the cart
 	"""
 
@@ -162,9 +150,7 @@ def remove(request):
 def plus(request):
 	"""
 	Incrementing product quantity 
-
 	:param Request request: Request
-
 	:return view: displayCart - displaying the cart
 	"""
 
@@ -176,9 +162,7 @@ def plus(request):
 def minus(request):
 	"""
 	Decrementing product quantity 
-
 	:param Request request: Request
-
 	:return view: displayCart - displaying the cart
 	"""
 
@@ -193,25 +177,23 @@ def minus(request):
 def complete(request):
 	"""
 	Completing the purchase 
-
 	:param Request request: Request
-
 	:return HTML: complete.html - Page denoting purchase-completed
 	"""
 
 
-	cartop.checkout(request)
-	return render(request,'store/complete.html')
-
+	r=cartop.checkout(request)
+	if r==1:
+		return render(request,'store/complete.html')
+	else:
+		return displayCart(request)
 
 
 #Product details
 def details(request,slug):
 	"""
 	Displaying product detail 
-
 	:param Request request: Request
-
 	:return HTML: details.html - product detail page
 	"""
 
@@ -227,9 +209,7 @@ def details(request,slug):
 def profile(request):
 	"""
 	Displaying user's profile 
-
 	:param Request request: Request
-
 	:return HTML: profile.html - user profile page
 	"""
 
@@ -253,9 +233,7 @@ def profile(request):
 def clearCart(request):
 	"""
 	Emptying the cart 
-
 	:param Request request: Request
-
 	:return view: displayCart - displaying the cart
 	"""
 	currentUser=request.user

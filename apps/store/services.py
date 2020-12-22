@@ -144,16 +144,31 @@ class cartop():
 
 
 	def checkout(request):
+		success=1
 		currentUser=request.user
 		n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()
 		for each in ProductPurchases.objects.filter(purchases_ID=n.id):
-			q=each.quantity
-			each.product_ID.stock-=q
-			each.product_ID.save()
-		n.isActive=False
-		n.save()
-		address=request.GET.get('address')
-		city=request.GET.get('city')
-		pincode=request.GET.get('pincode')
-		shippingdets=shipping(Users_ID=request.user,address=address,city=city,pincode=pincode)
-		shippingdets.save()
+			if each.quantity<=each.product_ID.stock:
+				q=each.quantity
+				each.product_ID.stock-=q
+				each.product_ID.save()
+			else:
+				success=0
+				break
+		if success==1:
+			n.isActive=False
+			n.save()
+			address=request.GET.get('address')
+			city=request.GET.get('city')
+			pincode=request.GET.get('pincode')
+			shippingdets=shipping(Users_ID=request.user,address=address,city=city,pincode=pincode)
+			shippingdets.save()
+			return 1
+		else:
+			print("---------------------------------------Unsuccesfull-------------------")
+			for each in ProductPurchases.objects.filter(purchases_ID=n.id):
+				if each.quantity>each.product_ID.stock:
+					diff=each.quantity-each.product_ID.stock
+					for i in range(int(diff)):
+						cartop.minus(request,each.product_ID.id)			
+			return 0
