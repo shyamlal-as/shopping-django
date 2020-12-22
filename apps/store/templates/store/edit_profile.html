@@ -33,14 +33,14 @@
                 <ul class="list-unstyled components mb-5">
 
                     <li>
-                        <a href="#">My Orders</a>
+                        <a href="{% url 'profile' %}">{% trans "My Orders" %}</a>
                     </li><br>
 
                     <li>
-                        <a href="#">My Profile</a>
+                        <a href="#">{% trans "My Profile" %}</a>
                     </li><br>
                     <li>
-                        <a href="#">Shipment Details</a>
+                        <a href="#">{% trans "Shipment Details" %}</a>
                     </li>
                 </ul>
 
@@ -58,7 +58,7 @@
                 <div class="container-fluid">
 
                     <h3>
-                        Hello {{user.username}}
+                        {% trans "Hello" %} {{user.username}}
                     </h3>
 
                 </div>
@@ -72,7 +72,7 @@
                 <form method="POST">
                     {% csrf_token %} {% for field in account_form %}
                     <p>
-                        {{field.label_tag}} {{field}} {% if field.help_text %}
+                       {{field.label_tag}}" {{field}} {% if field.help_text %}
                         <small style="color: grey;">{{field.help_text}}</small> {% endif %}
                     </p>
                     {% endfor %} {% for field in account_form %} {% for error in field.errors %}

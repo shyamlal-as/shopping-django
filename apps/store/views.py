@@ -260,11 +260,12 @@ def clearCart(request):
 	"""
 	currentUser=request.user
 	eq=Purchases.objects.all().filter(Users_ID=currentUser.id,isActive=True).first()
+	"""
 	for each in ProductPurchases.objects.all().order_by('product_ID'):
 		if each.purchases_ID.id==eq.id and each.purchases_ID.isActive==True and each.purchases_ID.Users_ID==currentUser:
 			each.product_ID.stock+=each.quantity
-			each.productsave()
-						
+			each.product_ID.save()
+	"""
 	purchase=request.GET.get('purchaseID')
 	print("-----------------------------------------------------",purchase)
 	Purchases.objects.all().filter(id=purchase).delete()

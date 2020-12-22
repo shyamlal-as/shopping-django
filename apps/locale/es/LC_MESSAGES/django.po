@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-18 17:21+0530\n"
+"POT-Creation-Date: 2020-12-22 16:33+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,61 +18,84 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: shoppingapp/settings.py:128
+#: shoppingapp/settings.py:129
 msgid "English"
 msgstr ""
 
-#: shoppingapp/settings.py:129
+#: shoppingapp/settings.py:130
 msgid "Spanish"
 msgstr ""
 
-#: store/templates/store/cart.html:426
+#: store/templates/store/cart.html:427
 msgid "Item"
 msgstr "Articulo"
 
-#: store/templates/store/cart.html:427
+#: store/templates/store/cart.html:428
 msgid "Price"
 msgstr "Precio"
 
-#: store/templates/store/cart.html:428 store/templates/store/profile.html:146
+#: store/templates/store/cart.html:429 store/templates/store/profile.html:146
 msgid "Quantity"
 msgstr "Cantidad"
 
-#: store/templates/store/cart.html:429 store/templates/store/cart.html:478
+#: store/templates/store/cart.html:430 store/templates/store/cart.html:479
 msgid "Subtotal"
 msgstr "Total parcial"
 
-#: store/templates/store/cart.html:442
+#: store/templates/store/cart.html:443
 msgid "Product Code"
 msgstr "Código de producto"
 
-#: store/templates/store/cart.html:471
+#: store/templates/store/cart.html:472
 msgid "Home"
 msgstr "Casa"
 
-#: store/templates/store/cart.html:476
+#: store/templates/store/cart.html:477
 msgid "Items in your Bag"
 msgstr "Artículos en su bolsa"
 
-#: store/templates/store/cart.html:494
+#: store/templates/store/cart.html:495
 msgid "Address"
 msgstr "Habla a"
 
-#: store/templates/store/cart.html:496
+#: store/templates/store/cart.html:497
 msgid "City"
 msgstr "Ciudad"
 
-#: store/templates/store/cart.html:498
+#: store/templates/store/cart.html:499
 msgid "pincode"
 msgstr "código PIN"
 
-#: store/templates/store/cart.html:501 store/templates/store/profile.html:147
+#: store/templates/store/cart.html:502 store/templates/store/profile.html:147
 msgid "Total"
 msgstr "Total"
 
-#: store/templates/store/cart.html:505
+#: store/templates/store/cart.html:506
 msgid "Go To Secure Checkout"
 msgstr "Ir a pago seguro"
+
+#: store/templates/store/edit_profile.html:36
+#: store/templates/store/profile.html:36
+msgid "My Orders"
+msgstr "Mis ordenes"
+
+#: store/templates/store/edit_profile.html:40
+msgid "My Profile"
+msgstr "Mi perfil"
+
+#: store/templates/store/edit_profile.html:43
+#: store/templates/store/profile.html:43
+msgid "Shipment Details"
+msgstr "Detalles del envío"
+
+#: store/templates/store/edit_profile.html:61
+#: store/templates/store/profile.html:61
+msgid "Hello"
+msgstr "Hola"
+
+#: store/templates/store/edit_profile.html:75
+msgid "{{field.label_tag}}"
+msgstr ""
 
 #: store/templates/store/main.html:45 store/templates/store/prod.html:58
 #: store/templates/store/search.html:66 store/templates/store/store.html:65
@@ -131,15 +154,15 @@ msgstr "Por qué"
 msgid "Testimonial"
 msgstr "Testimonial"
 
-#: store/templates/store/prod.html:161 store/templates/store/store.html:275
+#: store/templates/store/prod.html:161 store/templates/store/store.html:261
 msgid "Add To Cart"
 msgstr "Añadir al carrito"
 
-#: store/templates/store/prod.html:195 store/templates/store/store.html:307
+#: store/templates/store/prod.html:195 store/templates/store/store.html:293
 msgid "Previous"
 msgstr "Previo"
 
-#: store/templates/store/prod.html:201 store/templates/store/store.html:313
+#: store/templates/store/prod.html:201 store/templates/store/store.html:299
 msgid "Next"
 msgstr "Próximo"
 
@@ -147,21 +170,9 @@ msgstr "Próximo"
 msgid "All Rights Reserved By"
 msgstr "Todos los derechos reservados por"
 
-#: store/templates/store/profile.html:36
-msgid "My Orders"
-msgstr "Mis ordenes"
-
 #: store/templates/store/profile.html:40
 msgid "Edit Profile"
 msgstr "Editar perfil"
-
-#: store/templates/store/profile.html:43
-msgid "Shipment Details"
-msgstr "Detalles del envío"
-
-#: store/templates/store/profile.html:61
-msgid "Hello"
-msgstr "Hola"
 
 #: store/templates/store/profile.html:71
 msgid "Log Out"
@@ -183,7 +194,7 @@ msgstr "Descripción"
 msgid "Unit Price"
 msgstr "Precio unitario"
 
-#: store/templates/store/search.html:170 store/templates/store/store.html:260
+#: store/templates/store/search.html:170 store/templates/store/store.html:246
 msgid "Page Number"
 msgstr "Número de página"
 
@@ -206,18 +217,17 @@ msgstr "Algo bueno sobre los servicios de la aplicación de compras."
 msgid "Read More"
 msgstr "Lee mas"
 
-#: store/templates/store/store.html:258
+#: store/templates/store/store.html:244
 msgid "Our Products"
 msgstr "Nuestros productos"
 
-#: store/templates/store/store.html:359
+#: store/templates/store/store.html:345
 msgid "Why Choose Us"
 msgstr "Por quos"
 
-#: store/templates/store/store.html:370
+#: store/templates/store/store.html:356
 msgid "Fast Delivery"
 msgstr "Entrega rápida"
 
-#: store/views.py:31
-msgid "hello"
-msgstr "hola"
+#~ msgid "hello"
+#~ msgstr "hola"

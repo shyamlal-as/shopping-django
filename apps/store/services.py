@@ -61,8 +61,8 @@ class cartop():
 
 					purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
 					purchaseProduct.save()
-					pid.stock-=1
-					pid.save()
+					#pid.stock-=1
+					#pid.save()
 			#Checking for active carts corresponding to current user
 			elif Purchases.objects.filter(Users_ID=currentUser.id,isActive=True).exists():
 				n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first() #Finding active carts of current user
@@ -74,8 +74,8 @@ class cartop():
 					#Saving the product to cart
 						purchaseProduct=ProductPurchases(purchases_ID=Purchases.objects.latest('pk'),product_ID=pid,quantity=1,price=pr)
 						purchaseProduct.save()
-						pid.stock-=1
-						pid.save()
+						#pid.stock-=1
+						#pid.save()
 
 				else:
 					pass			
@@ -107,9 +107,9 @@ class cartop():
 		currentUser=request.user
 		prod=Product.objects.get(id=idd)
 		n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()
-		quantity=ProductPurchases.objects.get(product_ID=int(idd),purchases_ID=n.id)
-		prod.stock+=quantity.quantity
-		prod.save()
+		#quantity=ProductPurchases.objects.get(product_ID=int(idd),purchases_ID=n.id)
+		#prod.stock+=quantity.quantity
+		#prod.save()
 		ProductPurchases.objects.filter(product_ID=int(idd),purchases_ID=n.id).delete()
 
 
@@ -120,12 +120,12 @@ class cartop():
 		prod=Product.objects.get(id=idd)
 		n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()  #Getting user's active carts
 		quantity=ProductPurchases.objects.get(product_ID=int(idd),purchases_ID=n.id) #Getting product from active cart and incrementing quantity and saving
-		if prod.stock>0:
+		if quantity.quantity<prod.stock:
 			newquantity=quantity.quantity+1
 			quantity.quantity=newquantity
 			quantity.save()
-			prod.stock-=1;
-			prod.save()
+			#prod.stock-=1;
+			#prod.save()
 
 	def minus(request,idd):
 
@@ -137,8 +137,8 @@ class cartop():
 			newquantity=quantity.quantity-1
 			quantity.quantity=newquantity
 			quantity.save()
-			prod.stock+=1;
-			prod.save()	
+			#prod.stock+=1;
+			#prod.save()	
 		elif quantity.quantity==1:
 			cartop.remove(request,idd)	
 
@@ -146,6 +146,10 @@ class cartop():
 	def checkout(request):
 		currentUser=request.user
 		n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()
+		for each in ProductPurchases.objects.filter(purchases_ID=n.id):
+			q=each.quantity
+			each.product_ID.stock-=q
+			each.product_ID.save()
 		n.isActive=False
 		n.save()
 		address=request.GET.get('address')
