@@ -9,7 +9,7 @@ urlpatterns = [
     #Version 1
 
     path('store/v1/',include('api.v1.store.urls', 'product_api_v1')),
-    #path('users/v1/',include('api.v1.urls', 'users_api_v1')),
+    path('users/v1/',include('api.v1.users.urls', 'users_api_v1')),
     path('cart/v1/',include('api.v1.purchases.urls','cart_api_v1')),
 
     #Version 2
