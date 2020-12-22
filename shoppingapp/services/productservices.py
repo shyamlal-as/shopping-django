@@ -41,5 +41,3 @@ class ProductServices:
         'key':search,
         }
         return(context)
-
-    3
