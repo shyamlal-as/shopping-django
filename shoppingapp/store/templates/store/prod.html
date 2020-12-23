@@ -1,4 +1,4 @@
- {% load static %}
+ {% load static %}{% load i18n %}
 <!DOCTYPE html>
 <html>
 <!DOCTYPE html>
@@ -112,9 +112,9 @@
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="/category/1">{% trans "clothing" %}</a>
-                                    <a class="dropdown-item" href="/category/2">{% trans "Electrical" %}</a>
-                                    <a class="dropdown-item" href="/category/3">{% trans "Decor" %}</a>
+                                    <a class="dropdown-item" href="/category/4">{% trans "clothing" %}</a>
+                                    <a class="dropdown-item" href="/category/5">{% trans "Electrical" %}</a>
+                                    <a class="dropdown-item" href="/category/6">{% trans "Decor" %}</a>
                                 </div>
                             </li>
                             <li class="nav-item">
@@ -143,26 +143,55 @@
             <div class="heading_container heading_center">
                 <h2>
                 </h2>
-                <h3>Page Number : {{page.number}}</h3>
+                <h3>{% trans "Page Number" %} : {{page.number}}</h3>
 
             </div>
             <div class="row">
 
 
-                {% for product in page.object_list %}
-                <!--page.object_list %}-->
+                {% for product in page.object_list %} {% if product.stock == 0 %}
+                <div class="col-sm-6 col-lg-4">
+                    <div class="box">
+                        <div class="img-box">
+                            <img src="{{product.image.url}}" alt="" style="filter: blur(100px);
+                            filter: grayscale(20);">
+                            <a href="javascript:void(0)" class="add_cart_btn">
+                                <span>
+                  Out of Stock
+                </span>
+                            </a>
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                {{product.name}}
+
+                            </h5>
+                            <div class="product_info">
+                                <h5>
+                                    <span>RS. {{product.price}}</span>
+                                </h5>
+                                <div class="star_container">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
                 <div class="col-sm-6 col-lg-4">
                     <div class="box">
                         <div class="img-box">
                             <img src="{{product.image.url}}" alt="">
-
                             <form method="GET" action="/cart/">
                                 <input hidden type="text" value="{{product.id}}" name="pid" class="add_cart_btn" placeholder="Add To Cart">
 
-                                <input type="submit" class="add_cart_btn" value="Add To Cart" placeholder="Add To Cart">
+                                <input type="submit" class="add_cart_btn" value="{% trans 'Add To Cart' %}" placeholder="Add To Cart">
 
                             </form>
-
                         </div>
                         <div class="detail-box">
                             <h5><a href="{% url 'product-detail' product.id %}">
@@ -184,7 +213,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+                {% endif %} {% endfor %}
             </div>
 
             <div class="btn_box" style="display: inline-block;margin-left: 20px">

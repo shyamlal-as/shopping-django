@@ -143,17 +143,22 @@
                     <div class="d-sm-flex justify-content-between">
                         <div>
                             <div>
-                                <button class="add_btn"><span>Add to Cart </span></button>
+                                <form method="GET" action="/cart/">
+                                    <input hidden type="text" value="{{prod.id}}" name="pid" class="add_cart_btn" placeholder="Add To Cart">
+
+                                    <input type="submit" class="add_btn" value="{% trans 'Add To Cart' %}" placeholder="Add To Cart">
+
+                                </form>
                             </div>
                         </div>
                         <div class="color-quality mt-sm-0 mt-4">
-                            <h5 class="sp_title mb-3">services</h5>
+                            <h5 class="sp_title mb-3">{% trans "Services" %}</h5>
                             <ul class="single_serv">
                                 <li>
-                                    <a href="#">30 Day Return Policy</a>
+                                    <a href="#">{% trans "30 Day Return Policy" %}</a>
                                 </li>
                                 <li class="mt-2">
-                                    <a href="#">Cash on Delivery available</a>
+                                    <a href="#">{% trans "Cash on Delivery available" %}</a>
                                 </li>
                             </ul>
                         </div>

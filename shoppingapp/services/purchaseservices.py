@@ -61,9 +61,8 @@ class PurchaseServices:
         return(context)
 
 
-    def IncreaseQuantity(self, request):
+    def IncreaseQuantity(self, request, plus):
         
-        plus=request.POST.get('id')
         n=PurchaseServices().purchase.filter(Users_ID=request.user,isActive=True).first()
         quantity=PurchaseServices.productPurchase.get(product_ID=int(plus),purchases_ID=n.id)
         prod=Product.objects.get(id=plus)
@@ -71,14 +70,15 @@ class PurchaseServices:
             newquantity=quantity.quantity+1
             quantity.quantity=newquantity
             quantity.save()
+        else:
+            messages.success(request,  'Quantity exceeded product stock.')
         context=PurchaseServices().DisplayCart(request)
         return(context)
 
 
     
-    def DecreaseQuantity(self, request):
+    def DecreaseQuantity(self, request,minus):
         
-        minus=request.POST.get('id')
         n=PurchaseServices.purchase.filter(Users_ID=request.user,isActive=True).first()
         quantity=PurchaseServices.productPurchase.get(product_ID=int(minus),purchases_ID=n.id)
         if(quantity.quantity == 1):
@@ -92,34 +92,29 @@ class PurchaseServices:
 
 
     def Checkout(self, request):
-        success=1
-        currentUser=request.user
-        n=Purchases.objects.filter(Users_ID=currentUser,isActive=True).first()
+        n=Purchases.objects.filter(Users_ID=request.user,isActive=True).first()
         for each in ProductPurchases.objects.filter(purchases_ID=n.id):
             if each.quantity<=each.product_ID.stock:
                 q=each.quantity
                 each.product_ID.stock-=q
                 each.product_ID.save()
+
+                n.isActive=False
+                n.save()
+                address=request.GET.get('address')
+                city=request.GET.get('city')
+                pincode=request.GET.get('pincode')
+                shippingdets=shipping(Users_ID=request.user,address=address,city=city,pincode=pincode)
+                shippingdets.save()
             else:
-                success=0
-                break
-        if success==1:
-            n.isActive=False
-            n.save()
-            address=request.GET.get('address')
-            city=request.GET.get('city')
-            pincode=request.GET.get('pincode')
-            shippingdets=shipping(Users_ID=request.user,address=address,city=city,pincode=pincode)
-            shippingdets.save()
-            return 1
-        else:
-            print("---------------------------------------Unsuccesfull-------------------")
-            for each in ProductPurchases.objects.filter(purchases_ID=n.id):
-                if each.quantity>each.product_ID.stock:
-                    diff=each.quantity-each.product_ID.stock
-                    for i in range(int(diff)):
-                        cartop.minus(request,each.product_ID.id)			
-            return 0
+                print("---------------------------------------Unsuccesfull-------------------")
+                for each in PurchaseServices().productPurchase.filter(purchases_ID=n.id):
+                    if each.quantity > each.product_ID.stock:
+                        diff= each.quantity-each.product_ID.stock
+                        for i in range(int(diff)):
+                            PurchaseServices().DecreaseQuantity(request,each.product_ID.id)
+                            
+
 
     
     def ClearCart(self, request):

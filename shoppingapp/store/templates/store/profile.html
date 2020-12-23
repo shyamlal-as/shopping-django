@@ -1,4 +1,4 @@
-{% load static %}{% load mathfilters %}
+{% load static %}{% load mathfilters %}{% load i18n %}
 
 <!doctype html>
 <html lang="en">
@@ -33,15 +33,19 @@
                 <ul class="list-unstyled components mb-5">
 
                     <li>
-                        <a href="{% url 'profile' %}">My Orders</a>
+                        <a href="{% url 'profile' %}">{% trans "My Orders" %}</a>
                     </li><br>
 
                     <li>
-                        <a href="{% url 'edit-profile' %}">Edit Profile</a>
+                        <a href="{% url 'edit-profile' %}">{% trans "Edit Profile" %}</a>
                     </li><br>
+                    <li>
+
+                    </li>
                 </ul>
 
                 <div class="footer">
+
 
                 </div>
 
@@ -55,7 +59,7 @@
                 <div class="container-fluid">
 
                     <h3>
-                        Hello {{user.username}}
+                        {% trans "Hello" %} {{user.username}}
                     </h3>
 
 
@@ -65,7 +69,7 @@
 
 
                         <button class="" type="submit">
-                            Log Out
+                            {% trans "Log Out" %}
                         </button>
 
                     </form>
@@ -136,12 +140,12 @@
                 <table class="table table-bordered table-condensed">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Description</th>
+                            <th>{% trans "Product" %}</th>
+                            <th>{% trans "Description" %}</th>
 
-                            <th>Unit price</th>
-                            <th>Qty </th>
-                            <th>Total</th>
+                            <th>{% trans "Unit price" %}</th>
+                            <th> {% trans "Qty" %}</th>
+                            <th>{% trans "Total" %}</th>
                         </tr>
                     </thead>
                     <tbody>

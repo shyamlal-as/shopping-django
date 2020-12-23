@@ -27,12 +27,15 @@ _purchaseService = purchaseservices.PurchaseServices()
 #Home Screen
 
 def store(request):
-
 	"""
-	@desc : Displaying products in Home page.
-	@params WSGI request
-	@return HTML render : Fetches all entries of Product table and renders
-						  on store.html.
+	Import the file
+	Validate the input file and insert/update records
+
+	:param Request request: Request object
+	:param str import_type: Import Type
+	:param str organisation_id: Uuid of organisation
+
+	:return JsonResponse: Success/failure response
 	"""
 
 	context={
@@ -119,17 +122,14 @@ def cart(request):
 				Else:
 					Add an entry to Purchases table and ProductPurchases table.
 	"""
-	print('----------------fn-------------')
 	if request.user.is_authenticated:
 		try:
-			print('----------In----------------------')
 			prod=request.GET.get('pid')
 			_purchaseService.CreateCart(request,prod)
 			messages.success(request,  'added To Cart.')
 			return redirect(request.META['HTTP_REFERER'])
 			
 		except:
-			print('----------------ex-------------')
 			return render(request,'store/cart.html')
 	
 	else:
@@ -193,8 +193,8 @@ def plus(request):
 	@return HTML render : Increments quantity attribute of ProductPurchases table
 						  and renders Cart page.
 	"""
-	
-	context = _purchaseService.IncreaseQuantity(request)
+	plus=request.POST.get('id')
+	context = _purchaseService.IncreaseQuantity(request,plus)
 	return render(request,'store/cart.html',context)
 
 
@@ -207,8 +207,8 @@ def minus(request):
 	@return HTML render : Decrement quantity attribute of ProductPurchases table
 						  and renders Cart page.
 	"""
-	
-	context= _purchaseService.DecreaseQuantity(request)
+	minus=request.POST.get('id')
+	context= _purchaseService.DecreaseQuantity(request,minus)
 	return render(request,'store/cart.html',context)
 
 
