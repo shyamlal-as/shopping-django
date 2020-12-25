@@ -4,6 +4,7 @@ from purchases.models import shipping
 from users.models import Profile
 from datetime import date
 from django.contrib import messages
+from constants.messages import success, errors
 
 
 class PurchaseServices:
@@ -22,7 +23,7 @@ class PurchaseServices:
             pr=pid.price
             purchaseProduct=ProductPurchases(purchases_ID=PurchaseServices().purchase.latest('pk'),product_ID=pid,quantity=1,price=pr)
             purchaseProduct.save()
-            message='A cart has been created'
+            message=success.CREATE_CART
         else:
             purchase=PurchaseServices().purchase.get(Users_ID=request.user,isActive=True)
             if not PurchaseServices().productPurchase.filter(product_ID=slug,purchases_ID=purchase.id).exists():
@@ -31,12 +32,12 @@ class PurchaseServices:
                 pid=PurchaseServices().product.get(id=slug)
                 purchaseProduct=ProductPurchases(purchases_ID=purchase,product_ID=pid,quantity=1,price=pr)
                 purchaseProduct.save()
-                message='Product was added to the cart'
+                message=success.ADDED_TO_CART
             else:
                 purchaseProduct=PurchaseServices().productPurchase.get(product_ID=slug,purchases_ID=purchase.id)
                 purchaseProduct.quantity=purchaseProduct.quantity+1
                 purchaseProduct.save()
-                message='Quantity of the product increased by one'
+                message=success.QUANTITY_INCREMENTED
         return(message)
                 
                 
@@ -71,7 +72,8 @@ class PurchaseServices:
             quantity.quantity=newquantity
             quantity.save()
         else:
-            messages.success(request,  'Quantity exceeded product stock.')
+            message=errors.QUANTITY_EXCEEDED
+            messages.success(request,  message)
         context=PurchaseServices().DisplayCart(request)
         return(context)
 
@@ -107,7 +109,6 @@ class PurchaseServices:
                 shippingdets=shipping(Users_ID=request.user,address=address,city=city,pincode=pincode)
                 shippingdets.save()
             else:
-                print("---------------------------------------Unsuccesfull-------------------")
                 for each in PurchaseServices().productPurchase.filter(purchases_ID=n.id):
                     if each.quantity > each.product_ID.stock:
                         diff= each.quantity-each.product_ID.stock

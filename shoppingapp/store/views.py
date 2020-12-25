@@ -10,6 +10,8 @@ from purchases.models import Purchases, ProductPurchases
 from users.models import Profile
 from datetime import date
 from django.contrib import messages
+#from constants.messages import errors,success
+from constants.messages import errors,success
 
 from django.utils.translation import gettext as _
 from services import modelservices, productservices, purchaseservices
@@ -126,15 +128,17 @@ def cart(request):
 		try:
 			prod=request.GET.get('pid')
 			_purchaseService.CreateCart(request,prod)
-			messages.success(request,  'added To Cart.')
+			msg = success.ADDED_TO_CART
+			messages.success(request, msg)
 			return redirect(request.META['HTTP_REFERER'])
 			
 		except:
 			return render(request,'store/cart.html')
 	
 	else:
-		messages.success(request,  'added To Cart.')
-		return redirect('store')
+		#msg = success.ADDED_TO_CART
+		#messages.success(request,  'Login to continue')
+		return redirect('profile')
 
 
 

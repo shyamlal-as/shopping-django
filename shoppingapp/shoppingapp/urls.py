@@ -20,6 +20,9 @@ from store.views import profile
 from django.conf import settings
 from django.conf.urls.static import static
 
+#from rest_framework_simplejwt.views import TokenObtainPairView, TokeRefreshView
+from rest_framework_simplejwt import views as jwt_views
+from api.v1.store import views
 
 urlpatterns = [
 
@@ -38,6 +41,9 @@ urlpatterns = [
     #Rest Framework URL
 
     path('api/',include('api.urls', 'apis')),
+    path('api/token', jwt_views.TokenObtainPairView.as_view()),
+    path('api/token/refresh', jwt_views.TokenRefreshView.as_view()),
+    path('api/hello', views.product_api),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

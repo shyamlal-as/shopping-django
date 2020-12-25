@@ -20,55 +20,55 @@ msgstr ""
 
 #: constants/messages/errors.py:4
 msgid "failed"
-msgstr "ha fallado"
+msgstr "Failed"
 
 #: constants/messages/errors.py:5
 msgid "login_required"
-msgstr "iniciar sesión para continuar"
+msgstr "Log in to continue"
 
 #: constants/messages/errors.py:6
 msgid "quantity_exceeded"
-msgstr "cantidad mayor que el stock del producto"
+msgstr "Quantity more than product stock"
 
 #: constants/messages/errors.py:8
 msgid "invalid_token"
-msgstr "simbolo no valido"
+msgstr "Token is invalid"
 
 #: constants/messages/errors.py:9
 msgid "product_does_not_exist"
-msgstr "simbolo no valido"
+msgstr "Product does not exist"
 
 #: constants/messages/errors.py:10
 msgid "category_does_not_exist"
-msgstr "la categoría no existe"
+msgstr "Category does not exist"
 
 #: constants/messages/success.py:3
 msgid "success"
-msgstr "éxito"
+msgstr "Success"
 
 #: constants/messages/success.py:4
 msgid "cart_created"
-msgstr "Se ha creado un carrito"
+msgstr "A cart has been created"
 
 #: constants/messages/success.py:5
 msgid "added_to_cart"
-msgstr "Añadida al carrito"
+msgstr "Added to Cart"
 
 #: constants/messages/success.py:6
 msgid "quantity_inc"
-msgstr "cantidad aumentada en uno"
+msgstr "Quantity increased by one"
 
 #: constants/messages/success.py:7
 msgid "quantity_dec"
-msgstr "cantidad disminuida en uno"
+msgstr "Quantity decreased by one"
 
 #: constants/messages/success.py:9
 msgid "logged_in"
-msgstr "conectado"
+msgstr "Logged Out"
 
 #: constants/messages/success.py:10
 msgid "logged_out"
-msgstr "desconectado"
+msgstr "Logged Out"
 
 #: shoppingapp/settings.py:212
 msgid "English"
@@ -80,206 +80,206 @@ msgstr ""
 
 #: store/templates/store/cart.html:430
 msgid "Enter a promotional code"
-msgstr "Ingrese un código promocional"
+msgstr ""
 
 #: store/templates/store/cart.html:432
 msgid "Apply"
-msgstr "Aplicar"
+msgstr ""
 
 #: store/templates/store/cart.html:438
 msgid "Item"
-msgstr "Articulo"
+msgstr ""
 
 #: store/templates/store/cart.html:439
 msgid "Price"
-msgstr "Precio"
+msgstr ""
 
 #: store/templates/store/cart.html:440
 msgid "Quantity"
-msgstr "Cantidad"
+msgstr ""
 
 #: store/templates/store/cart.html:441 store/templates/store/cart.html:515
 #: store/templates/store/profile.html:148
 msgid "Total"
-msgstr "Total"
+msgstr ""
 
 #: store/templates/store/cart.html:485
 msgid "Home"
-msgstr "Casa"
+msgstr ""
 
 #: store/templates/store/cart.html:490
 msgid "Items in your cart"
-msgstr "objetos en tu carro de compras"
+msgstr ""
 
 #: store/templates/store/cart.html:492
 msgid "Subtotal"
-msgstr "Total parcial"
+msgstr ""
 
 #: store/templates/store/cart.html:495
 msgid "Promotion"
-msgstr "Promoción"
+msgstr ""
 
 #: store/templates/store/cart.html:508
 msgid "Address"
-msgstr "Habla a"
+msgstr ""
 
 #: store/templates/store/cart.html:510
 msgid "City"
-msgstr "Ciudad"
+msgstr ""
 
 #: store/templates/store/cart.html:512
 msgid "pincode"
-msgstr "código PIN"
+msgstr ""
 
 #: store/templates/store/cart.html:519
 msgid "Go to Secure Checkout"
-msgstr "Ir a pago seguro"
+msgstr ""
 
 #: store/templates/store/details.html:149 store/templates/store/prod.html:192
 #: store/templates/store/search.html:215 store/templates/store/store.html:304
 msgid "Add To Cart"
-msgstr "Añadir al carrito"
+msgstr ""
 
 #: store/templates/store/details.html:155
 msgid "Services"
-msgstr "servicios"
+msgstr ""
 
 #: store/templates/store/details.html:158
 msgid "30 Day Return Policy"
-msgstr "Política de devolución de 30 días"
+msgstr ""
 
 #: store/templates/store/details.html:161
 msgid "Cash on Delivery available"
-msgstr "Pago contra reembolso disponible"
+msgstr ""
 
 #: store/templates/store/edit_profile.html:36
 #: store/templates/store/profile.html:36
 msgid "My Orders"
-msgstr "Mis ordenes"
+msgstr ""
 
 #: store/templates/store/edit_profile.html:40
 #: store/templates/store/profile.html:40
 msgid "Edit Profile"
-msgstr "Editar perfil"
+msgstr ""
 
 #: store/templates/store/edit_profile.html:59
 #: store/templates/store/profile.html:62
 msgid "Hello"
-msgstr "Hola"
+msgstr ""
 
 #: store/templates/store/edit_profile.html:83
 msgid "Save Changes"
-msgstr "guardar cambios"
+msgstr ""
 
 #: store/templates/store/main.html:76 store/templates/store/prod.html:88
 #: store/templates/store/search.html:96 store/templates/store/store.html:95
 msgid "My Account"
-msgstr "mi cuenta"
+msgstr ""
 
 #: store/templates/store/main.html:82 store/templates/store/prod.html:94
 #: store/templates/store/search.html:102 store/templates/store/store.html:101
 msgid "Cart"
-msgstr "carro"
+msgstr ""
 
 #: store/templates/store/main.html:101 store/templates/store/search.html:121
 #: store/templates/store/store.html:120
 msgid "Categories"
-msgstr "Categorías"
+msgstr ""
 
 #: store/templates/store/main.html:103 store/templates/store/prod.html:115
 #: store/templates/store/search.html:123 store/templates/store/store.html:122
 msgid "clothing"
-msgstr "Ropa"
+msgstr ""
 
 #: store/templates/store/main.html:104 store/templates/store/prod.html:116
 #: store/templates/store/search.html:124 store/templates/store/store.html:123
 msgid "Electrical"
-msgstr "Eléctrico"
+msgstr ""
 
 #: store/templates/store/main.html:105 store/templates/store/prod.html:117
 #: store/templates/store/search.html:125 store/templates/store/store.html:124
 msgid "Decor"
-msgstr "Decoración"
+msgstr ""
 
 #: store/templates/store/main.html:109 store/templates/store/prod.html:121
 #: store/templates/store/search.html:129 store/templates/store/store.html:128
 msgid "About"
-msgstr "Acerca de"
+msgstr ""
 
 #: store/templates/store/main.html:112 store/templates/store/prod.html:124
 #: store/templates/store/search.html:132 store/templates/store/store.html:131
 msgid "Why Us"
-msgstr "Por qué elegirnos"
+msgstr ""
 
 #: store/templates/store/main.html:115 store/templates/store/prod.html:127
 #: store/templates/store/search.html:135 store/templates/store/store.html:134
 msgid "Testimonial"
-msgstr "Testimonial"
+msgstr ""
 
 #: store/templates/store/prod.html:146 store/templates/store/store.html:258
 msgid "Page Number"
-msgstr "número de página"
+msgstr ""
 
 #: store/templates/store/profile.html:72
 msgid "Log Out"
-msgstr "cerrar sesión"
+msgstr ""
 
 #: store/templates/store/profile.html:143
 msgid "Product"
-msgstr "nuestros productos"
+msgstr ""
 
 #: store/templates/store/profile.html:144
 msgid "Description"
-msgstr "Descripción"
+msgstr ""
 
 #: store/templates/store/profile.html:146
 msgid "Unit price"
-msgstr "precio unitario"
+msgstr ""
 
 #: store/templates/store/profile.html:147
 msgid "Qty"
-msgstr "cantidad"
+msgstr ""
 
 #: store/templates/store/store.html:166 store/templates/store/store.html:212
 msgid "Welcome to our shop"
-msgstr "bienvenido a nuestra tienda"
+msgstr ""
 
 #: store/templates/store/store.html:172
 msgid "Read More"
-msgstr "Lee mas"
+msgstr ""
 
 #: store/templates/store/store.html:256
 msgid "Our Products"
-msgstr "nuestros productos"
+msgstr ""
 
 #: store/templates/store/store.html:342
 msgid "Next"
-msgstr "siguiente"
+msgstr ""
 
 #: store/templates/store/store.html:359
 msgid "We Provide Best For You"
-msgstr "proporcionamos lo mejor para ti"
+msgstr ""
 
 #: store/templates/store/store.html:388
 msgid "Why Choose Us"
-msgstr "Por qué elegirnos"
+msgstr ""
 
 #: store/templates/store/store.html:399
 msgid "Fast Delivery"
-msgstr "entrega rápida"
+msgstr ""
 
 #: store/templates/store/store.html:414
 msgid "Free Shiping"
-msgstr "envío gratis"
+msgstr ""
 
 #: store/templates/store/store.html:429
 msgid "Best Quality"
-msgstr "mejor calidad"
+msgstr ""
 
 #: store/templates/store/store.html:450
 msgid "What Says Our Customers"
-msgstr "que dicen nuestros clientes"
+msgstr ""
 
 #: store/templates/store/store.html:550
 msgid "Previous"
-msgstr "Anterior"
+msgstr ""
