@@ -1,7 +1,7 @@
 {% load static %}
 <!--
-	Author: W3layouts
-	Author URL: http://w3layouts.com
+    Author: W3layouts
+    Author URL: http://w3layouts.com
 -->
 <!DOCTYPE html>
 <html lang="zxx">
@@ -34,7 +34,13 @@
 
 <body>
 
-
+    <div id="messages">
+        {% if messages %} {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}" style="text-align: center;">
+            {{ message }}
+        </div>
+        {% endfor %} {% endif %}
+    </div><br><br>
 
 
     <div class="container" id="container">

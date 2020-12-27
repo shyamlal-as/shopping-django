@@ -1,10 +1,10 @@
-{% load static %}{% load mathfilters %} {% load i18n %}
+{% load static %}{% load mathfilters %}{% load i18n %}
 
 <!doctype html>
 <html lang="en">
 
 <head>
-    <title>Profile</title>
+    <title>Sidebar 01</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -33,18 +33,19 @@
                 <ul class="list-unstyled components mb-5">
 
                     <li>
-                        <a href="#">{% trans "My Orders" %}</a>
+                        <a href="{% url 'profile' %}">{% trans "My Orders" %}</a>
                     </li><br>
 
                     <li>
                         <a href="{% url 'edit-profile' %}">{% trans "Edit Profile" %}</a>
                     </li><br>
                     <li>
-                        <a href="#">{% trans "Shipment Details" %}</a>
+
                     </li>
                 </ul>
 
                 <div class="footer">
+
 
                 </div>
 
@@ -63,7 +64,7 @@
 
 
 
-                    <form class="search_form" method="POST" action="/logout/">
+                    <form method="POST" action="/logout/">
                         {% csrf_token %}
 
 
@@ -104,13 +105,9 @@
 
 
             <div class="container">
-                <h6>{% trans "Order History" %}</h6>
+                <h6>Order History</h6>
                 <!--
                 {% for product in products %}
-
-
-
-
                 <div class="basket-product">
                     <div class="item">
                         <div class="product-image">
@@ -132,7 +129,6 @@
                     </div>
                     <div></div>
                 </div>
-
                 {% endfor %}-->
 
                 <!--Table Start-->
@@ -142,8 +138,8 @@
                             <th>{% trans "Product" %}</th>
                             <th>{% trans "Description" %}</th>
 
-                            <th>{% trans "Unit Price" %}</th>
-                            <th>{% trans "Quantity" %} </th>
+                            <th>{% trans "Unit price" %}</th>
+                            <th> {% trans "Qty" %}</th>
                             <th>{% trans "Total" %}</th>
                         </tr>
                     </thead>
@@ -167,9 +163,21 @@
             </div>
 
         </div>
+             {% get_current_language as LANGUAGE_CODE %}
+        <form action="{% url 'set_language' %}" method="POST" style="display: block;position: absolute;">
+            {% csrf_token %}
+            <input type="hidden" name="text" value="{{redirect_to}}">
+            <select name="language" id="">
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+            <option value="{{language.code}}" {% if language.code == LANGUAGE_CODE %} selected="selected" {% endif %}>
+                {{language.name_local}} ({{language.code}})
+            </option>
+            {% endfor %}
+            </select>
+            <input type="submit" value="Go">
     </div>
-
-    
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/popper.js' %}"></script>

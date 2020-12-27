@@ -1,4 +1,4 @@
-{% load static %} {% load mathfilters %} {% load i18n %}
+{% load static %} {% load mathfilters %}{% load i18n %}
 <html lang="en">
 
 <head>
@@ -415,19 +415,30 @@
 
 <body>
     <main>
-        {{message}}
+
+        <div id="messages">
+            {% if messages %} {% for message in messages %}
+            <br><br>
+            <div class="alert alert-{{ message.tags }}" style="text-align: center;">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>{{ message }}
+            </div>
+            <br><br> {% endfor %} {% endif %}
+        </div>
+
         <div class="basket">
             <div class="basket-module">
-                <label for="promo-code">Enter a promotional code</label>
+                <label for="promo-code">{% trans "Enter a promotional code" %}</label>
                 <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-                <button class="promo-code-cta">Apply</button>
+                <button class="promo-code-cta">{% trans "Apply" %}</button>
             </div>
+
+
             <div class="basket-labels">
                 <ul>
                     <li class="item item-heading">{% trans "Item" %}</li>
                     <li class="price">{% trans "Price" %}</li>
                     <li class="quantity">{% trans "Quantity" %}</li>
-                    <li class="subtotal">{% trans "Subtotal" %}</li>
+                    <li class="subtotal">{% trans "Total" %}</li>
                 </ul>
             </div>
             <br><br><br>
@@ -440,21 +451,23 @@
                     </div>
                     <div class="product-details">
                         <p><strong>{{product.product_ID.name}}</strong></p>
-                        <p>{% trans "Product Code" %} - {{product.product_ID.id}}</p>
+                        <p>Product Code - {{product.product_ID.id}}</p>
                     </div>
                 </div>
                 <div class="price">{{product.product_ID.price}}</div>
                 <div class="quantity">
-                    <form method="GET">
-                        <button type="submit" formaction="/plus/" name="plus" value={{product.product_ID.id}}>+</button>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button type="submit" formaction="/plus/" name="id" value={{product.product_ID.id}}>+</button>
                         <input type="button" name="quantity" value="{{product.quantity}}">
-                        <button type="submit" formaction="/minus/" name="minus" value="{{product.product_ID.id}}">-</button>
+                        <button type="submit" formaction="/minus/" name="id" value="{{product.product_ID.id}}">-</button>
                     </form>
                 </div>
                 <div class="remove">
-                    <form method="GET" action="/remove/">
+                    <form method="POST" action="/remove/">
+                        {% csrf_token %}
                         <input type="submit" value="Delete" placeholder="Delete">
-                        <input hidden type="text" name="idd" value="{{product.product_ID.id}}" placeholder="Delete">
+                        <input hidden type="text" name="id" value="{{product.product_ID.id}}" placeholder="Delete">
 
                     </form>
                 </div>
@@ -474,12 +487,12 @@
         </div>
         <aside>
             <div class="summary">
-                <div class="summary-total-items"><span class="total-items"></span>{% trans "Items in your Bag" %}</div>
+                <div class="summary-total-items"><span class="total-items"></span> {% trans "Items in your cart" %}</div>
                 <div class="summary-subtotal">
                     <div class="subtotal-title">{% trans "Subtotal" %}</div>
                     <div class="subtotal-value final-value" id="basket-subtotal">{{price}}</div>
                     <div class="summary-promo hide">
-                        <div class="promo-title">Promotion</div>
+                        <div class="promo-title">{% trans "Promotion" %}</div>
                         <div class="promo-value final-value" id="basket-promo"></div>
                     </div>
                 </div>
@@ -503,7 +516,7 @@
                             <div class="total-value final-value" id="basket-total">{{price}}</div>
                         </div>
                         <div class="summary-checkout">
-                            <a href="/complete/"><button class="checkout-cta" type="submit">{% trans "Go To Secure Checkout" %}</button></a>
+                            <a href="/complete/"><button class="checkout-cta" type="submit">{% trans "Go to Secure Checkout" %}</button></a>
                         </div>
                     </form>
                 </div>

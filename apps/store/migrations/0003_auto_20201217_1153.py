@@ -11,22 +11,22 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='categories',
+            model_name='category',
             name='desc_en_us',
             field=models.CharField(max_length=200, null=True),
         ),
         migrations.AddField(
-            model_name='categories',
+            model_name='category',
             name='desc_es',
             field=models.CharField(max_length=200, null=True),
         ),
         migrations.AddField(
-            model_name='categories',
+            model_name='category',
             name='name_en_us',
             field=models.CharField(max_length=100, null=True),
         ),
         migrations.AddField(
-            model_name='categories',
+            model_name='category',
             name='name_es',
             field=models.CharField(max_length=100, null=True),
         ),

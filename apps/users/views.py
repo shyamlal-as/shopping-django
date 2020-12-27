@@ -18,6 +18,7 @@ def registration_view(request):
             raw_password = form.cleaned_data.get('password1')
             account = authenticate(email=email,password= raw_password)
             login(request, account)
+            messages.success(request,  'Signed Up.')
             return redirect('store')
         else:
             context['registration_form'] = form
@@ -27,24 +28,21 @@ def registration_view(request):
     return render(request, 'users/register.html',context)
     
 
-
 def logout_view(request):
     #logout(request)
     #return redirect('store')
     if request.method=='POST':
         logout(request)
         #messages.success(request,  'Logged Out.')
-        return render(request,'store/store.html')
+        return redirect('store')
     else:
         return render(request,'users/profile.html')
-
 
 
 def login_view(request):
     context= {}
     user = request.user
-    if user.is_authenticated:
-        return redirect('store')
+
     
     if request.POST:
         form = UserAuthenticationForm(request.POST)
@@ -55,6 +53,7 @@ def login_view(request):
 
             if user:
                 login(request, user)
+                messages.success(request,  'Logged In.')
                 return redirect('store')
 
     else:

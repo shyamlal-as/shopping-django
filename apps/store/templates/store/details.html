@@ -1,4 +1,4 @@
-{% extends 'store/main.html' %} {% load static %} {% block content %}
+{% extends 'store/main.html' %}{% load static %} {% load i18n %}{% block content %}
 
 
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8" />
     <meta name="keywords" content="Fashion Hub Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
     <script>
         addEventListener("load", function() {
             setTimeout(hideURLbar, 0);
@@ -81,7 +81,6 @@
     <!--Start Header-->
 
 
-
     <!--End Header-->
 
     {% for prod in product %}
@@ -138,23 +137,28 @@
                             ₹{{prod.price}}</h6>
                     </div>
                     <div class="desc_single">
-                        <h5>Description</h5>
+                        <h5>{% trans "Description" %}</h5>
                         <p>{{prod.desc}}</p>
                     </div>
                     <div class="d-sm-flex justify-content-between">
                         <div>
                             <div>
-                                <button class="add_btn"><span>Add to Cart </span></button>
+                                <form method="GET" action="/cart/">
+                                    <input hidden type="text" value="{{prod.id}}" name="pid" class="add_cart_btn" placeholder="Add To Cart">
+
+                                    <input type="submit" class="add_btn" value="{% trans 'Add To Cart' %}" placeholder="Add To Cart">
+
+                                </form>
                             </div>
                         </div>
                         <div class="color-quality mt-sm-0 mt-4">
-                            <h5 class="sp_title mb-3">services</h5>
+                            <h5 class="sp_title mb-3">{% trans "Services" %}</h5>
                             <ul class="single_serv">
                                 <li>
-                                    <a href="#">30 Day Return Policy</a>
+                                    <a href="#">{% trans "30 Day Return Policy" %}</a>
                                 </li>
                                 <li class="mt-2">
-                                    <a href="#">Cash on Delivery available</a>
+                                    <a href="#">{% trans "Cash on Delivery available" %}</a>
                                 </li>
                             </ul>
                         </div>
@@ -168,13 +172,6 @@
     </div>
 
     {% endfor %}
-
-    {% for prod in product %}
-    {% if forloop.first %}
-    <a href="/category/{{prod.categories_id.id}}"><button type="button">back</button></a>
-    {% endif %}
-    {% endfor %}
-    
 
 </body>
 

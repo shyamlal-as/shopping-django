@@ -2,11 +2,11 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
 from users.models import User
-
+from django.utils.translation import gettext as _
 
 class RegistrationForm(UserCreationForm):
-    first_name=forms.CharField(help_text='Enter your name',widget=forms.TextInput(attrs={'placeholder':'First Name'}))
-    email=forms.EmailField(help_text='Add a valid address',widget=forms.TextInput(attrs={'placeholder':'Enter Valid Email'}))
+    first_name=forms.CharField(help_text='Enter your name',widget=forms.TextInput(attrs={'placeholder':'_(First Name)'}))
+    email=forms.EmailField(help_text='Add a valid address',widget=forms.TextInput(attrs={'placeholder':'_(Enter Valid Email)'}))
     username=forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Username'}))
     password1=forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Password'}))
     password2=forms.CharField(widget=forms.PasswordInput(attrs={'placeholder':'Re Enter Password'}))

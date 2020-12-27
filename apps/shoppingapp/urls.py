@@ -20,7 +20,7 @@ from store.views import profile
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
-
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 urlpatterns = [
     path('i18n/',include('django.conf.urls.i18n')),
@@ -29,6 +29,8 @@ urlpatterns = [
 
 urlpatterns += [
     path('', include('store.urls')),
+    path('purchases/', include('purchases.urls')),
+    path('users/', include('users.urls')),
     #path('cart/',include('purchases.urls')),
     path('profile/',profile,name='profile'),
 
@@ -37,7 +39,11 @@ urlpatterns += [
     path('login/',login_view,name='login'),
 
     #Rest Framework URLs
-    path('api/',include('api.urls', 'apis')),
+
+    #path('api/',include('api.urls', 'apis')),
+    path('api/token',TokenObtainPairView.as_view()),
+    path('api/token/refresh',TokenRefreshView.as_view()),
+
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

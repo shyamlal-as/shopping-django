@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load i18n %}
 <!--
 	Author: W3layouts
 	Author URL: http://w3layouts.com
@@ -63,7 +63,7 @@
 
 
 
-                <button>Sign Up</button>
+                <button>{% trans 'Sign Up' %}</button>
             </form>
         </div>
 
@@ -71,15 +71,15 @@
         <div class="overlay-container">
             <div class="overlay">
                 <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn" onclick="location.href='{% url 'login' %}'">Sign In</button>
+                    <h1>{% trans 'Welcome Back!' %}</h1>
+                   <p>{% trans 'To keep connected with us please login with your personal info' %}</p>
+                    <button class="ghost" id="signIn" onclick="location.href='{% url 'login' %}'">{% trans 'Sign in' %}</button>
                 </div>
 
                 <div class="overlay-panel overlay-right">
-                    <h1>New Here?</h1>
-                    <p>Register yourself to start your shopping experience.</p>
-                    <button class="ghost" id="signUp" onclick="location.href='{% url 'register' %}'">Sign Up</button>
+                    <h1>{% trans 'New Here?' %}</h1>
+                    <p>{% trans 'Register yourself to start your shopping experience.' %}</p>
+                    <button class="ghost" id="signUp" onclick="location.href='{% url 'register' %}'">{% trans 'Sign Up' %}</button>
                 </div>
             </div>
         </div>

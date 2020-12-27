@@ -48,7 +48,7 @@
                         <a href="">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                             <span>
-            Email : demo@gmail.com
+            {% trans  "Email" %} : demo@gmail.com
           </span>
                         </a>
                     </div>
@@ -59,7 +59,7 @@
                     <form class="search_form" method="POST" action="/search/">
                         {% csrf_token %}
 
-                        <input type="text" class="form-control" name="search" placeholder="Search here">
+                        <input type="text" class="form-control" name="search" placeholder="{% trans  'Search here' %}">
 
                         <button class="" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
@@ -73,13 +73,13 @@
                         <a href="" class="account-link">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>
-            My Account
+            {% trans  "My Account" %}
           </span>
                         </a>
                         <a href="/displayCart" class="cart-link">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>
-            Cart
+            {% trans  "Cart" %}
           </span>
                         </a>
                     </div>
@@ -98,21 +98,21 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                                <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans  "category" %}</a>
                                 <div class="dropdown-menu" aria-labelledby="dropdown01">
-                                    <a class="dropdown-item" href="/category/1">Clothing</a>
-                                    <a class="dropdown-item" href="/category/2">Electrical</a>
-                                    <a class="dropdown-item" href="/category/3">Decor</a>
+                                    <a class="dropdown-item" href="/category/1">{% trans  "Clothing" %}</a>
+                                    <a class="dropdown-item" href="/category/2">{% trans  "Electrical" %}</a>
+                                    <a class="dropdown-item" href="/category/3">{% trans  "Decor" %}</a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="about.html"> About</a>
+                                <a class="nav-link" href="http://localhost:8000/#about">{% trans  "About" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="why.html">Why Us</a>
+                                <a class="nav-link" href="http://localhost:8000/#why">{% trans  "Why Us" %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="testimonial.html">Testimonial</a>
+                                <a class="nav-link" href="http://localhost:8000/#review">{% trans  "Testimonial" %}</a>
                             </li>
                         </ul>
                     </div>

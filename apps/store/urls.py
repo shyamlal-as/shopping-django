@@ -8,7 +8,7 @@ urlpatterns = [
     path('',views.store,name="store"),
     path('cart/',views.cart,name="cart"),
     #path('checkout/',views.checkout,name="checkout"),
-    path('category/<int:categories_id>/',views.product,name="product"),
+    path('category/<int:category_id>/',views.product,name="product"),
     path('search/',views.search,name="search"),
     path('cart/',views.cart,name="cart"),
     path('displayCart/',views.displayCart,name="displayCart"),
@@ -20,6 +20,7 @@ urlpatterns = [
     path('details/<slug>',views.details,name="product-detail"),
     path('profile',views.profile,name="profile"),
     path('edit-profile',user_view,name="edit-profile"),
-    path('clear/',views.clearCart,name="clear")
+    path('clear/',views.clearCart,name="clear"),
+    path('api/',include('store.api.urls'),name='apis'),
 
 ]
