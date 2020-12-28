@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 from purchases.models import Purchases, ProductPurchases
 from store.models import Product
 
-from services import responseservices,purchaseservices
+from purchases.services import responseservices,purchaseservices
 from .serializers import PurchaseSerializer, AddToCartSerializer, ConfirmPurchaseSerializer
 
 

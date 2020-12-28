@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from store.models import Product
 from .serializers import ProductSerializer, CategoriesSerializer
 
-from services import responseservices
+from store.services import responseservices
 
 #from store.returns import api_return
 

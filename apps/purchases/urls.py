@@ -1,9 +1,12 @@
 from django.urls import path,include
-from .views import add_to_cart
-from .views import cart
+from . import views
 
 urlpatterns = [
-    path('',cart,name='cart'),
-    path('add/<slug>',add_to_cart,name='addTocart'),
-    #path('api/',include('purchases.api.urls'),name='apis'),
+    path('cart/',views.cart,name="cart"),
+    path('displayCart/',views.displayCart,name="displayCart"),
+    path('remove/',views.remove,name="remove"),
+    path('plus/',views.plus,name="plus"),
+    path('minus/',views.minus,name="minus"),
+    path('complete/',views.complete,name="complete"),
+    path('clear/',views.clearCart,name="clear"),
 ]

@@ -14,7 +14,7 @@ from datetime import date
 from django.contrib import messages
 
 from django.utils.translation import gettext as _
-from services import productservices, purchaseservices
+from .services import productservices, purchaseservices
 from purchases.models import shipping
 
 from django.contrib.auth import login,authenticate,logout

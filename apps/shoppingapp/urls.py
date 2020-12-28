@@ -25,6 +25,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 urlpatterns = [
     path('i18n/',include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
+    
     path('', include('store.urls')),
     path('purchases/', include('purchases.urls')),
     path('users/', include('users.urls')),
