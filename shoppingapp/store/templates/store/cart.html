@@ -458,13 +458,13 @@
                 <div class="quantity">
                     <form method="POST">
                         {% csrf_token %}
-                        <button type="submit" formaction="/plus/" name="id" value={{product.product_ID.id}}>+</button>
+                        <button type="submit" formaction="/cart/plus/" name="id" value={{product.product_ID.id}}>+</button>
                         <input type="button" name="quantity" value="{{product.quantity}}">
-                        <button type="submit" formaction="/minus/" name="id" value="{{product.product_ID.id}}">-</button>
+                        <button type="submit" formaction="/cart/minus/" name="id" value="{{product.product_ID.id}}">-</button>
                     </form>
                 </div>
                 <div class="remove">
-                    <form method="POST" action="/remove/">
+                    <form method="POST" action="/cart/remove/">
                         {% csrf_token %}
                         <input type="submit" value="Delete" placeholder="Delete">
                         <input hidden type="text" name="id" value="{{product.product_ID.id}}" placeholder="Delete">
@@ -477,7 +477,7 @@
             </div>
             {% endfor %} {% for product in products %} {% if forloop.first %}
             <form method="GET" action="/clear/">
-                <a href="/clear/"><button type="submit" style="margin-right:500px;">Clear Cart </button></a>
+                <a href="/cart/clear/"><button type="submit" style="margin-right:500px;">Clear Cart </button></a>
                 <input hidden type="text" name="purchaseID" value="{{product.purchases_ID.id}}" placeholder="Delete">
 
             </form>
@@ -504,7 +504,7 @@
              <option value="second-class">Royal Mail 2nd Class</option>
              <option value="signed-for">Royal Mail Special Delivery</option>
           </select>-->
-                    <form method="GET" action="/complete">
+                    <form method="GET" action="/cart/complete">
                         <label for="address">{% trans "Address" %}</label>
                         <input type="text" name="address" id="address">
                         <label for="city">{% trans "City" %}</label>
@@ -516,7 +516,7 @@
                             <div class="total-value final-value" id="basket-total">{{price}}</div>
                         </div>
                         <div class="summary-checkout">
-                            <a href="/complete/"><button class="checkout-cta" type="submit">{% trans "Go to Secure Checkout" %}</button></a>
+                            <a href="/cart/complete/"><button class="checkout-cta" type="submit">{% trans "Go to Secure Checkout" %}</button></a>
                         </div>
                     </form>
                 </div>

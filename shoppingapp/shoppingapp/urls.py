@@ -30,9 +30,12 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     path('', include('store.urls')),
-    #path('cart/',include('purchases.urls')),
+    path('cart/',include('purchases.urls')),
+
     path('profile/',profile,name='profile'),
     path('i18n/',include('django.conf.urls.i18n')),
+
+    #User registration and Login
 
     path('register/',registration_view,name='register'),
     path('logout/',logout_view,name='logout'),
