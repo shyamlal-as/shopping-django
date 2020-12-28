@@ -25,9 +25,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 urlpatterns = [
     path('i18n/',include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
-]
-
-urlpatterns += [
     path('', include('store.urls')),
     path('purchases/', include('purchases.urls')),
     path('users/', include('users.urls')),
@@ -43,6 +40,12 @@ urlpatterns += [
     #path('api/',include('api.urls', 'apis')),
     path('api/token',TokenObtainPairView.as_view()),
     path('api/token/refresh',TokenRefreshView.as_view()),
+
+    #API Versioning
+
+    path('api/v1/store/',include('store.api.v1.urls')),
+    path('api/v1/purchase/',include('purchases.api.v1.urls')),
+    path('api/v1/users/',include('users.api.v1.urls')),
 
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

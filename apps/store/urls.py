@@ -21,6 +21,6 @@ urlpatterns = [
     path('profile',views.profile,name="profile"),
     path('edit-profile',user_view,name="edit-profile"),
     path('clear/',views.clearCart,name="clear"),
-    path('api/',include('store.api.urls'),name='apis'),
+    #path('api/',include('store.api.urls'),name='apis'),
 
 ]

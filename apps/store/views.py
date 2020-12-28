@@ -1,3 +1,5 @@
+import sys 
+sys.path.append("..")
 from django.shortcuts import render, redirect
 from .models import Categories,Product
 from django.http import HttpResponse

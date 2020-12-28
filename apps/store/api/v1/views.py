@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework.permissions import IsAuthenticated
 
 from store.models import Product
-from api.v1.store.serializers import ProductSerializer, CategoriesSerializer
+from .serializers import ProductSerializer, CategoriesSerializer
 
 from services import responseservices
 
