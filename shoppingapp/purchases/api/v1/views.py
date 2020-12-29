@@ -6,8 +6,11 @@ from rest_framework.authtoken.models import Token
 from purchases.models import Purchases, ProductPurchases
 from store.models import Product
 
-from services import responseservices,purchaseservices
-from api.v1.purchases.serializers import PurchaseSerializer, AddToCartSerializer, ConfirmPurchaseSerializer
+from purchases.services import purchaseservice
+from purchases.services import responseservice
+from .serializers import PurchaseSerializer, AddToCartSerializer, ConfirmPurchaseSerializer
+
+_purchaseService = purchaseservice.PurchaseService()
 
 
 #Create Cart
@@ -15,13 +18,23 @@ from api.v1.purchases.serializers import PurchaseSerializer, AddToCartSerializer
 @api_view(['POST',])
 @permission_classes((IsAuthenticated,))
 def cart_api_view(request,slug):
+
+    """
+    Create a cart
+
+    :param WSGI Request request: Request object
+    :param slug slug: Product id
+
+    :return Response: Success or failure message
+    """
+
     try:
-        message=purchaseservices.PurchaseServices().CreateCart(request,slug)
-        obj=responseservices.ResponseServices(message)
+        message=_purchaseService.CreateCart(request,slug)
+        obj=responseservice.ResponseService(message)
         return Response(obj.success(), status=status.HTTP_200_OK)
     except:
         message='An unknown error has occured'
-        obj=responseservices.ResponseServices(message)
+        obj=responseservice.ResponseService(message)
         return Response(obj.NotFound(), status=status.HTTP_404_NOT_FOUND)
 
 
@@ -34,12 +47,20 @@ def cart_api_view(request,slug):
 @permission_classes((IsAuthenticated,))
 def cart_purchase_api(request,slug):
 
+    """
+    Checkout the current cart
+
+    :param WSGI Request request: Request object
+    :param slug slug: Product id
+
+    :return Response: Success or failure message
+    """
 
     try:
         purchase = Purchases.objects.get(Users_ID=request.user, isActive=True)
     except Purchases.DoesNotExist:
         message='This user has no active cart'
-        obj=responseservices.ResponseServices(message)
+        obj=responseservice.ResponseService(message)
         return Response(obj.NotFound(), status.HTTP_404_NOT_FOUND)
 
     
@@ -48,6 +69,6 @@ def cart_purchase_api(request,slug):
         if serializer.is_valid():
             serializer.save()
             message='Purchase Succesful'
-        obj=responseservices.ResponseServices(message)
+        obj=responseservice.ResponseService(message)
         return Response(obj.success(), status.HTTP_200_OK)
 

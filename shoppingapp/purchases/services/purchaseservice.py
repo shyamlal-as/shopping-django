@@ -7,7 +7,7 @@ from django.contrib import messages
 from constants.messages import success, errors
 
 
-class PurchaseServices:
+class PurchaseService:
 
     product=Product.objects
     category=Categories.objects
@@ -16,25 +16,34 @@ class PurchaseServices:
 
     def CreateCart(self,request,slug):
 
-        if not PurchaseServices().purchase.filter(Users_ID=request.user,isActive=True).exists():
+        """
+        Create a cart
+
+        :param WSGI Request request: Request object
+        :param slug slug: Product id
+
+        :return string: Success or error message
+        """
+
+        if not self.purchase.filter(Users_ID=request.user,isActive=True).exists():
             purchaseDetail=Purchases(Users_ID=request.user)
             purchaseDetail.save()
-            pid=PurchaseServices().product.get(id=slug)
+            pid=self.product.get(id=slug)
             pr=pid.price
-            purchaseProduct=ProductPurchases(purchases_ID=PurchaseServices().purchase.latest('pk'),product_ID=pid,quantity=1,price=pr)
+            purchaseProduct=ProductPurchases(purchases_ID=self.purchase.latest('pk'),product_ID=pid,quantity=1,price=pr)
             purchaseProduct.save()
             message=success.CREATE_CART
         else:
-            purchase=PurchaseServices().purchase.get(Users_ID=request.user,isActive=True)
-            if not PurchaseServices().productPurchase.filter(product_ID=slug,purchases_ID=purchase.id).exists():
-                product=PurchaseServices().product.get(id=slug)
+            purchase=self.purchase.get(Users_ID=request.user,isActive=True)
+            if not self.productPurchase.filter(product_ID=slug,purchases_ID=purchase.id).exists():
+                product=self.product.get(id=slug)
                 pr=product.price
-                pid=PurchaseServices().product.get(id=slug)
+                pid=self.product.get(id=slug)
                 purchaseProduct=ProductPurchases(purchases_ID=purchase,product_ID=pid,quantity=1,price=pr)
                 purchaseProduct.save()
                 message=success.ADDED_TO_CART
             else:
-                purchaseProduct=PurchaseServices().productPurchase.get(product_ID=slug,purchases_ID=purchase.id)
+                purchaseProduct=self.productPurchase.get(product_ID=slug,purchases_ID=purchase.id)
                 purchaseProduct.quantity=purchaseProduct.quantity+1
                 purchaseProduct.save()
                 message=success.QUANTITY_INCREMENTED
@@ -42,11 +51,20 @@ class PurchaseServices:
                 
                 
     def DisplayCart(self,request):
-        eq=PurchaseServices().purchase.filter(Users_ID=request.user,isActive=True).first()
+
+        """
+        Displays an html page with products in cart
+
+        :param WSGI Request request: Request object
+
+        :return Dictionary: Product list and amount
+        """
+
+        eq=self.purchase.filter(Users_ID=request.user,isActive=True).first()
         products=[]
         amount=0
-        if PurchaseServices.purchase.filter(Users_ID=request.user,isActive=True).exists():
-            for each in PurchaseServices.productPurchase.order_by('product_ID'):
+        if self.purchase.filter(Users_ID=request.user,isActive=True).exists():
+            for each in self.productPurchase.order_by('product_ID'):
                 if each.purchases_ID.id==eq.id and each.purchases_ID.isActive==True and each.purchases_ID.Users_ID==request.user:
                     products.append(each)
                     amount+=each.price*each.quantity
@@ -55,17 +73,35 @@ class PurchaseServices:
 
 
     def RemoveProduct(self, request):
+
+        """
+        Remove a product from cart
+
+        :param WSGI Request request: Request object
+
+        :return render: html template
+        """
+
         idd=request.POST.get('id')
-        n=PurchaseServices().purchase.filter(Users_ID=request.user,isActive=True).first()
-        PurchaseServices.productPurchase.filter(product_ID=int(idd),purchases_ID=n.id).delete()
-        context=PurchaseServices().DisplayCart(request)
+        n=self.purchase.filter(Users_ID=request.user,isActive=True).first()
+        self.productPurchase.filter(product_ID=int(idd),purchases_ID=n.id).delete()
+        context=self.DisplayCart(request)
         return(context)
 
 
     def IncreaseQuantity(self, request, plus):
+
+        """
+        Increase quantity of a product in the cart
+
+        :param WSGI Request request: Request object
+        :param slug plus: Product id
+
+        :return render: html template
+        """
         
-        n=PurchaseServices().purchase.filter(Users_ID=request.user,isActive=True).first()
-        quantity=PurchaseServices.productPurchase.get(product_ID=int(plus),purchases_ID=n.id)
+        n=self.purchase.filter(Users_ID=request.user,isActive=True).first()
+        quantity=self.productPurchase.get(product_ID=int(plus),purchases_ID=n.id)
         prod=Product.objects.get(id=plus)
         if quantity.quantity<prod.stock:
             newquantity=quantity.quantity+1
@@ -74,26 +110,44 @@ class PurchaseServices:
         else:
             message=errors.QUANTITY_EXCEEDED
             messages.success(request,  message)
-        context=PurchaseServices().DisplayCart(request)
+        context=self.DisplayCart(request)
         return(context)
 
 
     
     def DecreaseQuantity(self, request,minus):
+
+        """
+        Increase quantity of a product in the cart
+
+        :param WSGI Request request: Request object
+        :param slug plus: Product id
+
+        :return render: html template
+        """
         
-        n=PurchaseServices.purchase.filter(Users_ID=request.user,isActive=True).first()
-        quantity=PurchaseServices.productPurchase.get(product_ID=int(minus),purchases_ID=n.id)
+        n=self.purchase.filter(Users_ID=request.user,isActive=True).first()
+        quantity=self.productPurchase.get(product_ID=int(minus),purchases_ID=n.id)
         if(quantity.quantity == 1):
-            PurchaseServices().RemoveProduct(request)
+            self.RemoveProduct(request)
         else:
             newquantity=quantity.quantity-1
             quantity.quantity=newquantity
             quantity.save()
-        context=PurchaseServices().DisplayCart(request)
+        context=self.DisplayCart(request)
         return(context)
 
 
     def Checkout(self, request):
+
+        """
+        Checkout the current cart
+
+        :param WSGI Request request: Request object
+
+        :return render: html template
+        """
+
         n=Purchases.objects.filter(Users_ID=request.user,isActive=True).first()
         for each in ProductPurchases.objects.filter(purchases_ID=n.id):
             if each.quantity<=each.product_ID.stock:
@@ -109,16 +163,24 @@ class PurchaseServices:
                 shippingdets=shipping(Users_ID=request.user,address=address,city=city,pincode=pincode)
                 shippingdets.save()
             else:
-                for each in PurchaseServices().productPurchase.filter(purchases_ID=n.id):
+                for each in self.productPurchase.filter(purchases_ID=n.id):
                     if each.quantity > each.product_ID.stock:
                         diff= each.quantity-each.product_ID.stock
                         for i in range(int(diff)):
-                            PurchaseServices().DecreaseQuantity(request,each.product_ID.id)
+                            self.DecreaseQuantity(request,each.product_ID.id)
                             
 
 
     
     def ClearCart(self, request):
+
+        """
+        Clear all products in the cart
+
+        :param WSGI Request request: Request object
+
+        :return render: html template
+        """
         
         purchase=request.GET.get('purchaseID')
-        PurchaseServices().purchase.filter(id=purchase).delete()
+        self.purchase.filter(id=purchase).delete()

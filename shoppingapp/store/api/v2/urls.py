@@ -1,8 +1,8 @@
 from django.urls import path, re_path
 from django.conf.urls import url
-from api.v2.store import views
+from . import views
 
-app_name = 'api'
+app_name = 'apps'
 
 
 urlpatterns = [

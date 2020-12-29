@@ -6,34 +6,27 @@ from django.contrib import messages
 
 from django.http import HttpResponse
 from django.db.models import Q
-from django.core.paginator import Paginator
-
 from django.shortcuts import get_object_or_404
 
-from users.models import Profile
 from datetime import date
 from constants.messages import errors,success
 
 from django.utils.translation import gettext as _
-from services import modelservices, productservices, purchaseservices
+from .services import purchaseservice
+
 from purchases.models import shipping
 
 
-
-
-_productService = productservices.ProductServices()
-_purchaseService = purchaseservices.PurchaseServices()
+_purchaseService = purchaseservice.PurchaseService()
 
 def cart(request):
 
 	"""
-	@desc : Adding a product to the cart.
-	@params WSGI request
-	@return HTML redirect :
-				If Purchases table has an entry with current userId and isActive attribute true: 
-					Add the product and quantity to ProductPurchases table,
-				Else:
-					Add an entry to Purchases table and ProductPurchases table.
+	Add a product to cart
+
+	:param WSGI Request request: Request object
+
+	:return redirect: Redirect to the same page
 	"""
 	if request.user.is_authenticated:
 		try:
@@ -58,11 +51,11 @@ def cart(request):
 def displayCart(request):
 
 	"""
-	@desc : Displaying the products in the cart.
-	@params WSGI request
-	@return HTML render : Fetches entries from ProductPurchases table which has
-						  purchasesId as the entry from Purchases table with
-						  current userId and isActive true.
+	Display the current projects in the cart
+
+	:param WSGI Request request: Request object
+
+	:return render: html template
 	"""
 
 	if request.user.is_authenticated:
@@ -78,10 +71,11 @@ def displayCart(request):
 def remove(request):
 
 	"""
-	@desc : Removes a certain product from cart.
-	@params WSGI request
-	@return HTML render : Deletes the respective entry from ProductPurchases table
-						  and renders cart.html.
+	Remove a product from cart
+
+	:param WSGI Request request: Request object
+
+	:return render: html template
 	"""
 	
 	context= _purchaseService.RemoveProduct(request)	
@@ -90,10 +84,13 @@ def remove(request):
 
 def clearCart(request):
 
+
 	"""
-	@desc : Clear the cart of all products.
-	@params WSGI request
-	@return HTML render :Deletes the entry from Purchases table and renders cart.html.
+	Clear the current cart
+
+	:param WSGI Request request: Request object
+
+	:return render: html template
 	"""
 
 	_purchaseService.ClearCart(request)
@@ -103,11 +100,13 @@ def clearCart(request):
 def plus(request):
 
 	"""
-	@desc : Increase quantity of a product in the cart by one.
-	@params WSGI request
-	@return HTML render : Increments quantity attribute of ProductPurchases table
-						  and renders Cart page.
+	Increase quantity of a product in the cart
+
+	:param WSGI Request request: Request object
+
+	:return render: html template
 	"""
+
 	plus=request.POST.get('id')
 	context = _purchaseService.IncreaseQuantity(request,plus)
 	return render(request,'store/cart.html',context)
@@ -117,11 +116,13 @@ def plus(request):
 def minus(request):
 
 	"""
-	@desc : Decrease quantity of a product in cart by one.
-	@params WSGI request
-	@return HTML render : Decrement quantity attribute of ProductPurchases table
-						  and renders Cart page.
+	Decrease quantity of a product in the cart
+
+	:param WSGI Request request: Request object
+
+	:return render: html template
 	"""
+
 	minus=request.POST.get('id')
 	context= _purchaseService.DecreaseQuantity(request,minus)
 	return render(request,'store/cart.html',context)
@@ -129,6 +130,15 @@ def minus(request):
 
 
 def complete(request):
+
+	"""
+	Complete the checkout
+
+	:param WSGI Request request: Request object
+
+	:return render: html template
+	"""
+
 	_purchaseService.Checkout(request)
 	return render(request,'store/complete.html')
 

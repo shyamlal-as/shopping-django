@@ -4,15 +4,14 @@ from rest_framework.decorators import api_view, permission_classes, authenticati
 from rest_framework.permissions import IsAuthenticated
 
 from store.models import Product
-from api.v2.store.serializers import ProductSerializer, CategorySerializer
+from .serializers import ProductSerializer, CategorySerializer
 
-from services import responseservices
-
+from store.services import responseservice
+from constants.messages import success,errors
 
 #from store.returns import api_return
 
 ## Get Product
-
 
 @api_view(['GET',])
 @permission_classes((IsAuthenticated,))
@@ -22,18 +21,16 @@ def api_detail_product_view(request,slug):
     try:
         product= Product.objects.get(id=slug)
     except Product.DoesNotExist:
-        data={}
-        data['message']='No product on this id'
-        #data={'status':'success',
-        #'status-code':status.HTTP_200_OK,
-        #'message':'Not Found'}
-        return Response(data, status=status.HTTP_404_NOT_FOUND)
-        #return api_return('Success',status.HTTP_200_OK,'Not Found','This message was not found')
+        message = errors.PRODUCT_ERROR
+        #message='A product of the requested id does not exist'
+        obj=responseservice.ResponseService(message)
+        return Response(obj.NotFound(), status=status.HTTP_404_NOT_FOUND)
 
     
     if request.method == "GET":
         serializer = ProductSerializer(product)
         return Response(serializer.data, status.HTTP_200_OK)
+
 
 
 ## Get Category
@@ -44,11 +41,11 @@ def api_detail_product_view(request,slug):
 def api_category_view(request,slug):
 
 
-    try:
-        product= Product.objects.filter(categories_id=slug)
-    except Product.DoesNotExist:
-        message='A product of the requested category id does not exist'
-        obj=responseservices.ResponseServices(message)
+    product= Product.objects.filter(categories_id=slug)
+    if(not product.exists()):
+        #message='A product of the requested category id does not exist'
+        message=errors.CATEGORY_ERROR
+        obj=responseservice.ResponseService(message)
         return Response(obj.NotFound(), status=status.HTTP_404_NOT_FOUND)
 
     
@@ -59,3 +56,5 @@ def api_category_view(request,slug):
         serializer = CategorySerializer(products, many=True)
        
         return Response(serializer.data, status.HTTP_200_OK)
+
+

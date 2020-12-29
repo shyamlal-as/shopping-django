@@ -7,7 +7,7 @@ from purchases.models import Purchases, ProductPurchases
 from store.models import Product
 
 
-from api.v2.purchases.serializers import PurchaseSerializer, AddToCartSerializer, ConfirmPurchaseSerializer
+from .serializers import PurchaseSerializer, AddToCartSerializer, ConfirmPurchaseSerializer
 
 
 #Create Cart

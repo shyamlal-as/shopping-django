@@ -14,7 +14,7 @@ from django.contrib import messages
 from constants.messages import errors,success
 
 from django.utils.translation import gettext as _
-from services import modelservices, productservices, purchaseservices
+from.services import productservice
 from purchases.models import shipping
 
 from django.contrib.auth import login,authenticate,logout
@@ -23,21 +23,20 @@ from django.contrib.auth import login,authenticate,logout
 
 ########Product Display Start
 
-_productService = productservices.ProductServices()
-_purchaseService = purchaseservices.PurchaseServices()
+_productService = productservice.ProductService()
 
 #Home Screen
 
 def store(request):
 	"""
-	Import the file
-	Validate the input file and insert/update records
+	Fetch all the products from Products table
+	Display in a template
 
-	:param Request request: Request object
+	:param WSGI Request request: Request object
 	:param str import_type: Import Type
 	:param str organisation_id: Uuid of organisation
 
-	:return JsonResponse: Success/failure response
+	:return render: html template
 	"""
 
 	context={
@@ -52,10 +51,13 @@ def store(request):
 def product(request,category_id):
 
 	"""
-	@desc : Displaying products in a certain category.
-	@params WSGI request
-	@return HTML render : Fetches products from Product table with categories_id
-						  as selected and renders on prod.html.
+	Fetch the products with the given category id
+	Display in a template
+
+	:param WSGI Request request: Request object
+	:param slug category_id: Category id
+
+	:return render: html template
 	"""
 
 	context={
@@ -70,10 +72,12 @@ def product(request,category_id):
 def search(request):
 
 	"""
-	@desc : Displaying products matching the search key.
-	@params WSGI request
-	@return HTML render : Fetches products from Product table according to the 
-						  search key entered.
+	Fetch the products with names matching search key
+	Display in a template
+
+	:param WSGI Request request: Request object
+
+	:return render: html template
 	"""
 
 	if request.method=='POST':
@@ -90,10 +94,13 @@ def search(request):
 def details(request,slug):
 
 	"""
-	@desc : Displaying details of selected product.
-	@params WSGI request
-	@return HTML render : Renders a page with name, image, and details of 
-						  a product from Product table.
+	Fetch the details of the product with given product id
+	Display in a template
+
+	:param WSGI Request request: Request object
+	:param slug slug: Product id
+
+	:return render: html template
 	"""
 
 	product=Product.objects.filter(id=slug)
@@ -102,22 +109,18 @@ def details(request,slug):
 	}
 	return render(request, 'store/details.html', context)
 
-###### Product Display End
-
-
-
-
-###Cart Views Start
-
-#Create Cart View
-
-
-
-
-#Cart Views End
 
 
 def profile(request):
+
+	"""
+	Fetch the details of the user and previous orders
+	Display in a template
+
+	:param WSGI Request request: Request object
+
+	:return render: html template
+	"""
 		
 	currentUser=request.user
 	display=[]
