@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from users.views import registration_view, logout_view, login_view
-from store.views import profile
+from apps.users.views import registration_view, logout_view, login_view
+from apps.store.views import profile
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -28,8 +28,8 @@ urlpatterns = [
 
 
     path('admin/', admin.site.urls),
-    path('', include('store.urls')),
-    path('cart/',include('purchases.urls')),
+    path('', include('apps.store.urls')),
+    path('cart/',include('apps.purchases.urls')),
 
     path('profile/',profile,name='profile'),
     path('i18n/',include('django.conf.urls.i18n')),
@@ -42,12 +42,15 @@ urlpatterns = [
 
     #Rest Framework URL
 
-    path('api/',include('shoppingapp.apiurls')),
+    path('api/',include('shoppingapp.apiurls.apiurls')),
 
     #JWT authorisation
 
     path('api/token', jwt_views.TokenObtainPairView.as_view()),
     path('api/token/refresh', jwt_views.TokenRefreshView.as_view()),
+
+    #social media auth
+    path('accounts/', include('allauth.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

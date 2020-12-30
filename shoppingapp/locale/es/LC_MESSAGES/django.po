@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-25 21:29+0530\n"
+"POT-Creation-Date: 2020-12-29 12:26+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,11 +70,11 @@ msgstr "conectado"
 msgid "logged_out"
 msgstr "desconectado"
 
-#: shoppingapp/settings.py:212
+#: shoppingapp/settings.py:210
 msgid "English"
 msgstr ""
 
-#: shoppingapp/settings.py:213
+#: shoppingapp/settings.py:211
 msgid "Spanish"
 msgstr ""
 
@@ -283,3 +283,35 @@ msgstr "que dicen nuestros clientes"
 #: store/templates/store/store.html:550
 msgid "Previous"
 msgstr "Anterior"
+
+#: users/templates/users/login.html:13
+msgid "LogIn"
+msgstr "Registrarse"
+
+#: users/templates/users/login.html:49 users/templates/users/login.html:51
+msgid "Create Account"
+msgstr "crear una cuenta"
+
+#: users/templates/users/login.html:61 users/templates/users/login.html:114
+msgid "Sign Up"
+msgstr "Regístrate"
+
+#: users/templates/users/login.html:70
+msgid "Sign in"
+msgstr "Registrarse"
+
+#: users/templates/users/login.html:107
+msgid "Welcome Back!"
+msgstr "Dar una buena acogida"
+
+#: users/templates/users/login.html:108
+msgid "To keep connected with us please login with your personal info"
+msgstr "Para mantenerse conectado con nosotros, inicie sesión con su información personal"
+
+#: users/templates/users/login.html:112
+msgid "New Here?"
+msgstr "Nuevo aquí"
+
+#: users/templates/users/login.html:113
+msgid "Register yourself to start your shopping experience."
+msgstr "Regístrese para comenzar su experiencia de compra"

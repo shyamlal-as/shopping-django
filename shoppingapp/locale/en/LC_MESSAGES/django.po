@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-25 21:29+0530\n"
+"POT-Creation-Date: 2020-12-29 12:26+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,216 +70,250 @@ msgstr "Logged Out"
 msgid "logged_out"
 msgstr "Logged Out"
 
-#: shoppingapp/settings.py:212
+#: shoppingapp/settings.py:210
 msgid "English"
 msgstr ""
 
-#: shoppingapp/settings.py:213
+#: shoppingapp/settings.py:211
 msgid "Spanish"
 msgstr ""
 
 #: store/templates/store/cart.html:430
 msgid "Enter a promotional code"
-msgstr ""
+msgstr "Enter a promotional code"
 
 #: store/templates/store/cart.html:432
 msgid "Apply"
-msgstr ""
+msgstr "Apply"
 
 #: store/templates/store/cart.html:438
 msgid "Item"
-msgstr ""
+msgstr "Item"
 
 #: store/templates/store/cart.html:439
 msgid "Price"
-msgstr ""
+msgstr "Price"
 
 #: store/templates/store/cart.html:440
 msgid "Quantity"
-msgstr ""
+msgstr "Quantity"
 
 #: store/templates/store/cart.html:441 store/templates/store/cart.html:515
 #: store/templates/store/profile.html:148
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 #: store/templates/store/cart.html:485
 msgid "Home"
-msgstr ""
+msgstr "Home"
 
 #: store/templates/store/cart.html:490
 msgid "Items in your cart"
-msgstr ""
+msgstr "Items in your cart"
 
 #: store/templates/store/cart.html:492
 msgid "Subtotal"
-msgstr ""
+msgstr "Subtotal"
 
 #: store/templates/store/cart.html:495
 msgid "Promotion"
-msgstr ""
+msgstr "Promotion"
 
 #: store/templates/store/cart.html:508
 msgid "Address"
-msgstr ""
+msgstr "Address"
 
 #: store/templates/store/cart.html:510
 msgid "City"
-msgstr ""
+msgstr "City"
 
 #: store/templates/store/cart.html:512
 msgid "pincode"
-msgstr ""
+msgstr "pincode"
 
 #: store/templates/store/cart.html:519
 msgid "Go to Secure Checkout"
-msgstr ""
+msgstr "Go to Secure Checkout"
 
 #: store/templates/store/details.html:149 store/templates/store/prod.html:192
 #: store/templates/store/search.html:215 store/templates/store/store.html:304
 msgid "Add To Cart"
-msgstr ""
+msgstr "Add To Cart"
 
 #: store/templates/store/details.html:155
 msgid "Services"
-msgstr ""
+msgstr "Services"
 
 #: store/templates/store/details.html:158
 msgid "30 Day Return Policy"
-msgstr ""
+msgstr "30 Day Return Policy"
 
 #: store/templates/store/details.html:161
 msgid "Cash on Delivery available"
-msgstr ""
+msgstr "Cash on Delivery available"
 
 #: store/templates/store/edit_profile.html:36
 #: store/templates/store/profile.html:36
 msgid "My Orders"
-msgstr ""
+msgstr "My Orders"
 
 #: store/templates/store/edit_profile.html:40
 #: store/templates/store/profile.html:40
 msgid "Edit Profile"
-msgstr ""
+msgstr "Edit Profile"
 
 #: store/templates/store/edit_profile.html:59
 #: store/templates/store/profile.html:62
 msgid "Hello"
-msgstr ""
+msgstr "Hello"
 
 #: store/templates/store/edit_profile.html:83
 msgid "Save Changes"
-msgstr ""
+msgstr "Save Changes"
 
 #: store/templates/store/main.html:76 store/templates/store/prod.html:88
 #: store/templates/store/search.html:96 store/templates/store/store.html:95
 msgid "My Account"
-msgstr ""
+msgstr "My Account"
 
 #: store/templates/store/main.html:82 store/templates/store/prod.html:94
 #: store/templates/store/search.html:102 store/templates/store/store.html:101
 msgid "Cart"
-msgstr ""
+msgstr "Cart"
 
 #: store/templates/store/main.html:101 store/templates/store/search.html:121
 #: store/templates/store/store.html:120
 msgid "Categories"
-msgstr ""
+msgstr "Categories"
 
 #: store/templates/store/main.html:103 store/templates/store/prod.html:115
 #: store/templates/store/search.html:123 store/templates/store/store.html:122
 msgid "clothing"
-msgstr ""
+msgstr "clothing"
 
 #: store/templates/store/main.html:104 store/templates/store/prod.html:116
 #: store/templates/store/search.html:124 store/templates/store/store.html:123
 msgid "Electrical"
-msgstr ""
+msgstr "Electrical"
 
 #: store/templates/store/main.html:105 store/templates/store/prod.html:117
 #: store/templates/store/search.html:125 store/templates/store/store.html:124
 msgid "Decor"
-msgstr ""
+msgstr "Decor"
 
 #: store/templates/store/main.html:109 store/templates/store/prod.html:121
 #: store/templates/store/search.html:129 store/templates/store/store.html:128
 msgid "About"
-msgstr ""
+msgstr "About"
 
 #: store/templates/store/main.html:112 store/templates/store/prod.html:124
 #: store/templates/store/search.html:132 store/templates/store/store.html:131
 msgid "Why Us"
-msgstr ""
+msgstr "Why Us"
 
 #: store/templates/store/main.html:115 store/templates/store/prod.html:127
 #: store/templates/store/search.html:135 store/templates/store/store.html:134
 msgid "Testimonial"
-msgstr ""
+msgstr "Testimonial"
 
 #: store/templates/store/prod.html:146 store/templates/store/store.html:258
 msgid "Page Number"
-msgstr ""
+msgstr "Page Number"
 
 #: store/templates/store/profile.html:72
 msgid "Log Out"
-msgstr ""
+msgstr "Log Out"
 
 #: store/templates/store/profile.html:143
 msgid "Product"
-msgstr ""
+msgstr "Product"
 
 #: store/templates/store/profile.html:144
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: store/templates/store/profile.html:146
 msgid "Unit price"
-msgstr ""
+msgstr "Unit price"
 
 #: store/templates/store/profile.html:147
 msgid "Qty"
-msgstr ""
+msgstr "Qty"
 
 #: store/templates/store/store.html:166 store/templates/store/store.html:212
 msgid "Welcome to our shop"
-msgstr ""
+msgstr "Welcome to our shop"
 
 #: store/templates/store/store.html:172
 msgid "Read More"
-msgstr ""
+msgstr "Read More"
 
 #: store/templates/store/store.html:256
 msgid "Our Products"
-msgstr ""
+msgstr "Our Products"
 
 #: store/templates/store/store.html:342
 msgid "Next"
-msgstr ""
+msgstr "Next"
 
 #: store/templates/store/store.html:359
 msgid "We Provide Best For You"
-msgstr ""
+msgstr "We Provide Best For You"
 
 #: store/templates/store/store.html:388
 msgid "Why Choose Us"
-msgstr ""
+msgstr "Why Choose Us"
 
 #: store/templates/store/store.html:399
 msgid "Fast Delivery"
-msgstr ""
+msgstr "Fast Delivery"
 
 #: store/templates/store/store.html:414
 msgid "Free Shiping"
-msgstr ""
+msgstr "Free Shiping"
 
 #: store/templates/store/store.html:429
 msgid "Best Quality"
-msgstr ""
+msgstr "Best Quality"
 
 #: store/templates/store/store.html:450
 msgid "What Says Our Customers"
-msgstr ""
+msgstr "What Says Our Customers"
 
 #: store/templates/store/store.html:550
 msgid "Previous"
-msgstr ""
+msgstr "Previous"
+
+#: users/templates/users/login.html:13
+msgid "LogIn"
+msgstr "LogIn"
+
+#: users/templates/users/login.html:49 users/templates/users/login.html:51
+msgid "Create Account"
+msgstr "Create Account"
+
+#: users/templates/users/login.html:61 users/templates/users/login.html:114
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: users/templates/users/login.html:70
+msgid "Sign in"
+msgstr "Sign in"
+
+
+
+#: users/templates/users/login.html:107
+msgid "Welcome Back!"
+msgstr "Welcome Back!"
+
+#: users/templates/users/login.html:108
+msgid "To keep connected with us please login with your personal info"
+msgstr "To keep connected with us please login with your personal info"
+
+#: users/templates/users/login.html:112
+msgid "New Here?"
+msgstr "New Here?"
+
+#: users/templates/users/login.html:113
+msgid "Register yourself to start your shopping experience."
+msgstr "Register yourself to start your shopping experience"
