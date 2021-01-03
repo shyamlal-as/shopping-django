@@ -118,24 +118,21 @@ def profile(request):
 		
 	currentUser=request.user
 
-	if currentUser.is_superuser:
-		print("----------------------------")
-		return redirect('store')
+
+	display=[]
+	message=""
+	if currentUser.is_authenticated:
+		for each in Purchases.objects.all().filter(Users_ID=currentUser,isActive=False):
+			for eq in ProductPurchases.objects.filter(purchases_ID=each.id):
+				display.append(eq)
+		
+		if len(display)==0:
+			message="You have not made any purchases"
+		return render(request,'store/profile.html',{'products':display,'message':message})
 	else:
-		display=[]
-		message=""
-		if currentUser.is_authenticated:
-			for each in Purchases.objects.all().filter(Users_ID=currentUser,isActive=False):
-				for eq in ProductPurchases.objects.filter(purchases_ID=each.id):
-					display.append(eq)
-			
-			if len(display)==0:
-				message="You have not made any purchases"
-			return render(request,'store/profile.html',{'products':display,'message':message})
-		else:
-			message = errors.LOGIN_REQUIRED
-			messages.success(request, message)
-			return redirect('login')
+		message = errors.LOGIN_REQUIRED
+		messages.success(request, message)
+		return redirect('login')
 
 	
 
