@@ -1,0 +1,446 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-12-28 17:12+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/shoppingapp/settings.py:129
+msgid "English"
+msgstr ""
+
+#: apps/shoppingapp/settings.py:130
+msgid "Spanish"
+msgstr ""
+
+#: apps/store/templates/store/cart.html:430
+msgid "Enter a promotional code"
+msgstr "Ingrese un código promocional"
+
+#: apps/store/templates/store/cart.html:432
+msgid "Apply"
+msgstr "Aplicar"
+
+#: apps/store/templates/store/cart.html:438
+msgid "Item"
+msgstr "Articulo"
+
+#: apps/store/templates/store/cart.html:439
+msgid "Price"
+msgstr "Precio"
+
+#: apps/store/templates/store/cart.html:440
+msgid "Quantity"
+msgstr "Cantidad"
+
+#: apps/store/templates/store/cart.html:441
+#: apps/store/templates/store/cart.html:515
+#: apps/store/templates/store/profile.html:143
+msgid "Total"
+msgstr "Total"
+
+#: apps/store/templates/store/cart.html:485
+msgid "Home"
+msgstr "Casa"
+
+#: apps/store/templates/store/cart.html:490
+msgid "Items in your cart"
+msgstr "objetos en tu carro de compras"
+
+#: apps/store/templates/store/cart.html:492
+msgid "Subtotal"
+msgstr "Total parcial"
+
+#: apps/store/templates/store/cart.html:495
+#, fuzzy
+#| msgid "Information"
+msgid "Promotion"
+msgstr "Información"
+
+#: apps/store/templates/store/cart.html:508
+#: apps/store/templates/store/store.html:573
+msgid "Address"
+msgstr "Habla a"
+
+#: apps/store/templates/store/cart.html:510
+msgid "City"
+msgstr "Ciudad"
+
+#: apps/store/templates/store/cart.html:512
+msgid "pincode"
+msgstr "código PIN"
+
+#: apps/store/templates/store/cart.html:519
+msgid "Go to Secure Checkout"
+msgstr "Ir a pago seguro"
+
+#: apps/store/templates/store/details.html:140
+#: apps/store/templates/store/profile.html:139
+msgid "Description"
+msgstr "Descripción"
+
+#: apps/store/templates/store/details.html:149
+#: apps/store/templates/store/prod.html:197
+#: apps/store/templates/store/store.html:306
+msgid "Add To Cart"
+msgstr "Añadir al carrito"
+
+#: apps/store/templates/store/details.html:155
+msgid "Services"
+msgstr "Servicios"
+
+#: apps/store/templates/store/details.html:158
+msgid "30 Day Return Policy"
+msgstr "Política de devolución de 30 días"
+
+#: apps/store/templates/store/details.html:161
+msgid "Cash on Delivery available"
+msgstr "Pago contra reembolso disponible"
+
+#: apps/store/templates/store/edit_profile.html:36
+#: apps/store/templates/store/profile.html:36
+msgid "My Orders"
+msgstr "Mis ordenes"
+
+#: apps/store/templates/store/edit_profile.html:40
+msgid "My Profile"
+msgstr "Mi perfil"
+
+#: apps/store/templates/store/edit_profile.html:61
+#: apps/store/templates/store/profile.html:62
+msgid "Hello"
+msgstr "Hola"
+
+#: apps/store/templates/store/main.html:45
+#: apps/store/templates/store/prod.html:58
+#: apps/store/templates/store/search.html:66
+#: apps/store/templates/store/store.html:64
+msgid "Call"
+msgstr "llamada"
+
+#: apps/store/templates/store/main.html:51
+#: apps/store/templates/store/prod.html:64
+#: apps/store/templates/store/search.html:72
+#: apps/store/templates/store/store.html:70
+msgid "Email"
+msgstr "correo electrónico"
+
+#: apps/store/templates/store/main.html:62
+#: apps/store/templates/store/prod.html:75
+#: apps/store/templates/store/store.html:81
+msgid "Search here"
+msgstr "Busca aquí"
+
+#: apps/store/templates/store/main.html:76
+#: apps/store/templates/store/prod.html:89
+#: apps/store/templates/store/search.html:97
+#: apps/store/templates/store/store.html:95
+msgid "My Account"
+msgstr "Mi cuenta"
+
+#: apps/store/templates/store/main.html:82
+#: apps/store/templates/store/prod.html:95
+#: apps/store/templates/store/search.html:103
+#: apps/store/templates/store/store.html:101
+msgid "Cart"
+msgstr "Carro"
+
+#: apps/store/templates/store/main.html:101
+#: apps/store/templates/store/prod.html:114
+#: apps/store/templates/store/store.html:120
+msgid "category"
+msgstr "Categorías"
+
+#: apps/store/templates/store/main.html:103
+#: apps/store/templates/store/prod.html:116
+#: apps/store/templates/store/search.html:124
+msgid "Clothing"
+msgstr "Ropa"
+
+#: apps/store/templates/store/main.html:104
+#: apps/store/templates/store/store.html:123
+#, fuzzy
+#| msgid "Electronics"
+msgid "Electrical"
+msgstr "Electrónica"
+
+#: apps/store/templates/store/main.html:105
+#: apps/store/templates/store/store.html:124
+msgid "Decor"
+msgstr "Decoración del hogar"
+
+#: apps/store/templates/store/main.html:109
+#: apps/store/templates/store/prod.html:122
+#: apps/store/templates/store/search.html:130
+#: apps/store/templates/store/store.html:128
+msgid "About"
+msgstr "Acerca de"
+
+#: apps/store/templates/store/main.html:112
+#: apps/store/templates/store/prod.html:125
+#: apps/store/templates/store/search.html:133
+#: apps/store/templates/store/store.html:131
+msgid "Why Us"
+msgstr "Por qué"
+
+#: apps/store/templates/store/main.html:115
+#: apps/store/templates/store/prod.html:128
+#: apps/store/templates/store/search.html:136
+#: apps/store/templates/store/store.html:134
+msgid "Testimonial"
+msgstr "Testimonial"
+
+#: apps/store/templates/store/prod.html:117
+#: apps/store/templates/store/search.html:125
+msgid "Electronics"
+msgstr "Electrónica"
+
+#: apps/store/templates/store/prod.html:118
+#: apps/store/templates/store/search.html:126
+msgid "Home Decor"
+msgstr "Decoración del hogar"
+
+#: apps/store/templates/store/prod.html:165
+#: apps/store/templates/store/store.html:274
+msgid "Out of Stock"
+msgstr "Agotado"
+
+#: apps/store/templates/store/prod.html:229
+#: apps/store/templates/store/store.html:338
+#: apps/store/templates/store/store.html:545
+msgid "Previous"
+msgstr "Previo"
+
+#: apps/store/templates/store/prod.html:235
+#: apps/store/templates/store/store.html:344
+msgid "Next"
+msgstr "Próximo"
+
+#: apps/store/templates/store/prod.html:245
+msgid "All Rights Reserved By"
+msgstr "Todos los derechos reservados por"
+
+#: apps/store/templates/store/profile.html:40
+msgid "Edit Profile"
+msgstr "Editar perfil"
+
+#: apps/store/templates/store/profile.html:72
+msgid "Log Out"
+msgstr "Cerrar sesión"
+
+#: apps/store/templates/store/profile.html:138
+msgid "Product"
+msgstr "Producto"
+
+#: apps/store/templates/store/profile.html:141
+#, fuzzy
+#| msgid "Unit Price"
+msgid "Unit price"
+msgstr "Precio unitario"
+
+#: apps/store/templates/store/profile.html:142
+msgid "Qty"
+msgstr ""
+
+#: apps/store/templates/store/search.html:170
+#: apps/store/templates/store/store.html:260
+msgid "Page Number"
+msgstr "Número de página"
+
+#: apps/store/templates/store/store.html:122
+msgid "clothing"
+msgstr "Ropa"
+
+#: apps/store/templates/store/store.html:166
+#: apps/store/templates/store/store.html:190
+#: apps/store/templates/store/store.html:214
+msgid "Welcome to our shop"
+msgstr "Bienvenido a nuestra tienda"
+
+#: apps/store/templates/store/store.html:169
+#: apps/store/templates/store/store.html:193
+#: apps/store/templates/store/store.html:217
+msgid "Something good about the services of the shopping app."
+msgstr "Algo bueno sobre los servicios de la aplicación de compras."
+
+#: apps/store/templates/store/store.html:172
+#: apps/store/templates/store/store.html:196
+#: apps/store/templates/store/store.html:220
+#: apps/store/templates/store/store.html:369
+msgid "Read More"
+msgstr "Lee mas"
+
+#: apps/store/templates/store/store.html:258
+msgid "Our Products"
+msgstr "Nuestros productos"
+
+#: apps/store/templates/store/store.html:361
+msgid "We Provide Best For You"
+msgstr "Brindamos lo mejor para usted"
+
+#: apps/store/templates/store/store.html:390
+msgid "Why Choose Us"
+msgstr "Por quos"
+
+#: apps/store/templates/store/store.html:401
+msgid "Fast Delivery"
+msgstr "Entrega rápida"
+
+#: apps/store/templates/store/store.html:404
+#: apps/store/templates/store/store.html:419
+#: apps/store/templates/store/store.html:434
+msgid "variations of passages of Lorem Ipsum available"
+msgstr "variaciones de pasajes de Lorem Ipsum disponibles"
+
+#: apps/store/templates/store/store.html:416
+msgid "Free Shiping"
+msgstr "Envío gratis"
+
+#: apps/store/templates/store/store.html:431
+msgid "Best Quality"
+msgstr "Mejor calidad"
+
+#: apps/store/templates/store/store.html:452
+msgid "What Says Our Customers"
+msgstr "Qué dicen nuestros clientes"
+
+#: apps/store/templates/store/store.html:467
+#: apps/store/templates/store/store.html:494
+#: apps/store/templates/store/store.html:520
+msgid "Amazing website for online shopping"
+msgstr "Increíble sitio web para compras online"
+
+#: apps/store/templates/store/store.html:479
+#: apps/store/templates/store/store.html:505
+#: apps/store/templates/store/store.html:532
+msgid "Photographer "
+msgstr "Fotógrafo"
+
+#: apps/store/templates/store/store.html:586
+msgid "Information"
+msgstr "Información"
+
+#: apps/store/templates/store/store.html:603
+msgid "Newsletter"
+msgstr "Boletin informativo"
+
+#: apps/store/templates/store/store.html:606
+msgid "Enter your email"
+msgstr "Introduce tu correo electrónico"
+
+#: apps/store/templates/store/store.html:608
+msgid "Subscribe"
+msgstr "Suscribir"
+
+#: apps/users/templates/users/register.html:66
+#: apps/users/templates/users/register.html:82
+msgid "Sign Up"
+msgstr "Regístrate"
+
+#: apps/users/templates/users/register.html:74
+msgid "Welcome Back!"
+msgstr "¡Dar una buena acogida!"
+
+#: apps/users/templates/users/register.html:75
+msgid "To keep connected with us please login with your personal info"
+msgstr ""
+"Para mantenerse conectado con nosotros, inicie sesión con su información "
+"personal"
+
+#: apps/users/templates/users/register.html:76
+msgid "Sign in"
+msgstr "Sign in"
+
+#: apps/users/templates/users/register.html:80
+msgid "New Here?"
+msgstr "Nuevo aqui?"
+
+#: apps/users/templates/users/register.html:81
+msgid "Register yourself to start your shopping experience."
+msgstr "Regístrese para comenzar su experiencia de compra."
+
+#: constants/messages/errors.py:4
+msgid "failed"
+msgstr "Fallido"
+
+#: constants/messages/errors.py:5
+msgid "login_required"
+msgstr "Es necesario iniciar sesión"
+
+#: constants/messages/errors.py:6
+msgid "quantity_exceeded"
+msgstr "Cantidad excedida el límite"
+
+#: constants/messages/errors.py:8
+msgid "invalid_token"
+msgstr "Token de token no válido no existe"
+
+#: constants/messages/errors.py:9
+msgid "product_does_not_exist"
+msgstr "El producto de este ID no existe"
+
+#: constants/messages/errors.py:10
+msgid "category_does_not_exist"
+msgstr "La categoría de este ID no existe"
+
+#: constants/messages/success.py:3
+msgid "success"
+msgstr "exitoso"
+
+#: constants/messages/success.py:4
+msgid "cart_created"
+msgstr "se ha creado el carrito"
+
+#: constants/messages/success.py:5
+msgid "added_to_cart"
+msgstr "Producto añadido al carrito"
+
+#: constants/messages/success.py:6
+#, fuzzy
+#| msgid "Quantity"
+msgid "quantity_inc"
+msgstr "Cantidad"
+
+#: constants/messages/success.py:7
+#, fuzzy
+#| msgid "Quantity"
+msgid "quantity_dec"
+msgstr "Cantidad"
+
+#: constants/messages/success.py:9
+msgid "logged_in"
+msgstr ""
+
+#: constants/messages/success.py:10
+msgid "logged_out"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Add To Cart"
+#~ msgid "Add to Cart"
+#~ msgstr "Añadir al carrito"
+
+#~ msgid "Order History"
+#~ msgstr "Historial de pedidos"
+
+#~ msgid "Shipment Details"
+#~ msgstr "Detalles del envío"
+
+#~ msgid "Product Code"
+#~ msgstr "Código de producto"
+
+#~ msgid "hello"
+#~ msgstr "hola"

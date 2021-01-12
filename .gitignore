@@ -1,2 +1,1 @@
-settings.py
-__pycache__/
+apps/shoppingapp/settings.py
