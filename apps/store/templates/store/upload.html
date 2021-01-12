@@ -1,0 +1,44 @@
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product upload</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Add a product</h1>
+    <div class="container">
+      
+        <form action="/upload/" method="post"  enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{form.as_p}}
+           
+            <button type="submit" class="btn btn-lg btn-success">Upload</button>
+        </form>
+       
+        {% if obj %}
+        <h3>Succesfully uploaded : {{obj.name}}</h3>
+        <img src="{{ obj.image.url}}" alt="image" class="img-thumbnail"  >
+        <h5>{{obj.price}}</h5>
+        {% endif %}
+        <hr>
+
+
+    </div>
+   <a href="http://localhost:8000/"><button>Back Home</button></a>
+
+<!--<script>
+function imgchange(event){
+    $("#imgs").attr('src',URL.createObjectURL(event.target.files[0]));
+    $("#pic").attr('value',URL.createObjectURL(event.target.files[0]));
+    return ($("#pic").attr('value'))
+}
+</script>-->
+
+</body>
+
+
+
+</html>

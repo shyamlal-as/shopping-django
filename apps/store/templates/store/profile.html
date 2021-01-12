@@ -164,7 +164,7 @@
 
         </div>
              {% get_current_language as LANGUAGE_CODE %}
-        <form action="{% url 'set_language' %}" method="POST" style="display: block;position: absolute;">
+        <form action="{% url 'set_language' %}" method="POST" style="display: block;position: absolute;top: 300px;left: 10px;">
             {% csrf_token %}
             <input type="hidden" name="text" value="{{redirect_to}}">
             <select name="language" id="">

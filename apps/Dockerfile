@@ -1,0 +1,25 @@
+FROM python:3
+
+ENV PYTHONUNBUFFERED 1
+
+#RUN mkdir -p /var/log/gunicorn
+
+WORKDIR /app
+
+ADD . /app
+
+RUN apt-get update
+RUN pip install --upgrade pip
+RUN pip install psycopg2
+
+COPY ./requirements.txt /app/requirements.txt
+COPY ./gunicorn.conf /app/gunicorn.conf
+
+RUN pip install -r requirements.txt
+#RUN python manage.py makemigrations
+#RUN python manage.py migrate
+#RUN python manage.py createsuperuser
+COPY . /app
+
+EXPOSE 8000
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

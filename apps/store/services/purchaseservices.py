@@ -1,3 +1,5 @@
+import sys 
+sys.path.append("..")
 from purchases.models import Purchases, ProductPurchases
 from store.models import Product, Categories
 from purchases.models import shipping
@@ -5,6 +7,7 @@ from users.models import Profile
 from datetime import date
 from django.contrib import messages
 
+from  constants.messages import errors,success
 
 class PurchaseServices:
 
@@ -16,8 +19,8 @@ class PurchaseServices:
     def CreateCart(self,request,slug):
         """
         Creating a new cart or appending to existing cart
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
         :param slug- ID of product to be added into the cart
 
         :return message: Message indicating the inclusion of the product in the cart
@@ -30,7 +33,7 @@ class PurchaseServices:
             pr=pid.price
             purchaseProduct=ProductPurchases(purchases_ID=self.purchase.latest('pk'),product_ID=pid,quantity=1,price=pr)
             purchaseProduct.save()
-            message='A cart has been created'
+            message=success.CREATE_CART
         else:
             purchase=self.purchase.get(Users_ID=request.user,isActive=True)
             if not self.productPurchase.filter(product_ID=slug,purchases_ID=purchase.id).exists():
@@ -39,12 +42,12 @@ class PurchaseServices:
                 pid=self.product.get(id=slug)
                 purchaseProduct=ProductPurchases(purchases_ID=purchase,product_ID=pid,quantity=1,price=pr)
                 purchaseProduct.save()
-                message='Product was added to the cart'
+                message=success.ADDED_TO_CART
             else:
                 purchaseProduct=self.productPurchase.get(product_ID=slug,purchases_ID=purchase.id)
                 purchaseProduct.quantity=purchaseProduct.quantity+1
                 purchaseProduct.save()
-                message='Quantity of the product increased by one'
+                message=success.QUANTITY_INCREMENTED
         return(message)
                 
                 
@@ -53,7 +56,6 @@ class PurchaseServices:
         Displaying the cart 
 
         :param WSGI request - request
-        :param self- instance of class ProductServices
 
         :return dictionary context : A dictionary containing the products in the cart
                                      and the total price of all products summed up
@@ -74,8 +76,8 @@ class PurchaseServices:
     def RemoveProduct(self, request):
         """
         Removing a prodcut from the cart
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
 
          :return dictionary context : A dictionary containing the products in the cart
                                      and the total price of all products summed up
@@ -84,17 +86,18 @@ class PurchaseServices:
         n=self.purchase.filter(Users_ID=request.user,isActive=True).first()
         self.productPurchase.filter(product_ID=int(idd),purchases_ID=n.id).delete()
         context=self.DisplayCart(request)
+        messages.success(request,  success.PRODUCT_REMOVED)
         return(context)
 
 
     def IncreaseQuantity(self, request, plus):
         """
         Increasing quantity of selected product
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
         :param plus- ID of the product
 
-         :return dictionary context : A dictionary containing the products in the cart
+        :return dictionary context : A dictionary containing the products in the cart
                                      and the total price of all products summed up
         """
         
@@ -105,8 +108,9 @@ class PurchaseServices:
             newquantity=quantity.quantity+1
             quantity.quantity=newquantity
             quantity.save()
+            messages.success(request,  success.QUANTITY_INCREMENTED)
         else:
-            messages.success(request,  'Quantity exceeded product stock.')
+            messages.success(request,  errors.QUANTITY_EXCEEDED)
         context=self.DisplayCart(request)
         return(context)
 
@@ -115,11 +119,11 @@ class PurchaseServices:
     def DecreaseQuantity(self, request,minus):
         """
         Decreasing quantity of selected product
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
         :param minus- ID of the product
 
-         :return dictionary context : A dictionary containing the products in the cart
+        :return dictionary context : A dictionary containing the products in the cart
                                      and the total price of all products summed up
         """
         
@@ -131,6 +135,7 @@ class PurchaseServices:
             newquantity=quantity.quantity-1
             quantity.quantity=newquantity
             quantity.save()
+            messages.success(request,  success.QUANTITY_DECREMENTED)
         context=self.DisplayCart(request)
         return(context)
 
@@ -138,9 +143,10 @@ class PurchaseServices:
     def Checkout(self, request):
         """
         Completing the purchase
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
         """
+
         n=Purchases.objects.filter(Users_ID=request.user,isActive=True).first()
         for each in ProductPurchases.objects.filter(purchases_ID=n.id):
             if each.quantity<=each.product_ID.stock:
@@ -169,8 +175,10 @@ class PurchaseServices:
     def ClearCart(self, request):
         """
         Deleting all the products from the cart
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
+
         """
         purchase=request.GET.get('purchaseID')
         PurchaseServices().purchase.filter(id=purchase).delete()
+        messages.success(request,  success.CLEAR_CART)

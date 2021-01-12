@@ -18,12 +18,13 @@ class ProductServices:
     def paginator(self,content,request):
         """
         Paginated display of products
-        :param WSGI request - request
-        :param self- instance of class ProductServices
+
         :param content: Products to be displayed
+        :param WSGI request - request
 
         :return page: page containing products in paginated display
         """
+
         paginator=Paginator(content,6)
         page_num=request.GET.get('page')
         page=paginator.get_page(page_num)
@@ -32,8 +33,8 @@ class ProductServices:
     def allProducts(self,request):
         """
         Fetching all products
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
 
         :return ProductServices.paginator(self,products,request):A method that returns page containing 
                                                                  products in paginated display
@@ -45,8 +46,8 @@ class ProductServices:
     def allCategories(self,request,category_id):
         """
         Fetching all products of a category
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
         :param category_id - Id of category to be displayed
 
         :return ProductServices.paginator(self,categories_id,request):A method that returns page containing 
@@ -59,8 +60,8 @@ class ProductServices:
     def search(self,request):
         """
         Fetching all products matching the search key
+
         :param WSGI request - request
-        :param self- instance of class ProductServices
 
         :return ProductServices.paginator(self,products,request):A method that returns page containing 
                                                                  products matching search key in paginated display

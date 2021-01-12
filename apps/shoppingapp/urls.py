@@ -36,18 +36,12 @@ urlpatterns = [
     path('logout/',logout_view,name='logout'),
     path('login/',login_view,name='login'),
 
-    #Rest Framework URLs
-
-    #path('api/',include('api.urls', 'apis')),
+    #JWT Authorization
     path('api/token',TokenObtainPairView.as_view()),
     path('api/token/refresh',TokenRefreshView.as_view()),
-
+    
     #API Versioning
-
-    path('api/v1/store/',include('store.api.v1.urls')),
-    path('api/v1/purchase/',include('purchases.api.v1.urls')),
-    path('api/v1/users/',include('users.api.v1.urls')),
-
+    path('api/',include('shoppingapp.apiurls')),
 
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

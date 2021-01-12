@@ -1,7 +1,11 @@
+import sys 
+sys.path.append("..")
 from rest_framework.response import Response
 from rest_framework import status
 from store.models import Product
 
+
+from constants.messages import errors,success
 
 class ResponseServices:
 
@@ -12,10 +16,11 @@ class ResponseServices:
     def success(self):
         """
         API succesful
-        :param self - instance of the class ResponseServices
+
         :return dictionary data: Contains success message, status code and status
         """
-        data={'status':'success',
+
+        data={'status':success.SUCCESS,
         'status-code':status.HTTP_200_OK,
         'message':self._message}
         return(data)
@@ -23,10 +28,11 @@ class ResponseServices:
     def NotFound(self):
         """
         Unsuccesful API
-        :param self - instance of the class ResponseServices
+
         :return dictionary data: Contains failure message, status code and status
         """
-        data={'status':'failed',
+
+        data={'status':errors.FAILED,
         'status-code':status.HTTP_404_NOT_FOUND,
         'message':self._message}
         return(data)

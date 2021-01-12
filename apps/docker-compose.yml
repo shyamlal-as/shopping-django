@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+
+  web:
+    build: .
+    #command: python /code/manage.py runserver 0.0.0.0:8000
+    command: gunicorn -c gunicorn.conf shoppingapp.wsgi
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    links:
+      - db:db
+  django_gunicorn:
+    volumes: 
+      - static:/static
+    build: 
+      context: .
+
+  db:
+    image: 'postgres:latest'
+    restart: always
+    expose:
+      - "5432"
+    environment:
+      - POSTGRES_DB=ecom
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Password@1
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      #- postgres-data:/var/lib/docker/volumes/myvol/_data
+volumes: 
+  postgres-data:
+  static:
+

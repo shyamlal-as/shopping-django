@@ -1,0 +1,25 @@
+{% load static %}
+{% load mathfilters %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Seller registration</title>
+</head>
+<body>
+
+<h2>Registration</h2>
+
+<form action="/registerAsSeller" method="get">
+  <label for="cname">Company Name:</label><br>
+  <input type="text" id="cname" name="cname" placeholder="Enter Company Name"><br>
+  <label for="cdesc">Company Description:</label><br>
+  <input type="text" id="cdesc" name="cdesc" placeholder="Enter Company Description"><br><br>
+  <input type="file" id="myFile" name="filename">
+  <input type="submit">
+
+  <input type="submit" value="Submit">
+</form> 
+
+
+</body>
+</html>

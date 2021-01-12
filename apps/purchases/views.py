@@ -25,9 +25,12 @@ def cart(request):
 
     """
     Adding a product to the cart/Creating a cart.
+
     :param WSGI request
+    
     :return HTML redirect : redirects to the same page after the selected product has been added to cart
     """
+
     if request.user.is_authenticated:
         try:
             prod=request.GET.get('pid')
@@ -49,7 +52,9 @@ def displayCart(request):
 
     """
     Displaying the products in the cart.
+
     :param WSGI request
+
     :return HTML render : Displays all products added to the cart
     """
 
@@ -67,7 +72,9 @@ def remove(request):
 
     """
     Removes the selected product from cart.
+
     :param WSGI request
+
     :return HTML render : The cart page with the selected product removed from cart
     """
     
@@ -79,7 +86,9 @@ def clearCart(request):
 
     """
     Remove all products from the cart.
+
     :param WSGI request
+
     :return HTML render : Empty cart display.
     """
 
@@ -91,7 +100,9 @@ def plus(request):
 
     """
     Increase quantity of a product in the cart by one.
+
     :params WSGI request
+
     :return HTML render : The cart page containing the new quantity amount.
     """
     plus=request.POST.get('id')
@@ -104,7 +115,9 @@ def minus(request):
 
     """
     Decrease quantity of a product in the cart by one.
+
     :param WSGI request
+
     :return HTML render : The cart page containing the new quantity amount.
     """
     minus=request.POST.get('id')
@@ -116,10 +129,12 @@ def minus(request):
 def complete(request):
     """
     Complete the purchase
-    :param WSGI request
-    :return HTML render : A page indicating a succesful purchase 
 
+    :param WSGI request
+
+    :return HTML render : A page indicating a succesful purchase 
     """
+
     _purchaseService.Checkout(request)
     return render(request,'store/complete.html')
 
