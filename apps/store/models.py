@@ -16,3 +16,5 @@ class Product(models.Model):
 	image=models.ImageField(upload_to='pics',default='default.jpg')
 	isApproved=models.BooleanField(default=False)
 	User_ID=models.ForeignKey(User,related_name='UID' ,default=None,on_delete=models.CASCADE)
+
+

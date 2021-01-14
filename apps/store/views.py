@@ -317,3 +317,34 @@ def profile(request):
 	else:
 		messages.success(request,  'Login to continue.')
 		return redirect('login')
+
+
+#################################
+
+
+from . import documents
+
+def testSearch(request):
+
+	s = documents.ProductDoc.search().filter("term", name="Shirt")
+	print('000000000000000000000000000000000000000000000000')
+	print(s)
+
+	# or
+
+	#s = CarDocument.search().query("match", description="beautiful")
+	"""
+
+	for hit in s:
+		print('++++++++++++++++++++++++++++++++++++++++++++++')
+		print(
+			"Car name : {}, description {}".format(hit.name, hit.price)
+		)
+
+	"""
+	qs = s.to_queryset()
+	for car in qs:
+		print(car.name)
+
+
+	return redirect('store')

@@ -15,7 +15,11 @@ urlpatterns = [
     path('upload/',views.upload,name="upload"),
     path('registerAsSeller/',views.registerAsSeller,name="sellerRegistration"),
     path('cart/',views.cart,name="cart"),
-    path('displayCart/',views.displayCart,name="displayCart"),
+
+    #path('displayCart/',views.displayCart,name="displayCart"),
+    path('displayCart/',views.testSearch,name="cart"),
+
+
     path('remove/',views.remove,name="remove"),
     path('plus/',views.plus,name="plus"),
     path('minus/',views.minus,name="minus"),
